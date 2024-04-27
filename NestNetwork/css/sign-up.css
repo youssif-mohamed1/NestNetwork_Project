@@ -1,0 +1,36 @@
+body{
+    background-color: #f6fff8;
+}
+
+.ph{
+    background-image: url(../imgs/Helwan_logo.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    width: 33%;
+    height: 54%;
+    margin:auto;
+    padding: 20px ;
+}
+.data{
+    width: 30%;
+    height: 50%;
+    margin:auto;
+    padding: 20px ;
+}
+.container {
+    background-color: #f6fff8;
+    border: 0px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    width: 45%;
+    height: 65%;
+    margin: auto;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+}
