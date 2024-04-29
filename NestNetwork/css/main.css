@@ -2,6 +2,10 @@ body{
     background-color: #f6fff8;
     
 }
+::selection{
+    background-color: black;
+    color: yellow;
+}
 .container{
     background-color: #f6fff8;
     border: 0px solid black;
