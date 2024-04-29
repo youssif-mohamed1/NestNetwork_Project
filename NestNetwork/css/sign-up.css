@@ -26,7 +26,8 @@ body{
     background-color: #f6fff8;
     border: 0px solid black;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     width: 45%;
     height: 85%;
     margin: auto;
