@@ -33,11 +33,22 @@ body{
     padding: 20px;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 25%;
+    transform: translate(100%, 100%);
+    animation: slideUp 0.5s forwards;
     display: flex;
     flex-direction: row;
 }
+
+@keyframes slideUp {
+    from {
+        transform: translate(100%, 100%);
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"],
