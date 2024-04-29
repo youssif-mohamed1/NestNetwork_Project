@@ -94,3 +94,7 @@ border: 1px solid black;
     background-color: black;
     color: yellow;
 }
+.container div input:focus{
+    background-color: black;
+    color: white;
+}
