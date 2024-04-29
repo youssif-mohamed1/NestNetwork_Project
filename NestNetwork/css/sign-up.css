@@ -3,7 +3,7 @@ body{
 }
 
 .ph{
-    background-image: url(../imgs/Helwan_logo.jpeg);
+    background-image: url(../imgs/Helwan_logo_black_white.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
@@ -11,12 +11,16 @@ body{
     height: 54%;
     margin:auto;
     padding: 20px ;
+    position: absolute;
+    left: 370px;
+    top: 82px;
 }
 .data{
     width: 30%;
     height: 50%;
     margin:auto;
     padding: 20px ;
+    position: absolute;
 }
 .container {
     background-color: #f6fff8;
@@ -24,7 +28,7 @@ body{
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
     width: 45%;
-    height: 65%;
+    height: 85%;
     margin: auto;
     padding: 20px;
     position: absolute;
@@ -33,4 +37,45 @@ body{
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: row;
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="radio"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.sign-up{
+    border: 0px;
+    border-radius: 10px;
+    width: 50%;
+    background-color: #172821;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    width: 250px;
+    margin:auto;
+    height: 70px;
+    font-size: x-large;
+    text-align: center;
+    cursor: pointer;
+}
+.sign-up:hover{
+background-color: rgb(0, 0, 0);
+border: 1px solid black;
+}
+.sign-up{
+    position: absolute;
+    top: 156%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.radio_but{
+    position: absolute;
+    top: 136%;
+    left: 33%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
 }

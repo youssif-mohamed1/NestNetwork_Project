@@ -11,38 +11,46 @@
     <div class = "container">
         <div class = "ph"></div>
         <div class = "data">
-            <div>
+            <div class = "form-group">
                 <label for="fn">First name</label>
-                <input type="text" id = "fn">
+                <input type="text" id = "fn" required>
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="ln">Last name</label>
-                <input type="text" id = "ln">
+                <input type="text" id = "ln" required>
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="id">Student ID</label>
-                <input type="number" id = "id">
+                <input type="text" id = "id" required>
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="ue">University Email</label>
-                <input type="email" id = "ue">
+                <input type="email" id = "ue" required>
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="pass">Create Password</label>
-                <input type="password" id = "pass" minlength="5" maxlength="20">
+                <input type="password" id = "pass" minlength="5" maxlength="20" required>
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="un">University</label>
-                <input type="text" id = "un">
+                <input type="text" id = "un" required>
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="fac">Faculty</label>
-                <input type="text" id = "fac">
+                <input type="text" id = "fac" required>
             </div>
-            <div>
+            <div class = "form-group">
                 <label for="Dep">Department</label>
-                <input type="text" id = "Dep">
+                <input type="text" id = "Dep" required>
             </div>
+            <div class = "radio_but">
+                <div><label for="gender">Gender:</label></div>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+            <a href=""><span><button class = "sign-up">Sign Up</button></span></a>
         </div>
     </div>
 </body>
