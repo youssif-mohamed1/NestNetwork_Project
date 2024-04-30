@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name = "author" content = "Youssef Mohamed">
-    <title>Helwan NestNetwork Sign-Up</title>
-    <link rel="stylesheet" href="../static/sign-up.css">
-</head>
-<body>
-    <div class = "container">
-        <div class = "ph"></div>
-        <div class = "data">
-            <form action="/signup_prof" method="POST">
-            <div class = "form-group">
-                <label for="fn">First name</label>
-                <input type="text" id = "fn" required placeholder = "ex: Mahmoud" name="first_name">
-            </div>
-            <div class = "form-group">
-                <label for="ln">Last name</label>
-                <input type="text" id = "ln" required placeholder = "ex: Zaki" name="last_name">
-            </div>
-            <!-- <div class = "form-group">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Youssef Mohamed">
+        <title>Helwan NestNetwork Sign-Up</title>
+        <link rel="stylesheet" href="../static/sign-up.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="ph"></div>
+            <div class="data">
+                <form action="/signup_prof" method="POST">
+                    <div class="form-group">
+                        <label for="fn">First name</label>
+                        <input type="text" id="fn" required
+                            placeholder="ex: Mahmoud" name="first_name">
+                    </div>
+                    <div class="form-group">
+                        <label for="ln">Last name</label>
+                        <input type="text" id="ln" required
+                            placeholder="ex: Zaki" name="last_name">
+                    </div>
+                    <!-- <div class = "form-group">
                 <label for="id">Proffesseur ID</label>
                 <input type="text" id = "id" required placeholder = "ex: 123..." name="prof_id">
             </div> -->
-            <div class = "form-group">
-                <label for="ue">University Email</label>
-                <input type="email" id = "ue" required placeholder = "ex: mahmoud@gmail.com" name="uni_email">
+                    <div class="form-group">
+                        <label for="ue">University Email</label>
+                        <input type="email" id="ue" required
+                            placeholder="ex: mahmoud@gmail.com"
+                            name="uni_email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pass">Create Password</label>
+                        <input type="password" id="pass" minlength="5"
+                            maxlength="20" required
+                            placeholder="ex: Strong Password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label for="un">University</label>
+                        <input type="text" id="un" required
+                            placeholder="ex: Helwan University" name="uni">
+                    </div>
+                    <div class="form-group">
+                        <label for="fac">Faculty</label>
+                        <input type="text" id="fac" required
+                            placeholder="ex: Faculty of Engineering"
+                            name="faculty">
+                    </div>
+                    <div class="form-group">
+                        <label for="Dep">Department</label>
+                        <input type="text" id="Dep" required
+                            placeholder="ex: Computer and Systems"
+                            name="depart">
+                    </div>
+                    <div class="radio_but">
+                        <div><label for="gender">Gender:</label></div>
+                        <input type="radio" id="male" name="gender" value="male"
+                            required>
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender"
+                            value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <button class="sign-up">Sign Up</button>
+                </form>
             </div>
-            <div class = "form-group">
-                <label for="pass">Create Password</label>
-                <input type="password" id = "pass" minlength="5" maxlength="20" required placeholder = "ex: Strong Password" name="password">
-            </div>
-            <div class = "form-group">
-                <label for="un">University</label>
-                <input type="text" id = "un" required placeholder = "ex: Helwan University" name="uni">
-            </div>
-            <div class = "form-group">
-                <label for="fac">Faculty</label>
-                <input type="text" id = "fac" required placeholder = "ex: Faculty of Engineering" name="faculty">
-            </div>
-            <div class = "form-group">
-                <label for="Dep">Department</label>
-                <input type="text" id = "Dep" required placeholder = "ex: Computer and Systems" name="depart">
-            </div>
-            <div class = "radio_but">
-                <div><label for="gender">Gender:</label></div>
-                <input type="radio" id="male" name="gender" value="male" required  >
-                <label for="male">Male</label>
-                <input type="radio" id="female" name="gender" value="female">
-                <label for="female">Female</label>
-            </div>
-            <button class = "sign-up">Sign Up</button>
-            </form>
         </div>
-    </div>
-</body>
+    </body>
 </html>
