@@ -4,7 +4,7 @@ from flask_login import  UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import  login_user, logout_user,login_manager, LoginManager 
 from flask_login import login_required, current_user
-#sssssss
+#sssssss yoyoyoyoyoyoyoyoyo
 #My db connec
 local_server=True
 app=Flask(__name__) #creating object of class flask
