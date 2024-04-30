@@ -18,9 +18,10 @@ login_manager.login_view='login' #specify the name of the view function (or the 
                                  # ,Flask-Login automatically redirects the user to the URL associated with the view function specified in login_manager.login_view.
 @login_manager.user_loader
 def load_user(user_id):
-    print(f"Loading user with ID: {user_id}")
-    return Stud.query.get(int(user_id))
-
+    user=Stud.query.get(int(user_id))
+    if user is None:
+        user=Prof.query.get(int(user_id))
+    return user
 
 #----DB CONNECTION:
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql:username:password@localhost/database_table_name//' # Connection template line for database
@@ -44,8 +45,8 @@ class Stud(UserMixin,db.Model):
     depart=db.Column(db.String(50))
     gender=db.Column(db.String(50))
 
-def get_id(self):
-    return str(self.stud_id)
+    def get_id(self):
+        return str(self.stud_id)
 
 class Prof(UserMixin,db.Model):
     prof_id=db.Column(db.Integer, primary_key=True) #Defining Attributes
@@ -58,8 +59,8 @@ class Prof(UserMixin,db.Model):
     depart=db.Column(db.String(50))
     gender=db.Column(db.String(50))
 
-def get_id(self):
-    return str(self.prof_id)
+    def get_id(self):
+        return str(self.prof_id)
 
 #----PASSING endpoints od eachpage and run functions
 @app.route("/")
@@ -150,8 +151,7 @@ def login():
         if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
             uni_email=request.form.get('uni_email')
             password=request.form.get('password') 
-            email_found=Stud.query.filter_by(uni_email=uni_email).first()
-            # email_found=Prof.query.filter_by(uni_email=uni_email).first()
+            email_found= Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first()
             # pass_true=check_password_hash(email_found.password,password)
             
             if email_found and email_found.password==password:
