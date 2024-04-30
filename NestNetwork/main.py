@@ -134,7 +134,7 @@ def signup_prof():
         return render_template("login.html") #NOT EXECUTEDDDD
     return render_template("signup_prof.html",pagetitle="Proof")
 
-@app.route("/login")
+@app.route("/login", method=['POST','GET'])
 def login():
         if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
             uni_email=request.form.get('uni_email')
@@ -150,7 +150,7 @@ def login():
                 # return render_template("bookings.html")
             else:
                 flash("Invalid Credendtials")
-                print("INVALID")
+                print("INVALID CREDINTIALS")
                 return render_template('login.html')    
 
         return render_template("login.html", pagetitle="Login")
