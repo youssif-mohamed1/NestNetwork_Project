@@ -4,6 +4,7 @@ from flask_login import  UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import  login_user, logout_user,login_manager, LoginManager 
 from flask_login import login_required, current_user
+#HELLO WORLD
 #sssssss yoyoyoyoyoyoyoyoyo 2134
 #My db connec
 local_server=True
@@ -12,12 +13,16 @@ app.secret_key='sasa'
 
 # this for getting unique user access: unique page for each user:
 login_manager=LoginManager(app) #idetifies the app that loginManager start to set policies for it
-login_manager.login_view='Login' #specify the name of the view function (or the endpoint) that handles user logins. When an unauthorized user attempts..
+login_manager.login_view='login' #specify the name of the view function (or the endpoint) that handles user logins. When an unauthorized user attempts..
                                  # ,to access a route or a resource that requires the user to be logged in.. 
                                  # ,Flask-Login automatically redirects the user to the URL associated with the view function specified in login_manager.login_view.
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return Stud.query.get(int(user_id))
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Prof.query.get(int(user_id))
 
 #----DB CONNECTION:
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql:username:password@localhost/database_table_name//' # Connection template line for database
