@@ -14,6 +14,7 @@ body{
     position: absolute;
     left: 370px;
     top: 82px;
+    z-index: 100;
 }
 .data{
     width: 30%;
@@ -74,7 +75,7 @@ body{
     text-align: center;
     cursor: pointer;
 }
-.sign-up:hover{
+.sign-up:hover, .sign-up2:hover{
 background-color: rgb(0, 0, 0);
 border: 1px solid black;
 }
@@ -82,6 +83,25 @@ border: 1px solid black;
     position: absolute;
     top: 156%;
     left: 50%;
+    transform: translate(-50%, -50%);
+}
+.sign-up2{
+    border: 0px;
+    border-radius: 10px;
+    width: 50%;
+    background-color: #172821;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    width: 250px;
+    margin:auto;
+    height: 70px;
+    font-size: x-large;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 156%;
+    left: 80%;
     transform: translate(-50%, -50%);
 }
 .radio_but{
