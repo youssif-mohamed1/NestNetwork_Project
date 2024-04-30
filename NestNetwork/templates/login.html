@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name = "author" content = "Youssef Mohamed">
+    <meta name="author" content="Youssef Mohamed">
     <title>Helwan NestNetwork Log-in</title>
     <link rel="stylesheet" href="../static/sign-up.css">
 </head>
 <body>
-    <div class = "container">
-        <div class = "ph"></div>
-        <div class = "data">
+    <div class="container">
+        <div class="ph"></div>
+        <div class="data">
             <form action="/login" method="POST">
-            <div class = "form-group">
-                <label for="ue">University Email</label>
-                <input type="email" id = "ue" required placeholder = "ex: mahmoud@gmail.com" name="uni_email">
-            </div>
-            <div class = "form-group">
-                <label for="pass">Password</label>
-                <input type="password" id = "pass" minlength="5" maxlength="20" required placeholder = "ex: Strong Password" name="password">
-            </div>
-            <button class = "sign-up">Login</button>
-            <button class = "sign-up2">sign Up</button>
+                <div class="form-group">
+                    <label for="ue">University Email</label>
+                    <input type="email" id="ue" required placeholder="ex: mahmoud@gmail.com" name="uni_email">
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password</label>
+                    <input type="password" id="pass" minlength="5" maxlength="20" required placeholder="ex: Strong Password" name="password">
+                    <a href="/forgot-password" class = "fp">Forgot Password?</a>
+                </div>
+                <button class="sign-up">Login</button>
+                <button class="sign-up2">Sign Up</button>
             </form>
         </div>
     </div>
