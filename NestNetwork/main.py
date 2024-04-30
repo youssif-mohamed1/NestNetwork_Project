@@ -41,9 +41,10 @@ login_manager.login_view='login' #specify the name of the view function (or the 
 >>>>>>> a079bf0229f32dc84f1eabc4517f496ea28556dc
 @login_manager.user_loader
 def load_user(user_id):
-    print(f"Loading user with ID: {user_id}")
-    return Stud.query.get(int(user_id))
-
+    user=Stud.query.get(int(user_id))
+    if user is None:
+        user=Prof.query.get(int(user_id))
+    return user
 
 
 # ----DB CONNECTION:
@@ -97,8 +98,8 @@ class Stud(UserMixin,db.Model):
     depart=db.Column(db.String(50))
     gender=db.Column(db.String(50))
 
-def get_id(self):
-    return str(self.stud_id)
+    def get_id(self):
+        return str(self.stud_id)
 
 class Prof(UserMixin,db.Model):
     prof_id=db.Column(db.Integer, primary_key=True) #Defining Attributes
@@ -111,8 +112,8 @@ class Prof(UserMixin,db.Model):
     depart=db.Column(db.String(50))
     gender=db.Column(db.String(50))
 
-def get_id(self):
-    return str(self.prof_id)
+    def get_id(self):
+        return str(self.prof_id)
 
 #----PASSING endpoints od eachpage and run functions
 >>>>>>> 1d865b8575570b5d64b1f1384bb54e34d6555b74
@@ -220,8 +221,7 @@ def login():
         if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
             uni_email=request.form.get('uni_email')
             password=request.form.get('password') 
-            email_found=Stud.query.filter_by(uni_email=uni_email).first()
-            # email_found=Prof.query.filter_by(uni_email=uni_email).first()
+            email_found= Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first()
             # pass_true=check_password_hash(email_found.password,password)
             
             if email_found and email_found.password==password:

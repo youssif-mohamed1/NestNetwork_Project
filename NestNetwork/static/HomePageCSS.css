@@ -1,0 +1,21 @@
+/* .contact-info{
+
+} */
+
+.nav-links{
+    font-size: 19px;
+    font-weight: 700;
+    color:black !important;
+}
+
+.nav-items{
+    margin-right: 100px;
+    padding: 5px;
+}
+.ob{
+    opacity: 1;
+}
+
+.search{
+    margin-right: 40px;
+}
