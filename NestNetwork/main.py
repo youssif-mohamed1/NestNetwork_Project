@@ -4,11 +4,19 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_manager, LoginManager
 from flask_login import login_required, current_user
+<<<<<<< HEAD
 
 # My db connec
 local_server = True
 app = Flask(__name__)  # creating object of class flask
 app.secret_key = 'sasa'
+=======
+#sssssss yoyoyoyoyoyoyoyoyo
+#My db connec
+local_server=True
+app=Flask(__name__) #creating object of class flask
+app.secret_key='sasa'
+>>>>>>> f27651e6bc5aa6e3f87ed0ea692d3008c91427ce
 
 # this for getting unique user access: unique page for each user:
 # idetifies the app that loginManager start to set policies for it
