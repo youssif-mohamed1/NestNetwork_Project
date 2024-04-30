@@ -17,12 +17,12 @@ login_manager.login_view='login' #specify the name of the view function (or the 
                                  # ,to access a route or a resource that requires the user to be logged in.. 
                                  # ,Flask-Login automatically redirects the user to the URL associated with the view function specified in login_manager.login_view.
 @login_manager.user_loader
-def load_user(user_id):
-    return Stud.query.get(int(user_id))
+def load_user(stud_id):
+    return Stud.query.get(int(stud_id))
 
 @login_manager.user_loader
-def load_user(user_id):
-    return Prof.query.get(int(user_id))
+def load_user(prof_id):
+    return Prof.query.get(int(prof_id))
 
 #----DB CONNECTION:
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql:username:password@localhost/database_table_name//' # Connection template line for database
@@ -81,7 +81,8 @@ def signup_stud():
         #Checks for duplicate emails
         stud=Stud.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
         if stud:
-            flash("Email Already Exist","warning")
+            # flash("Email Already Exist","warning")
+            print("INVALID")
             return render_template("signup_stud.html")
         #enhanced password: password is hashed(encrypted) in database to maintain security
         # encpassword=generate_password_hash(password) 
@@ -135,14 +136,31 @@ def signup_prof():
 
 @app.route("/login")
 def login():
-    return render_template("login.html",pagetitle="Login")
+        if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
+            uni_email=request.form.get('uni_email')
+            password=request.form.get('password') 
+            email_found=Stud.query.filter_by(uni_email=uni_email).first()
+            email_found=Prof.query.filter_by(uni_email=uni_email).first()
+            # pass_true=check_password_hash(email_found.password,password)
+            
+            if email_found and email_found.password==password:
+                print("VALID")
+                login_user(email_found)
+                return redirect(url_for('first_page'))
+                # return render_template("bookings.html")
+            else:
+                flash("Invalid Credendtials")
+                print("INVALID")
+                return render_template('login.html')    
+
+        return render_template("login.html", pagetitle="Login")
 
 
-# @app.route("/logout")
-# @login_required
-# def logout():
-#     logout_user()
-#     return redirect(url_for('Login'))
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
