@@ -17,12 +17,10 @@ login_manager.login_view='login' #specify the name of the view function (or the 
                                  # ,to access a route or a resource that requires the user to be logged in.. 
                                  # ,Flask-Login automatically redirects the user to the URL associated with the view function specified in login_manager.login_view.
 @login_manager.user_loader
-def load_user(stud_id):
-    return Stud.query.get(int(stud_id))
+def load_user(user_id):
+    print(f"Loading user with ID: {user_id}")
+    return Stud.query.get(int(user_id))
 
-@login_manager.user_loader
-def load_user(prof_id):
-    return Prof.query.get(int(prof_id))
 
 #----DB CONNECTION:
 # app.config['SQLALCHEMY_DATABASE_URI']='mysql:username:password@localhost/database_table_name//' # Connection template line for database
@@ -39,29 +37,42 @@ class Stud(UserMixin,db.Model):
     stud_id=db.Column(db.Integer, primary_key=True) #Defining Attributes
     first_name=db.Column(db.String(50))
     last_name=db.Column(db.String(50))
-    uni_email=db.Column(db.String(50))
+    uni_email=db.Column(db.String(50), unique=True)
     password=db.Column(db.String(50))
     uni=db.Column(db.String(50))
     faculty=db.Column(db.String(50))
     depart=db.Column(db.String(50))
     gender=db.Column(db.String(50))
 
+def get_id(self):
+    return str(self.stud_id)
+
 class Prof(UserMixin,db.Model):
     prof_id=db.Column(db.Integer, primary_key=True) #Defining Attributes
     first_name=db.Column(db.String(50))
     last_name=db.Column(db.String(50))
-    uni_email=db.Column(db.String(50))
+    uni_email=db.Column(db.String(50), unique=True)
     password=db.Column(db.String(50))
     uni=db.Column(db.String(50))
     faculty=db.Column(db.String(50))
     depart=db.Column(db.String(50))
     gender=db.Column(db.String(50))
+
+def get_id(self):
+    return str(self.prof_id)
 
 #----PASSING endpoints od eachpage and run functions
 @app.route("/")
 def homepage(): #main-page
     return render_template("first_page.html", pagetitle="Homepage") # Loading the HTML page
 
+@app.route("/home")
+def home(): #home-page
+    if Stud.is_authenticated or Prof.is_authenticated:         
+        return render_template("home.html", pagetitle="Booking")
+    else:
+        return render_template("login.html",first_name=current_user.first_name) 
+        
 @app.route("/choose")
 def choose():
     return render_template("choose.html",pagetitle="Choose")
@@ -134,19 +145,19 @@ def signup_prof():
         return render_template("login.html") #NOT EXECUTEDDDD
     return render_template("signup_prof.html",pagetitle="Proof")
 
-@app.route("/login", method=['POST','GET'])
+@app.route("/login", methods=['POST','GET'])
 def login():
         if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
             uni_email=request.form.get('uni_email')
             password=request.form.get('password') 
             email_found=Stud.query.filter_by(uni_email=uni_email).first()
-            email_found=Prof.query.filter_by(uni_email=uni_email).first()
+            # email_found=Prof.query.filter_by(uni_email=uni_email).first()
             # pass_true=check_password_hash(email_found.password,password)
             
             if email_found and email_found.password==password:
                 print("VALID")
                 login_user(email_found)
-                return redirect(url_for('first_page'))
+                return redirect(url_for('home'))
                 # return render_template("bookings.html")
             else:
                 flash("Invalid Credendtials")
