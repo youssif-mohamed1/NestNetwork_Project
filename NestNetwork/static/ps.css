@@ -1,28 +1,20 @@
 .container_choose{
-    background-color: #f6fff8;
-    border: 0px solid black;
-    border-radius: 10px;
-    box-shadow: 10px;
-    width: 30%;
-    height: 24%;
+    width: 50%;
+    height: 50%;
     margin:auto;
-    padding: 20px ;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding-top: 11%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .ps_vid{
     position: absolute;
-    top: 31%;
-    left: 50%;
+    top: 15%;
+    left: 40%;
     transform: translate(-50%, -50%);
 }
 .ps_sh{
     position: absolute;
-    top: 73%;
-    left: 50%;
+    top: 15%;
+    left: 60%;
     transform: translate(-50%, -50%);
 }
 .ps_vid, .ps_sh{
@@ -30,7 +22,7 @@
     border-radius: 10px;
     width: 50%;
     background-color: #172821;
-    color: white;
+    color: rgb(255, 191, 0);
     font-size: medium;
     font-weight: bold;
     width: 250px;

@@ -40,12 +40,12 @@ login_manager.login_view='login' #specify the name of the view function (or the 
                                  # ,Flask-Login automatically redirects the user to the URL associated with the view function specified in login_manager.login_view.
 >>>>>>> a079bf0229f32dc84f1eabc4517f496ea28556dc
 @login_manager.user_loader
-def load_user(user_id):
-    return Stud.query.get(int(user_id))
+def load_user(stud_id):
+    return Stud.query.get(int(stud_id))
 
 @login_manager.user_loader
-def load_user(user_id):
-    return Prof.query.get(int(user_id))
+def load_user(prof_id):
+    return Prof.query.get(int(prof_id))
 
 
 # ----DB CONNECTION:
@@ -113,7 +113,12 @@ def signup_stud():
         # authinticate if the email entered already exist
         stud = Stud.query.filter_by(uni_email=uni_email).first()
         if stud:
+<<<<<<< HEAD
             flash("Email Already Exist", "warning")
+=======
+            # flash("Email Already Exist","warning")
+            print("INVALID")
+>>>>>>> fa5e13f0ff48f402d1b39934b9333f8e854192d5
             return render_template("signup_stud.html")
         # enhanced password: password is hashed(encrypted) in database to maintain security
         # encpassword=generate_password_hash(password)
@@ -169,16 +174,37 @@ def signup_prof():
     return render_template("signup_prof.html", pagetitle="Proof")
 
 
-@app.route("/login")
+@app.route("/login", method=['POST','GET'])
 def login():
+<<<<<<< HEAD
     return render_template("login.html", pagetitle="Login")
+=======
+        if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
+            uni_email=request.form.get('uni_email')
+            password=request.form.get('password') 
+            email_found=Stud.query.filter_by(uni_email=uni_email).first()
+            email_found=Prof.query.filter_by(uni_email=uni_email).first()
+            # pass_true=check_password_hash(email_found.password,password)
+            
+            if email_found and email_found.password==password:
+                print("VALID")
+                login_user(email_found)
+                return redirect(url_for('first_page'))
+                # return render_template("bookings.html")
+            else:
+                flash("Invalid Credendtials")
+                print("INVALID CREDINTIALS")
+                return render_template('login.html')    
+
+        return render_template("login.html", pagetitle="Login")
+>>>>>>> fa5e13f0ff48f402d1b39934b9333f8e854192d5
 
 
-# @app.route("/logout")
-# @login_required
-# def logout():
-#     logout_user()
-#     return redirect(url_for('Login'))
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 
 if __name__ == "__main__":
