@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_manager, LoginManager
 from flask_login import login_required, current_user
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # My db connec
 local_server = True
@@ -12,6 +13,10 @@ app = Flask(__name__)  # creating object of class flask
 app.secret_key = 'sasa'
 =======
 #sssssss yoyoyoyoyoyoyoyoyo
+=======
+#HELLO WORLD
+#sssssss yoyoyoyoyoyoyoyoyo 2134
+>>>>>>> a079bf0229f32dc84f1eabc4517f496ea28556dc
 #My db connec
 local_server=True
 app=Flask(__name__) #creating object of class flask
@@ -19,6 +24,7 @@ app.secret_key='sasa'
 >>>>>>> f27651e6bc5aa6e3f87ed0ea692d3008c91427ce
 
 # this for getting unique user access: unique page for each user:
+<<<<<<< HEAD
 # idetifies the app that loginManager start to set policies for it
 login_manager = LoginManager(app)
 # specify the name of the view function (or the endpoint) that handles user logins. When an unauthorized user attempts..
@@ -27,9 +33,19 @@ login_manager.login_view = 'Login'
 # ,Flask-Login automatically redirects the user to the URL associated with the view function specified in login_manager.login_view.
 
 
+=======
+login_manager=LoginManager(app) #idetifies the app that loginManager start to set policies for it
+login_manager.login_view='login' #specify the name of the view function (or the endpoint) that handles user logins. When an unauthorized user attempts..
+                                 # ,to access a route or a resource that requires the user to be logged in.. 
+                                 # ,Flask-Login automatically redirects the user to the URL associated with the view function specified in login_manager.login_view.
+>>>>>>> a079bf0229f32dc84f1eabc4517f496ea28556dc
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return Stud.query.get(int(user_id))
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Prof.query.get(int(user_id))
 
 
 # ----DB CONNECTION:

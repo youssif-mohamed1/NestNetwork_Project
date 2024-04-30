@@ -101,7 +101,7 @@ border: 1px solid black;
     cursor: pointer;
     position: absolute;
     top: 156%;
-    left: 80%;
+    left: 182%;
     transform: translate(-50%, -50%);
 }
 .radio_but{
@@ -118,4 +118,14 @@ border: 1px solid black;
 .container div input:focus{
     background-color: #172821;
     color: white;
+}
+
+.fp{
+    color: #172821;
+}
+.fp:focus{
+    color: black;
+}
+.fp:hover{
+    color: black;
 }
