@@ -119,3 +119,13 @@ border: 1px solid black;
     background-color: #172821;
     color: white;
 }
+
+.fp{
+    color: #172821;
+}
+.fp:focus{
+    color: black;
+}
+.fp:hover{
+    color: black;
+}
