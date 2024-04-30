@@ -45,7 +45,8 @@ class Stud(UserMixin,db.Model):
     depart=db.Column(db.String(50))
     gender=db.Column(db.String(50))
 
-    def get_id(self):
+    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
+                      #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.stud_id)
 
 class Prof(UserMixin,db.Model):
