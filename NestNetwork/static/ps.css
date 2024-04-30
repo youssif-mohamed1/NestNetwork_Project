@@ -1,0 +1,38 @@
+.container_choose{
+    width: 50%;
+    height: 50%;
+    margin:auto;
+    padding-top: 11%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.ps_vid{
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+.ps_sh{
+    position: absolute;
+    top: 15%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+.ps_vid, .ps_sh{
+    border: 0px;
+    border-radius: 10px;
+    width: 50%;
+    background-color: #172821;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    width: 250px;
+    margin:auto;
+    height: 70px;
+    font-size: x-large;
+    text-align: center;
+    cursor: pointer;
+}
+.ps_vid:hover, .ps_sh:hover{
+    background-color: rgb(0, 0, 0);
+    border: 1px solid black;
+}
