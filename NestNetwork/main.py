@@ -106,6 +106,7 @@ def signup_stud():
         faculty=request.form.get('faculty')
         depart=request.form.get('depart')
         gender=request.form.get('gender')
+        type=request.form.get('Type')
 
         #Checks for duplicate emails
         user=Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
@@ -131,16 +132,26 @@ def signup_stud():
         #enhanced password: password is hashed(encrypted) in database to maintain security
         # encpassword=generate_password_hash(password) 
     #     #---SENDING DATA
-        
-        new_stud = Stud(first_name=first_name,
-                        last_name=last_name,
-                        uni_email=uni_email,
-                        password=password,
-                        uni=uni,
-                        faculty=faculty,
-                        depart=depart,
-                        gender=gender)
-        db.session.add(new_stud)
+        if type ==  "Student":
+            new_user = Stud(first_name=first_name,
+                            last_name=last_name,
+                            uni_email=uni_email,
+                            password=password,
+                            uni=uni,
+                            faculty=faculty,
+                            depart=depart,
+                            gender=gender)
+        else:
+            new_user = Prof(first_name=first_name,
+                            last_name=last_name,
+                            uni_email=uni_email,
+                            password=password,
+                            uni=uni,
+                            faculty=faculty,
+                            depart=depart,
+                            gender=gender)
+
+        db.session.add(new_user)
         db.session.commit()
         return render_template("login.html") #NOT EXECUTEDDDD
     return render_template('signup_stud.html',
