@@ -10,6 +10,7 @@ from datetime import datetime
 #HELLO WORLD
 #sssssss yoyoyoyoyoyoyoyoyo 2134
 #My db connec
+
 local_server=True
 app=Flask(__name__) #creating object of class flask
 app.secret_key='sasa'
@@ -89,7 +90,7 @@ def home(): #home-page
         return render_template("home.html", pagetitle="Booking")
     else:
         return render_template("login.html",first_name=current_user.first_name) 
-#--       
+#----
 @app.route("/choose")
 def choose():
     return render_template("choose.html",pagetitle="Choose")
