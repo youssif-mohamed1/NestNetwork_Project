@@ -40,16 +40,17 @@ db=SQLAlchemy(app) #creating object(Database) of class SQLALCHEMY
 # min len = 8 max = 20
 def strong_pass(password):
     return len(password) >=8 and len(password) <=20 and any(char.isupper() for char in password) and not password.isalnum() and any(char.islower() for char in password) and any(char.isdigit() for char in password)
-#2-->
+#2-->rand_id
 def rand_id(x):
-    for y in x:
-        random.randint(1,10)
-
+    rand_no=random.randint(1000,2000)
+    if x=="Professor":
+        return "pf"+str(rand_no)    
+    else: return "st" + str(rand_no)
 ####
 
 #Main Tables
 class Stud(UserMixin,db.Model):
-    stud_id=db.Column(db.Integer, primary_key=True) #Defining Attributes
+    stud_id=db.Column(db.String(50), primary_key=True) #Defining Attributes
     first_name=db.Column(db.String(50))
     last_name=db.Column(db.String(50))
     uni_email=db.Column(db.String(50), unique=True)
@@ -64,7 +65,7 @@ class Stud(UserMixin,db.Model):
         return str(self.stud_id)
 
 class Prof(UserMixin,db.Model):
-    prof_id=db.Column(db.Integer, primary_key=True) #Defining Attributes
+    prof_id=db.Column(db.String(50), primary_key=True) #Defining Attributes
     first_name=db.Column(db.String(50))
     last_name=db.Column(db.String(50))
     uni_email=db.Column(db.String(50), unique=True)
@@ -97,8 +98,8 @@ def choose():
 def error_message():
     return render_template("error_message.html",pagetitle="Choose")
 
-@app.route("/signup_stud", methods=['POST','GET'])
-def signup_stud():
+@app.route("/signup", methods=['POST','GET'])
+def signup():
     if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
         first_name=request.form.get('first_name')
         last_name=request.form.get('last_name')
@@ -109,6 +110,13 @@ def signup_stud():
         depart=request.form.get('depart')
         gender=request.form.get('gender')
         type=request.form.get('Type')
+#--
+        #Unique_ID:
+        gen_id=1
+        while(gen_id):
+            ruser_id=rand_id(type)
+            gen_id=Stud.query.filter_by(stud_id=ruser_id).first() or Prof.query.filter_by(prof_id=ruser_id).first() #authinticate if the email entered already exist
+            
 
         #Checks for duplicate emails
         user=Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
@@ -119,23 +127,24 @@ def signup_stud():
         # Truth Table of 3 cases for -> valid mail, not used before, strong password 
         match(flag, user, st_pass):
             case (False, False, False) | (False, True, False): 
-                return render_template("signup_stud.html", pop_message = "visible", pop_message1 = "visible", text = "Email is not valid")
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "visible", text = "Email is not valid")
             case (False, True, True) | (False, False, True): 
-                return render_template("signup_stud.html", pop_message = "visible", pop_message1 = "hidden", text = "Email is not valid")
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "hidden", text = "Email is not valid")
             case (True, False, False): 
-                return render_template("signup_stud.html", pop_message = "visible", pop_message1 = "visible", text = "Email is already in use!")
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "visible", text = "Email is already in use!")
             case (True, False, True): 
-                return render_template("signup_stud.html", pop_message = "visible", pop_message1 = "hidden", text = "Email is already in use!")
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "hidden", text = "Email is already in use!")
             case (True, True, False): 
-                return render_template("signup_stud.html", pop_message = "hidden", pop_message1 = "visible", text = "")
+                return render_template("signup.html", pop_message = "hidden", pop_message1 = "visible", text = "")
         
         #last case(valid case): continue sign-up
         
         #enhanced password: password is hashed(encrypted) in database to maintain security
         # encpassword=generate_password_hash(password) 
-    #     #---SENDING DATA
+        #---SENDING DATA
         if type ==  "Student":
-            new_user = Stud(first_name=first_name,
+            new_user = Stud(stud_id=ruser_id,
+                            first_name=first_name,
                             last_name=last_name,
                             uni_email=uni_email,
                             password=password,
@@ -144,7 +153,8 @@ def signup_stud():
                             depart=depart,
                             gender=gender)
         else:
-            new_user = Prof(first_name=first_name,
+            new_user = Prof(prof_id=ruser_id,
+                            first_name=first_name,
                             last_name=last_name,
                             uni_email=uni_email,
                             password=password,
@@ -156,7 +166,7 @@ def signup_stud():
         db.session.add(new_user)
         db.session.commit()
         return render_template("login.html") #NOT EXECUTEDDDD
-    return render_template('signup_stud.html',
+    return render_template('signup.html',
                             pop_message = "hidden",
                             pop_message1 = "hidden",
                             text = "")
