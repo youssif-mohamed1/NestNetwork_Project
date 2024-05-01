@@ -4,6 +4,7 @@ from flask_login import  UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import  login_user, logout_user,login_manager, LoginManager 
 from flask_login import login_required, current_user
+import random
 #HELLO WORLD
 #sssssss yoyoyoyoyoyoyoyoyo 2134
 #My db connec
@@ -37,6 +38,11 @@ db=SQLAlchemy(app) #creating object(Database) of class SQLALCHEMY
 # min len = 8 max = 20
 def strong_pass(password):
     return len(password) >=8 and len(password) <=20 and any(char.isupper() for char in password) and not password.isalnum() and any(char.islower() for char in password) and any(char.isdigit() for char in password)
+
+def rand_id(x):
+    for y in x:
+        random.randint(1,10)
+
 ####
 
 #Main Tables
@@ -102,13 +108,13 @@ def signup_stud():
         gender=request.form.get('gender')
 
         #Checks for duplicate emails
-        stud=Stud.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
-        stud = not stud
+        user=Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
+        user = not user
         flag = uni_email.endswith("@gmail.com") or uni_email.endswith("@hotmail.com") or uni_email.endswith("@outlook.com")
         st_pass = strong_pass(password)
 
         # Truth Table of 3 cases for -> valid mail, not used before, strong password 
-        match(flag, stud, st_pass):
+        match(flag, user, st_pass):
             case (False, False, False) | (False, True, False): 
                 return render_template("signup_stud.html", pop_message = "visible", pop_message1 = "visible", text = "Email is not valid")
             case (False, True, True) | (False, False, True): 
@@ -124,7 +130,8 @@ def signup_stud():
         
         #enhanced password: password is hashed(encrypted) in database to maintain security
         # encpassword=generate_password_hash(password) 
-        #---SENDING DATA
+    #     #---SENDING DATA
+        
         new_stud = Stud(first_name=first_name,
                         last_name=last_name,
                         uni_email=uni_email,
@@ -141,38 +148,38 @@ def signup_stud():
                             pop_message1 = "hidden",
                             text = "")
 
-@app.route("/signup_prof", methods=['POST','GET'])
-def signup_prof():
+# @app.route("/signup_prof", methods=['POST','GET'])
+# def signup_prof():
     
-    if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
-        first_name=request.form.get('first_name')
-        last_name=request.form.get('last_name')
-        uni_email=request.form.get('uni_email')
-        password=request.form.get('password')
-        uni=request.form.get('uni')
-        faculty=request.form.get('faculty')
-        depart=request.form.get('depart')
-        gender=request.form.get('gender')
-    #Checks for duplicate emails
-        prof=Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
-        if prof:
-            flash("Email Already Exist","warning")
-            return render_template("signup_prof.html")
-            #enhanced password: password is hashed(encrypted) in database to maintain security
-            # encpassword=generate_password_hash(password) 
-            #---SENDING DATA
-        new_prof = Prof(first_name=first_name,
-                        last_name=last_name,
-                        uni_email=uni_email,
-                        password=password,
-                        uni=uni,
-                        faculty=faculty,
-                        depart=depart,
-                        gender=gender)
-        db.session.add(new_prof)
-        db.session.commit()
-        return render_template("login.html") #NOT EXECUTEDDDD
-    return render_template("signup_prof.html",pagetitle="Proof")
+#     if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
+#         first_name=request.form.get('first_name')
+#         last_name=request.form.get('last_name')
+#         uni_email=request.form.get('uni_email')
+#         password=request.form.get('password')
+#         uni=request.form.get('uni')
+#         faculty=request.form.get('faculty')
+#         depart=request.form.get('depart')
+#         gender=request.form.get('gender')
+#     #Checks for duplicate emails
+#         prof=Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
+#         if prof:
+#             flash("Email Already Exist","warning")
+#             return render_template("signup_prof.html")
+#             #enhanced password: password is hashed(encrypted) in database to maintain security
+#             # encpassword=generate_password_hash(password) 
+#             #---SENDING DATA
+#         new_prof = Prof(first_name=first_name,
+#                         last_name=last_name,
+#                         uni_email=uni_email,
+#                         password=password,
+#                         uni=uni,
+#                         faculty=faculty,
+#                         depart=depart,
+#                         gender=gender)
+#         db.session.add(new_prof)
+#         db.session.commit()
+#         return render_template("login.html") #NOT EXECUTEDDDD
+#     return render_template("signup_prof.html",pagetitle="Proof")
 
 @app.route("/login", methods=['POST','GET'])
 def login():
