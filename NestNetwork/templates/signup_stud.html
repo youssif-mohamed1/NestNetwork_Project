@@ -15,34 +15,37 @@
             <div class = "form-group">
                 <label for="fn">First name</label>
                 <input type="text" id = "fn" required placeholder = "ex: Mahmoud" name="first_name">
+                <span class = "hidden">endl</span>
             </div>
             <div class = "form-group">
                 <label for="ln">Last name</label>
                 <input type="text" id = "ln" required placeholder = "ex: Zaki" name="last_name">
+                <span class = "hidden">endl</span>
             </div>
-            <!-- <div class = "form-group">
-                <label for="id">Student ID</label>
-                <input type="text" id = "id" required placeholder = "ex: 123..." name="stud_id">
-            </div> -->
             <div class = "form-group">
                 <label for="ue">University Email</label>
                 <input type="email" id = "ue" required placeholder = "ex: mahmoud@gmail.com" name="uni_email"> 
+                <span class = {{pop_message}} style="display: inline;" >{{text}}</span>
             </div>
             <div class = "form-group">
                 <label for="pass">Create Password</label>
-                <input type="password" id = "pass" minlength="5" maxlength="20" required placeholder = "ex: Strong Password" name="password">
+                <input type="text" id = "pass" minlength="5" maxlength="20" required placeholder = "ex: Strong Password" name="password">
+                <span class = "{{pop_message1}}">Please Enter a Strong password</span>
             </div>
             <div class = "form-group">
                 <label for="un">University</label>
                 <input type="text" id = "un" required placeholder = "ex: Helwan University" name="uni">
+                <span class = "hidden">endl</span>
             </div>
             <div class = "form-group">
                 <label for="fac">Faculty</label>
                 <input type="text" id = "fac" required placeholder = "ex: Faculty of Engineering" name="faculty">
+                <span class = "hidden">endl</span>
             </div>
             <div class = "form-group">
                 <label for="Dep">Department</label>
                 <input type="text" id = "Dep" required placeholder = "ex: Computer and Systems" name="depart">
+                <span class = "hidden">endl</span>
             </div>
             <div class = "radio_but">
                 <div><label for="gender">Gender:</label></div>
