@@ -3,7 +3,7 @@ body{
 }
 
 .ph{
-    background-image: url(../imgs/Helwan_logo_black_white.png);
+    background-image: url(imgs/Helwan_logo_black_white.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
@@ -82,7 +82,7 @@ border: 1px solid black;
 .sign-up{
     position: absolute;
     top: 156%;
-    left: 50%;
+    left: 180%;
     transform: translate(-50%, -50%);
 }
 .sign-up2{
@@ -106,7 +106,7 @@ border: 1px solid black;
 }
 .radio_but{
     position: absolute;
-    top: 136%;
+    top: 156%;
     left: 33%;
     transform: translate(-50%, -50%);
     display: inline-block;
@@ -128,4 +128,14 @@ border: 1px solid black;
 }
 .fp:hover{
     color: black;
+}
+.hidden{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
+    color: red;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: bold;
 }

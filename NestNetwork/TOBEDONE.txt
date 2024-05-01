@@ -1,0 +1,5 @@
+-rand_id: time.h, rand.int
+-background_id: DONE
+-sign_stud:
+-xampp sharing database
+-Password used for
