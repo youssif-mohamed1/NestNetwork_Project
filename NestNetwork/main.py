@@ -6,7 +6,7 @@ from flask_login import  login_user, logout_user,login_manager, LoginManager
 from flask_login import login_required, current_user
 import random
 from datetime import datetime
-#--
+#---
 #HELLO WORLD
 #sssssss yoyoyoyoyoyoyoyoyo 2134
 #My db connec
