@@ -29,7 +29,7 @@ header{
     padding: 2rem 0;
 }
 
-nav{
+nav {
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
@@ -105,3 +105,114 @@ nav{
         transform: none;
     }
 } */
+
+body{
+    background-color: white;
+}
+
+/* About Us */
+
+.leaders{
+    margin-top: 3%;
+    margin-left: 40%;
+    color: #f34949;
+}
+
+aboutus{
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img{
+    width: 250px;
+}
+
+figcaption{
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 190px;
+}
+
+Ahmed figcaption,Yousef figcaption{
+    margin-left: 15%;
+    color: green;
+}
+
+Mohamed figcaption{
+    margin-left: 15%;
+}
+
+Mostafa figcaption{
+    margin-left: 20%;
+}
+
+/* Levels */
+
+/* Contact */
+
+* {
+    box-sizing: border-box;
+}
+
+/* Style inputs */
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* Style the container/contact section */
+.container {
+    margin-top: 100px;
+    max-width: 1400px;
+    margin-left: 60px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+.container h2,p,label,option{
+    color: black;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
