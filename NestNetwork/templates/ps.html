@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+        </script>
+        <script>
+            $(document).ready(function(){
+                $("a").on('click', function(event) {
+                    if (this.hash !== "") {
+                        event.preventDefault();
+                        var hash = this.hash;
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 800, function(){
+                            window.location.hash = hash;
+                        });
+                    }
+                });
+            });
+        </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ahmed Mohamed">
@@ -14,47 +32,49 @@
             <nav>
                 <h1 class="logo">Problem Solving</h1>
                 <ul class="menu">
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#aboutus">About Us</a></li>
                     <li><a href="#">Levels</a>
                         <ul class="submenu">
-                            <li><a href="#">Level 0</a></li>
-                            <li><a href="#">Level 1</a></li>
-                            <li><a href="#">Level 2</a></li>
+                            <li><a href="#level0">Level 0</a></li>
+                            <li><a href="#level1">Level 1</a></li>
+                            <li><a href="#level2">Level 2</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#container">Contact</a></li>
                 </ul>
             </nav>
         </header>
-        <h1 class="leaders">Leaders of our Community</h1>
-        <aboutus>
-            <ahmed>
-                <img src="../static/imgs/Ahmed.jpeg">
-                <figcaption>Ahmed Mohamed</figcaption>
-            </ahmed>
-            <yousef>
-                <img src="../static/imgs/Yousef.jpeg">
-                <figcaption>Yousef Mohamed</figcaption>
-            </yousef>
-            <mohamed>
-                <img src="../static/imgs/Mohamed.jpeg">
-                <figcaption>Mohamed Waleed</figcaption>
-            </mohamed>
-            <mostafa>
-                <img src="../static/imgs/Mostafa.jpeg">
-                <figcaption>Mostafa Alaa</figcaption>
-            </mostafa>
+        <aboutus id="aboutus">
+            <h1 class="leaders">Leaders of our Community</h1>
+            <leaders>
+                <ahmed>
+                    <img src="../static/imgs/Ahmed.jpeg">
+                    <figcaption>Ahmed Mohamed</figcaption>
+                </ahmed>
+                <yousef>
+                    <img src="../static/imgs/Yousef.jpeg">
+                    <figcaption>Yousef Mohamed</figcaption>
+                </yousef>
+                <mohamed>
+                    <img src="../static/imgs/Mohamed.jpeg">
+                    <figcaption>Mohamed Waleed</figcaption>
+                </mohamed>
+                <mostafa>
+                    <img src="../static/imgs/Mostafa.jpeg">
+                    <figcaption>Mostafa Alaa</figcaption>
+                </mostafa>
+            </leaders>
         </aboutus>
-        <level0>
+        <level0 id="level0">
 
         </level0>
-        <level1>
+        <level1 id="level1">
 
         </level1>
-        <level2>
+        <level2 id="level2">
 
         </level2>
-        <div class="container">
+        <div class="container" id="container">
             <div style="text-align:center">
                 <h2>Contact Us</h2>
                 <p>Swing by for a cup of coffee, or leave us a message:</p>
@@ -64,7 +84,7 @@
                     <img src="../static/imgs/map.jpg" style="width:100%">
                 </div>
                 <div class="column">
-                    <form action="">
+                    <form action>
                         <label for="fname">First Name</label>
                         <input type="text" id="fname" name="firstname"
                             placeholder="Your name..">
