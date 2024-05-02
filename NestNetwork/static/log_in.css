@@ -1,0 +1,158 @@
+body{
+    background-color: #f6fff8;
+}
+
+.ph{
+    background-image: url(imgs/Helwan_logo_black_white.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    width: 28%;
+    height: 48%;
+    margin: auto;
+    padding: 20px;
+    position: absolute;
+    left: 410px;
+    top: 10px;
+    z-index: 100;
+}
+.data{
+    width: 30%;
+    height: 50%;
+    margin:auto;
+    padding: 20px ;
+    position: absolute;
+}
+.container {
+    background-color: #f6fff8;
+    border: 0px solid black;
+    border-radius: 10px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    width: 45%;
+    height: 53%;
+    margin: auto;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(100%, 100%);
+    animation: slideUp 0.5s forwards;
+    display: flex;
+    flex-direction: row;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translate(100%, 100%);
+    }
+    to {
+        transform: translate(-50%, -50%);
+    }
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="radio"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.sign-up{
+    border: 0px;
+    border-radius: 10px;
+    width: 50%;
+    background-color: #172821;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    width: 250px;
+    margin:auto;
+    height: 70px;
+    font-size: x-large;
+    text-align: center;
+    cursor: pointer;
+}
+.sign-up:hover, .sign-up2:hover{
+background-color: rgb(0, 0, 0);
+border: 1px solid black;
+}
+.sign-up{
+    position: absolute;
+    top: 130%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+.sign-up2{
+    border: 0px;
+    border-radius: 10px;
+    width: 50%;
+    background-color: #172821;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    width: 250px;
+    margin:auto;
+    height: 70px;
+    font-size: x-large;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 130%;
+    left: 200%;
+    transform: translate(-50%, -50%);
+}
+.radio_but{
+    position: absolute;
+    top: 156%;
+    left: 33%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+}
+::selection{
+    background-color: black;
+    color: yellow;
+}
+.container div input:focus{
+    background-color: #172821;
+    color: white;
+}
+
+.fp{
+    color: #172821;
+}
+.fp:focus{
+    color: black;
+}
+.fp:hover{
+    color: black;
+}
+.hidden{
+    visibility: hidden;
+}
+.visible{
+    visibility: visible;
+    color: red;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: bold;
+}
+.first{
+    position: absolute;
+    top: 8%;
+    left: 10%;
+}
+.second{
+    position: absolute;
+    top: 38%;
+    left: 10%;
+}
+.third{
+    position: absolute;
+    top: 68%;
+    left: 10%;
+}
