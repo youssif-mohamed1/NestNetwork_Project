@@ -1,6 +1,5 @@
 body{
-    background-color: #f6fff8;
-    
+    background-image: url("../static/imgs/helwan_background.jpeg");
 }
 ::selection{
     background-color: black;
