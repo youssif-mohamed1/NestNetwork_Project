@@ -1,5 +1,8 @@
--rand_id: time.h, rand.int
+-rand_id: time.h, rand.int: DONE
 -background_id: DONE
--sign_stud:
--xampp sharing database
--Password used for
+-sign_stud:DONE
+-xampp sharing database: DONE
+-Password already exist:
+-main page: 
+- communities page:
+-  
