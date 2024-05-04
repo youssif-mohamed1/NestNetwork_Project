@@ -7,13 +7,13 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
-    width: 33%;
-    height: 54%;
-    margin:auto;
-    padding: 20px ;
+    width: 28%;
+    height: 48%;
+    margin: auto;
+    padding: 20px;
     position: absolute;
-    left: 370px;
-    top: 82px;
+    left: 410px;
+    top: 10px;
     z-index: 100;
 }
 .data{
@@ -32,7 +32,7 @@ body{
     
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     width: 45%;
-    height: 85%;
+    height: 53%;
     margin: auto;
     padding: 20px;
     position: absolute;
@@ -83,8 +83,8 @@ border: 1px solid black;
 }
 .sign-up{
     position: absolute;
-    top: 156%;
-    left: 180%;
+    top: 130%;
+    left: 60%;
     transform: translate(-50%, -50%);
 }
 .sign-up2{
@@ -102,8 +102,8 @@ border: 1px solid black;
     text-align: center;
     cursor: pointer;
     position: absolute;
-    top: 156%;
-    left: 182%;
+    top: 130%;
+    left: 200%;
     transform: translate(-50%, -50%);
 }
 .radio_but{
@@ -140,4 +140,19 @@ border: 1px solid black;
     text-decoration: underline;
     font-family: 'Times New Roman', Times, serif;
     font-style: bold;
+}
+.first{
+    position: absolute;
+    top: 8%;
+    left: 10%;
+}
+.second{
+    position: absolute;
+    top: 38%;
+    left: 10%;
+}
+.third{
+    position: absolute;
+    top: 68%;
+    left: 10%;
 }

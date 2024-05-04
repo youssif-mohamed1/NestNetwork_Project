@@ -1,38 +1,214 @@
-.container_choose{
-    width: 50%;
-    height: 50%;
-    margin:auto;
-    padding-top: 11%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+/* Reset */
+
+html,bode{
+    scroll-behavior: smooth;
+    height: 100%;
 }
-.ps_vid{
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    list-style: none;
+}
+
+body{
+    font-size: 1rem;
+    line-height: 1.6;
+    background-color: #ecf0f1;
+    color: #666;
+    
+}
+
+/* Nav Styles */
+
+header{
+    background-color: #2c3e50;
+    padding: 2rem 0;
+}
+
+nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.menu > li, .menu > a{
+    display: inline-block;
+}
+
+.menu li{
+    position: relative;
+}
+
+.menu a{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 10px 1.5rem;
+    transition: background-color .22s ease, color .22s ease;
+}
+
+.menu a:hover{
+    background-color: #f34949;
+    color: #fff
+}
+
+/* Submenu Level 1 Style */
+
+.submenu{
     position: absolute;
-    top: 15%;
-    left: 40%;
-    transform: translate(-50%, -50%);
+    background-color: #2c3e50;
+    width: 100px;
+    left: 0;
+    display: none; /* Hide Submenu */
 }
-.ps_sh{
-    position: absolute;
-    top: 15%;
-    left: 60%;
-    transform: translate(-50%, -50%);
+
+/* Show menu on hover */
+
+.menu li:hover > .submenu{
+    display: block;
+    /* Add the Animation */
+    animation: slideup .3s ease;
 }
-.ps_vid, .ps_sh{
-    border: 0px;
-    border-radius: 10px;
-    width: 50%;
-    background-color: #172821;
-    color: white;
-    font-size: medium;
-    font-weight: bold;
+
+/* Anumation KeyFrames */
+
+@keyframes slideup {
+    0%{
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    100%{
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes slideleft {
+    0%{
+        opacity: 0;
+        transform: translateX(18px);
+    }
+    100%{
+        opacity: 1;
+        transform: none;
+    }
+}
+
+body{
+    background-color: white;
+}
+
+/* About Us */
+
+.leaders{
+    margin-top: 3%;
+    margin-left: 40%;
+    color: #f34949;
+}
+
+leaders{
+    max-width: 1400px;
+    margin: 0 auto;
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+img{
     width: 250px;
-    margin:auto;
-    height: 70px;
-    font-size: x-large;
-    text-align: center;
+}
+
+figcaption{
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 190px;
+}
+
+Ahmed figcaption,Yousef figcaption{
+    margin-left: 15%;
+    color: green;
+}
+
+Mohamed figcaption{
+    margin-left: 15%;
+}
+
+Mostafa figcaption{
+    margin-left: 20%;
+}
+
+/* Levels */
+
+/* Contact */
+
+* {
+    box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
     cursor: pointer;
 }
-.ps_vid:hover, .ps_sh:hover{
-    background-color: rgb(0, 0, 0);
-    border: 1px solid black;
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    margin-top: 100px;
+    max-width: 1400px;
+    margin-left: 60px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+.container h2,p,label,option{
+    color: black;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media screen and (max-width: 600px) {
+    .column, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
 }
