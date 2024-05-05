@@ -3,6 +3,7 @@
 -sign_stud:DONE
 -xampp sharing database: DONE
 -Password already exist:
+-Password enctyption
 -main page: 
 - communities page:
--  
+- update user data
