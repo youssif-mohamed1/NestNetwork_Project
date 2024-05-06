@@ -12,12 +12,15 @@
         {% with messages=get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {{message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
 
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            {{message}}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         </div>
+
 
         {% endfor %}
         {% endif %}
@@ -26,21 +29,26 @@
         <div class="container">
             <div class="ph"></div>
             <div class="data">
-                <form action="/vref" method="POST">
+                <form action="/confirm_vcode" method="POST">
                     <div class="form-group">
                         <div class = "first">
-                            <label for="ue">University Email</label>
-                            <input type="email" id="ue" required
-                                placeholder="ex: mahmoud@gmail.com"
-                                name="uni_email">
+                            <label for="ue">Verification Code</label>
+                            <input type="text" id="ue" required
+                                placeholder="ex: 123944"
+                                name="vref_code">
                         </div>
                     </div>
-                    <button id="Send" class="sign-up">Send</button>
+                    
+                    <div class = "second">
+                        <br>
+                        <a href="handle_resend">Resend</a>
+                    </div>    
                     <!-- <button class="sign-up2 href="/signup" ">Signup</button> -->
+                    <!-- onclick="location.href='confirm_vcode'" -->
+                    <button class="sign-up" >Confirm</button>
                 </form>
             </div>
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
     </body>
 </html>

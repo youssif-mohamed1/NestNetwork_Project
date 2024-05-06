@@ -1,18 +1,21 @@
-from flask import Flask, render_template, request, session, redirect, url_for,flash
+from flask import Flask, render_template, request, session, redirect, url_for,flash,get_flashed_messages,jsonify
 from flask_sqlalchemy import SQLAlchemy 
 from flask_login import  UserMixin  
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import  login_user, logout_user,login_manager, LoginManager 
 from flask_login import login_required, current_user
 import random
-from datetime import datetime
+import time
+# from datetime import datetime
 import smtplib
 from email.message import EmailMessage
+# import secrets
+import string
 # import json
-#---
-#HELLO WORLD
-#sssssss yoyoyoyoyoyoyoyoyo 2134
-#My db connec
+
+###############------------##################
+
+#My db connec and Login Handling
 #dsfs
 local_server=True
 app=Flask(__name__) #creating object of class flask
@@ -38,7 +41,7 @@ def load_user(user_id):
 app.config['SQLALCHEMY_DATABASE_URI']='mysql://root:@localhost/hnn' # username: root, password: blank, database_name: hms
 db=SQLAlchemy(app) #creating object(Database) of class SQLALCHEMY
 
-#####
+###############------------##################
 
 #Main Tables
 class Stud(UserMixin,db.Model):
@@ -71,7 +74,8 @@ class Prof(UserMixin,db.Model):
 
     def get_id(self):
         return str(self.prof_id)
-####
+
+###############------------##################
 
 #-----functions block
 
@@ -88,42 +92,86 @@ def rand_id(x):
 
 #3--> forgot_pass
 done=False
+email_global="NONE"
+name_global="NONE"
+id_global=""
+rand_code_global=0
+rand_pass_global=""
+flash_flag_resend=False
+flash_flag_newpass=False
 def forgot_password(x_email):
     global done
-    # if session.get('message_sent', False):
-    #     return
+    global email_global
+    global name_global
+    global rand_code_global
+    global id_global
+    # print(done)
+    uni_email=x_email
+    flag=True
+    user_email =Stud.query.filter_by(uni_email=uni_email).first()
+    if user_email is not None: id_global=user_email.stud_id
+    if user_email is None:
+        user_email=Prof.query.filter_by(uni_email=uni_email).first()
+        if user_email is not None: id_global=user_email.prof_id
+    # if user_email is None: flag=False
     if done:
+        # if flag:
+        #     flash("You can resend your email again now")
+        # else:
+        #     flash("Email not found")
+        # while 1:
+        #     time.sleep(3)
+        #     done=False
+        #     return
         return
     # ph_num = x_phone
     # user_phone =Stud.query.filter_by(ph_num=ph_num).first()
     # if user_phone is None:
     #     user_phone=Prof.query.filter_by(ph_num=ph_num).first()
-
-    uni_email=x_email
-    user_email =Stud.query.filter_by(uni_email=uni_email).first()
-    if user_email is None:
-        user_email=Prof.query.filter_by(uni_email=uni_email).first()
-    
+   
     user_name="None"
     if user_email:
         user_name=user_email.first_name +" "+user_email.last_name
     
     #Verification_Code
-    verf_codes=[]
+    vref_codes=[]
     rand_code=random.randint(100000,900000)
-    while rand_code in verf_codes:
+    while rand_code in vref_codes:
         rand_code=random.randint(100000,900000)
-    verf_codes.append(rand_code)            
-    # print(user_name)
-    if user_email :
-        email_alert("Verification Code", f"hello {user_name}, This the Verification Code: {rand_code}","moustafaalaa30@gmail.com" )
-        flash("Verification message sent to your email")
-        done=True
-    elif x_email:
-        flash("Email not found")
-    # session['message_sent'] = True 
+    vref_codes.append(rand_code)            
+    
+    rend_page="" #the page that will be rendered (confirm_vcode or vref)
+    if user_email :   
 
-#3-->Send Message
+        #passing variables to all functions   
+        email_global=user_email
+        name_global=user_name
+        rand_code_global=rand_code
+
+        #sending the message
+        email_alert("Verification Code", f"Hello {user_name}, This the Verification Code: {rand_code}","moustafaalaa30@gmail.com" )
+        done=True
+        rend_page="confirm_vcode"
+    
+    elif x_email:
+        rend_page="vref"    
+        flash("Email not found")
+    
+    return rend_page
+#3-->Generate Strong Pass:
+# define the characters that can be used in the password
+def generate_random_pass():
+    all_characters = string.ascii_letters + string.digits + string.punctuation
+    length = 10
+
+    # generate a password using randomly chosen characters
+    # using the 'choices' function from the random module
+    # and joining the resulting characters into a string
+    password = ''.join(random.choices(all_characters, k=length)) #is an built-in variable in function choice(left-click+ctrl: to see)
+                                                                 #all_char: is sent to variable named population that ensures strong pass
+    return password
+
+#4-->Send Message
 def email_alert(subject, body, to):
     msg=EmailMessage()
     msg.set_content(body)
@@ -138,9 +186,34 @@ def email_alert(subject, body, to):
     server.send_message(msg)
     
     server.quit()
-# Usage
-# send_email_to_sms('1234567890', 'txt.att.net', 'Test SMS via Email', 'Hello, this is a test message sent via email!')
-####
+
+#5--> Update DATABASE
+def update_user(user_id,
+                first_name,
+                last_name,
+                uni_email,
+                password,
+                uni,
+                faculty,
+                depart,
+                gender,
+                ph_num ):
+    # global rand_pass_global #temp
+    # Find user by ID
+    user = Stud.query.get(user_id)
+    if user is None: 
+        user=Prof.query.get(user_id)
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    # Update fields from request data
+    if password:
+        user.password = password
+    # Commit changes to database
+    db.session.commit()
+    return jsonify({"success": "User updated successfully", "user": str(user)})
+
+###############------------##################
 
 
 #----PASSING endpoints of eachpage and run functions
@@ -196,7 +269,8 @@ def signup():
         
         #enhanced password: password is hashed(encrypted) in database to maintain security
         # encpassword=generate_password_hash(password) 
-        #---SENDING DATA
+        
+        #---SENDING Records to the DATABASE
         if type ==  "Student":
             new_user = Stud(stud_id=ruser_id,
                             first_name=first_name,
@@ -229,16 +303,84 @@ def signup():
                             pop_message1 = "hidden",
                             text = "")
 
+@app.route("/confirm_vcode", methods=['POST','GET'])
+def confirm_vcode():
+    global rand_code_global
+    global rand_pass_global
+    global id_global
+    global flash_flag_newpass
+    global flash_flag_resend
+    cur_func="confirm_vcode"
+
+    flash("Verification message sent to your email, click Resend if not sent")
+
+    # #check that id_global to is in database //just double_check that sent id is in the database
+    # user = Stud.query.filter_by(stud_id=id_global)
+    # user_id=user.stud_id
+    # if user is None: 
+    #     user=Prof.query.filter_by(prof_id=id_global)
+    #     user_id=user.prof_id
+
+
+    #generate random strong pass
+    vref_code=""
+    vref_code=request.form.get('vref_code')
+    rand_passes=[]
+    rand_pass=generate_random_pass()
+    while rand_pass in rand_passes:
+        rand_pass=generate_random_pass()
+    rand_passes.append(rand_pass)
+    
+    #check for verification code
+    if vref_code==str(rand_code_global):
+        rand_pass_global=rand_pass
+        # print("Right Verf_code")
+        update_user(user_id=id_global,
+                first_name="",
+                last_name="",
+                uni_email="",
+                password=rand_pass,
+                uni="",
+                faculty="",
+                depart="",
+                gender="",
+                ph_num="")
+        email_alert("Password Reset", f"Hello {name_global}, This is your new password: {rand_pass}", "moustafaalaa30@gmail.com")
+        print("Password Sent")
+        flash_flag_newpass=True
+        get_flashed_messages()
+        return redirect(url_for('login'))
+    elif vref_code:
+        flash("Verification code is wrong")
+    return render_template ("confirm_vcode.html")
+
+#resend_hyperlink(in confirm_vcode) function
+@app.route('/handle_resend')
+def handle_resend():
+    global rand_code_global
+    global name_global
+    global flash_flag_resend
+    flash_flag_resend=True
+
+    email_alert("Verification Code", f"Hello {name_global}, This the Verification Code: {rand_code_global}","moustafaalaa30@gmail.com" )
+    return redirect(url_for("confirm_vcode"))  # Redirecting
+
 @app.route("/vref", methods=['POST','GET'])
 def vref():
     uni_email=request.form.get('uni_email')
     # ph_num=request.form.get('ph_num')
-    forgot_password(uni_email)
+    rend_page=""
+    rend_page=forgot_password(uni_email)
+    if rend_page=="" : rend_page="vref"
+    if rend_page !="vref": return redirect(url_for("confirm_vcode"))
     return render_template ("vref.html")
 
 
 @app.route("/login", methods=['POST','GET'])
 def login():
+        global flash_flag_newpass
+        if flash_flag_newpass:
+            flash("New password sent")
         if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
             uni_email=request.form.get('uni_email')
             password=request.form.get('password') 
@@ -251,10 +393,7 @@ def login():
                 return redirect(url_for('homepage')) #redirect is same as render but its used to: avoid resumbissions  
                                                      # Instead of sending a response that could result in a duplicated POST if the user refreshes the page,
                                                      # the server redirects the user to /HOME USED IN SIGNUP MORE LIKELY OR ANY RECORDING DATABASE PROCESSES
-                # return render_template("home.html")
             else:
-                # flash("Invalid Credendtials")
-                # print("INVALID CREDINTIALS")
                 return render_template('login.html')    
 
         return render_template("login.html", pagetitle="Login")

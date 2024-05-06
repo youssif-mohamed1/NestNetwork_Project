@@ -7,3 +7,7 @@
 -main page: 
 - communities page:
 - update user data
+-    user = Stud.query.get(u)  #------>Simplify in one function
+    if user is None: 
+        user=Prof.query.get(user_id)
+- flash in password reset
