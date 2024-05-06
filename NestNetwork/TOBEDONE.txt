@@ -4,6 +4,7 @@
 -xampp sharing database: DONE
 -Password already exist:
 -Password enctyption
+-password eye(visible)
 -main page: 
 - communities page:
 - update user data
