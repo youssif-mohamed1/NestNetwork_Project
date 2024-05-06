@@ -64,6 +64,7 @@
 
     <section class="header">
         <nav>
+            <a href="home"><img src="../static/imgs/logo.png"></a>
             <a href="home" class="logo">NESTNETWORK</a>
             <div class="nav-links" id="nav-links">
                 <i class="fa fa-bars"></i>
@@ -103,32 +104,41 @@
             <span class = "hidden">endl</span>
             <input type="text" placeholder="Department of computer Engeering" name="depart" required>
             <span class = "hidden">endl</span>
-            <div class="radio-group">
+            <div>
                 <label for="male">
                     <input type="radio" id="male" name="gender" value="male" required>
                     <span class="checkmark"></span>
-                    Male
+                    male
                 </label>
-                <label for="female">
+                </div>
+
+                <div>
+                <label for="female" class="r2">
                     <input type="radio" id="female" name="gender" value="female">
                     <span class="checkmark"></span>
                     Female
                 </label>
-            </div>
-            <div class="radio-group">
+                </div>
+
+                <div>
                 <label for="std">
                     <input type="radio" id="std" name="Type" value="Student" required>
                     <span class="checkmark"></span>
                     Student
                 </label>
+                </div>
+
+                <div>
                 <label for="prf">
                     <input type="radio" id="prf" name="Type" value="Professor">
                     <span class="checkmark"></span>
                     Professor
                 </label>
-            </div>
+                </div>
+                
             <!-- Your existing form fields -->
-            <a href="signup"><button type="submit" class="hero-btn">Sign Up</button></a>
+            <button type="submit" class="hero-btn">Sign Up</button>
+
         </form>
     </div>
 
