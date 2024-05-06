@@ -222,9 +222,31 @@ def update_user(user_id,
 def homepage(): #main-page
     return render_template("home.html", pagetitle="Homepage") # Loading the HTML page
 
+@app.route("/communities")
+def communities(): #main-page
+    return render_template("communities.html", pagetitle="Homepage") # Loading the HTML page
+
+@app.route("/home")
+def home(): #main-page
+    return render_template("home.html", pagetitle="Homepage") # Loading the HTML page
+
+@app.route("/contact",methods=['POST','GET'])
+def contact(): #main-page
+    return render_template("contact.html", pagetitle="Contactpage") # Loading the HTML page
+
+@app.route("/about",methods=['POST','GET'])
+def about(): #main-page
+    return render_template("about.html", pagetitle="Aboutpage") # Loading the HTML page
+
 @app.route("/ps",methods=['POST','GET'])
 def ps():
     return render_template("ps.html")
+
+
+#####################################################################################
+
+
+
 
 @app.route("/signup", methods=['POST','GET'])
 def signup():
@@ -304,6 +326,7 @@ def signup():
                             pop_message1 = "hidden",
                             text = "")
 
+#####################################################################################
 @app.route("/confirm_vcode", methods=['POST','GET'])
 def confirm_vcode():
     global rand_code_global
