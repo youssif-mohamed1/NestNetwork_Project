@@ -99,6 +99,7 @@ rand_code_global=0
 rand_pass_global=""
 flash_flag_resend=False
 flash_flag_newpass=False
+
 def forgot_password(x_email):
     global done
     global email_global
