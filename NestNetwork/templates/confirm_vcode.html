@@ -12,12 +12,15 @@
         {% with messages=get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {{message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
 
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            {{message}}
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         </div>
+
 
         {% endfor %}
         {% endif %}
@@ -26,30 +29,23 @@
         <div class="container">
             <div class="ph"></div>
             <div class="data">
-                <form action="/login" method="POST">
+                <form action="/confirm_vcode" method="POST">
                     <div class="form-group">
                         <div class = "first">
-                            <label for="ue">University Email</label>
-                            <input type="email" id="ue" required
-                                placeholder="ex: mahmoud@gmail.com"
-                                name="uni_email">
-                            </div>
-                    </div>
-                    <div class="form-group">
-                        <div class = "second">
-                            <label for="pass">Password</label>
-                            <input type="password" id="pass" minlength="5"
-                                maxlength="20" required
-                                placeholder="ex: Strong Password" name="password">
+                            <label for="ue">Verification Code</label>
+                            <input type="text" id="ue" required
+                                placeholder="ex: 123944"
+                                name="vref_code">
                         </div>
                     </div>
-                    <button class="sign-up" >Login</button>
-                    <!-- <button class="sign-up2 href="/signup" ">Signup</button> -->
-                    <button class="sign-up2" onclick="location.href='/signup'">Signup</button>
-                    <div class = "third">
+                    
+                    <div class = "second">
                         <br>
-                    <a href="vref">Forget Password</a>
-                        </div>
+                        <a href="handle_resend">Resend</a>
+                    </div>    
+                    <!-- <button class="sign-up2 href="/signup" ">Signup</button> -->
+                    <!-- onclick="location.href='confirm_vcode'" -->
+                    <button class="sign-up" >Confirm</button>
                 </form>
             </div>
         </div>

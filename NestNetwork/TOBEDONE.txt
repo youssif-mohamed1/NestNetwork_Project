@@ -1,5 +1,13 @@
--rand_id: time.h, rand.int
+-rand_id: time.h, rand.int: DONE
 -background_id: DONE
--sign_stud:
--xampp sharing database
--Password used for
+-sign_stud:DONE
+-xampp sharing database: DONE
+-Password already exist:
+-Password enctyption
+-main page: 
+- communities page:
+- update user data
+-    user = Stud.query.get(u)  #------>Simplify in one function
+    if user is None: 
+        user=Prof.query.get(user_id)
+- flash in password reset
