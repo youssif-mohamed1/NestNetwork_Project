@@ -153,6 +153,57 @@ Mostafa figcaption{
 
 /* Levels */
 
+.levels > li, .levels > a{
+    display: inline-block;
+}
+
+.levels li{
+    position: relative;
+}
+
+.levels a{
+    text-decoration: none;
+    background-color: #2c3e50;
+    color: #fff;
+    display: block;
+    padding: 10px 1.5rem;
+    transition: background-color .22s ease, color .22s ease;
+}
+
+.levels a:hover{
+    background-color: #f34949;
+    color: #fff
+}
+
+/* Submenu Level 1 Style */
+
+.submenu{
+    position: absolute;
+    background-color: #2c3e50;
+    width: 100px;
+    left: 0;
+    display: none; /* Hide Submenu */
+}
+
+/* Show menu on hover */
+
+.levels li:hover > .submenu{
+    display: block;
+    /* Add the Animation */
+    animation: slideup .3s ease;
+}
+
+row{
+    display: flex;
+    padding: 10px 1.5rem;
+    justify-content: space-between;
+}
+
+.topic{
+    color: black;
+    margin-left: 2%;
+}
+
 /* Contact */
 
 * {
