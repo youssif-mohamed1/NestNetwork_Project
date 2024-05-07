@@ -1,11 +1,8 @@
-x="true"
-def hi():
-    global x
-    x="now"
-def bye():
-    global x
-    x=x+"past"
+from bs4 import BeautifulSoup
+import requests
+url='https://codeforces.com/'
+page=requests.get(url)
 
-hi()
-bye()   
-print(x)
+soup= BeautifulSoup(page.text, 'html')
+print(soup)
+ 
