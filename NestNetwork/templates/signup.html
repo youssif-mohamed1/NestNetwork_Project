@@ -3,73 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name = "author" content = "Youssef Mohamed">
-    <title>Helwan NestNetwork Sign-Up</title>
+    <title>Signup | NESTNETWORK</title>
+    <link rel="stylesheet" href="../static/signup.css">
     <link rel="stylesheet" href="../static/sign-up.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-8HfbK2BZjRv+fXbqv0I+ucmlUpoKvAKeaFg6kPx9dty4I4HgpERv2vkiI8+B+0jBFlmiz3ccxhOcHEdL2KHZCA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Custom styles for radio buttons */
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .radio-group label {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            padding-left: 25px;
+            margin-right: 15px;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .radio-group input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 7px;
+            top: 3px;
+            width: 6px;
+            height: 11px;
+            border: solid #333;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        .radio-group input:checked ~ .checkmark:after {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <div class = "container">
-        <div class = "ph"></div>
-        <div class = "data">
-            <form action="/signup" method="POST">
-            <div class = "form-group">
-                <label for="fn">First name</label>
-                <input type="text" id = "fn" required placeholder = "ex: Mahmoud" name="first_name"> 
-                <span class = "hidden">endl</span>
-                <label for="fn">Phone number</label>
-                <input type="text" id = "fn" required placeholder = "ex: 01155612392" name="ph_num">
-                <span class = "hidden">endl</span>
-  
+
+    <section class="header">
+        <nav>
+            <a href="home"><img src="../static/imgs/logo.png"></a>
+            <a href="home" class="logo">NESTNETWORK</a>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-bars"></i>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="communities">Communities</a></li>
+                    <li><a href="syllabus">Syllabus</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                </ul>
             </div>
-            <div class = "form-group">
-                <label for="ln">Last name</label>
-                <input type="text" id = "ln" required placeholder = "ex: Zaki" name="last_name">
-                <span class = "hidden">endl</span>
-            </div>
-            <div class = "form-group">
-                <label for="ue">University Email</label>
-                <input type="email" id = "ue" required placeholder = "ex: mahmoud@gmail.com" name="uni_email"> 
-                <span class = {{pop_message}} style="display: inline;" >{{text}}</span>
-            </div>
-            <div class = "form-group">
-                <label for="pass">Create Password</label>
-                <input type="text" id = "pass" minlength="5" maxlength="20" required placeholder = "ex: Strong Password" name="password">
-                <span class = "{{pop_message1}}">Please Enter a Strong password</span>
-            </div>
-            <div class = "form-group">
-                <label for="un">University</label>
-                <input type="text" id = "un" required placeholder = "ex: Helwan University" name="uni">
-                <span class = "hidden">endl</span>
-            </div>
-            <div class = "form-group">
-                <label for="fac">Faculty</label>
-                <input type="text" id = "fac" required placeholder = "ex: Faculty of Engineering" name="faculty">
-                <span class = "hidden">endl</span>
-            </div>
-            <div class = "form-group">
-                <label for="Dep">Department</label>
-                <input type="text" id = "Dep" required placeholder = "ex: Computer and Systems" name="depart">
-                <span class = "hidden">endl</span>
-            </div>
-            <div class = "radio_but">
-                <div>
-                    <div><label for="gender">Gender:</label></div>
-                    <input type="radio" id="male" name="gender" value="male" required >
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label for="female">Female</label>
-                </div>
-                <div>
-                    <div><label for="Type">Type</label></div>
-                    <input type="radio" id = "std" name = "Type" value = "Student" required>
-                    <label for="std">Student</label>
-                    <input type="radio" id = "prf" name ="Type" value = "Professor">
-                    <label for="prf">Proffessor</label>
-                </div>
-            </div>
-            <button class = "sign-up">Sign Up</button></span>
-            </form>
+        </nav>
+        
+        <div class="text-box">
+            <h1>Join Our Community</h1>
+            <p>Create an account to be part of our growing community and enjoy exclusive benefits and access to resources.</p>
         </div>
+    </section>
+
+    <div class="form-container">
+        <form action="signup" method="post">
+            <!-- Your existing form fields -->
+            <input type="text" placeholder="First Name" name="first_name" required>
+            <span class = "hidden">endl</span>
+            <input type="text" placeholder="Last Name" name= "last_name" required>
+            <span class = "hidden">endl</span>
+            <input type="text" placeholder="0123456789" name="ph_num" required>
+            <span class = "hidden">endl</span>
+            <input type="email" placeholder="Email Address" name="uni_email" required>
+            <span class = "hidden">endl</span>
+            <span class = {{pop_message}} style="display: inline;" >{{text}}</span>
+            <input type="password" placeholder="Password" name="password" required>
+            <span class = "{{pop_message1}}">Please Enter a Strong password</span>
+            <input type="text" placeholder="Helwan University" name="uni" required>
+            <span class = "hidden">endl</span>
+            <input type="text" placeholder="Faculty of Engineering" name="faculty" required>
+            <span class = "hidden">endl</span>
+            <input type="text" placeholder="Department of computer Engeering" name="depart" required>
+            <span class = "hidden">endl</span>
+            <div>
+                <label for="male">
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <span class="checkmark"></span>
+                    male
+                </label>
+                </div>
+
+                <div>
+                <label for="female" class="r2">
+                    <input type="radio" id="female" name="gender" value="female">
+                    <span class="checkmark"></span>
+                    Female
+                </label>
+                </div>
+
+                <div>
+                <label for="std">
+                    <input type="radio" id="std" name="Type" value="Student" required>
+                    <span class="checkmark"></span>
+                    Student
+                </label>
+                </div>
+
+                <div>
+                <label for="prf">
+                    <input type="radio" id="prf" name="Type" value="Professor">
+                    <span class="checkmark"></span>
+                    Professor
+                </label>
+                </div>
+                
+            <!-- Your existing form fields -->
+            <button type="submit" class="hero-btn">Sign Up</button>
+
+        </form>
     </div>
+
+    <footer class="footer">
+        <h4>About Us</h4>
+        <p>Join us and make a difference in your community and beyond!</p>
+        <div class="icons">
+            <a href="#"><i class="fab fa-facebook-square"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
 </body>
 </html>
