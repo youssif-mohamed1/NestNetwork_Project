@@ -508,6 +508,9 @@ def myaccount_loggedin():
 @app.route("/logout")
 @login_required
 def logout():
+    user = Login.query.get('1')
+    db.session.delete(user)
+    db.session.commit()
     logout_user()
     return redirect(url_for('login'))
 
