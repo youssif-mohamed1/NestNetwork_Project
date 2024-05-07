@@ -226,6 +226,11 @@ def homepage(): #main-page
 def communities(): #main-page
     return render_template("communities.html", pagetitle="Homepage") # Loading the HTML page
 
+@app.route("/myaccount")
+def myaccount(): #main-page
+    return render_template("myaccount.html", pagetitle="myaccount") # Loading the HTML page
+
+
 @app.route("/home")
 def home(): #main-page
     return render_template("home.html", pagetitle="Homepage") # Loading the HTML page
