@@ -131,9 +131,13 @@ border: 1px solid black;
 .fp:hover{
     color: black;
 }
+
+
+
 .hidden{
     visibility: hidden;
 }
+
 .visible{
     visibility: visible;
     color: red;

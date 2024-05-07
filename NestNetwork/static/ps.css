@@ -42,6 +42,16 @@ nav {
     font-size: 1.5rem;
     color: #fff;
     font-weight: 700;
+    position: absolute;
+    left: 16%;
+}
+
+.logo1{
+    width:60px;
+    height:60px;
+    position: absolute;
+    left: 12%;
+    top: 23px;
 }
 
 .menu > li, .menu > a{

@@ -309,10 +309,12 @@ def signup():
 
         #Checks for duplicate emails
         user=Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
-        user = not user
+        user = not user # if there a duplicate
         flag = uni_email.endswith("@gmail.com") or uni_email.endswith("@hotmail.com") or uni_email.endswith("@outlook.com")
+        # email valid
         st_pass = strong_pass(password)
-
+        #strong pass
+        
         # Truth Table of 3 cases for -> valid mail, not used before, strong password 
         match(flag, user, st_pass):
             case (False, False, False) | (False, True, False): 
@@ -472,7 +474,9 @@ def login():
             
             email_found = Prof.query.filter_by(uni_email=uni_email).first()
             if email_found and email_found.password==password:
-                new_user = Login(id = email_found.prof_id,
+                new_user = Login(
+                                number = '1',
+                                id = email_found.prof_id,
                                 first_name=email_found.first_name,
                                 last_name=email_found.last_name,
                                 uni_email=email_found.uni_email,
