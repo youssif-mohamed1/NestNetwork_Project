@@ -42,8 +42,6 @@ nav {
     font-size: 1.5rem;
     color: #fff;
     font-weight: 700;
-    position: absolute;
-    left: 9%;
 }
 
 .menu > li, .menu > a{
@@ -85,6 +83,7 @@ nav {
     background-color: black;
     display: none; /* Hide Submenu */
 }
+
 /* Show menu on hover */
 
 .menu li:hover > .submenu{
