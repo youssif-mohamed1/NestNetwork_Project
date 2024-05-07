@@ -60,6 +60,23 @@ class Stud(UserMixin,db.Model):
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.stud_id)
 
+class Login(UserMixin,db.Model):
+    number=db.Column(db.String(50), primary_key=True)
+    id=db.Column(db.String(50)) #Defining Attributes
+    first_name=db.Column(db.String(50))
+    last_name=db.Column(db.String(50))
+    uni_email=db.Column(db.String(50), unique=True)
+    password=db.Column(db.String(50))
+    uni=db.Column(db.String(50))
+    faculty=db.Column(db.String(50))
+    depart=db.Column(db.String(50))
+    gender=db.Column(db.String(50))
+    ph_num=db.Column(db.String(50))
+    type = db.Column(db.String(50))
+    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
+                      #and that it's consistent with how your application retrieves users in the user loader callback.
+        return str(self.id)
+
 class Prof(UserMixin,db.Model):
     prof_id=db.Column(db.String(50), primary_key=True) #Defining Attributes
     first_name=db.Column(db.String(50))
@@ -251,10 +268,6 @@ def contact_loggedin(): #main-page
 def communities_loggedin(): #main-page
     return render_template("communities_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
-@app.route("/myaccount_loggedin", methods=['POST','GET'])
-def myaccount_loggedin(): #main-page
-    return render_template("myaccount_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML pagep
-
 @app.route("/contact",methods=['POST','GET'])
 def contact(): #main-page
     return render_template("contact.html", pagetitle="Contactpage") # Loading the HTML page
@@ -433,21 +446,64 @@ def login():
         if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
             uni_email=request.form.get('uni_email')
             password=request.form.get('password') 
-            email_found= Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first()
-            # pass_true=check_password_hash(email_found.password,password)
-            
+            email_found= Stud.query.filter_by(uni_email=uni_email).first() 
             if email_found and email_found.password==password:
-                #print("VALID")
                 login_user(email_found)
+                new_user = Login(
+                                number = '1',
+                                id = email_found.stud_id,
+                                first_name=email_found.first_name,
+                                last_name=email_found.last_name,
+                                uni_email=email_found.uni_email,
+                                password=email_found.password,
+                                uni=email_found.uni,
+                                faculty=email_found.faculty,
+                                depart=email_found.depart,
+                                gender=email_found.gender,
+                                ph_num=email_found.ph_num,
+                                type = "Student"
+                                )
+                db.session.add(new_user)
+                db.session.commit()
                 return render_template("home_loggedin.html", logged = "logged-yes")
                 #return redirect(url_for('homepage')) #redirect is same as render but its used to: avoid resumbissions  
                                                      # Instead of sending a response that could result in a duplicated POST if the user refreshes the page,
                                                      # the server redirects the user to /HOME USED IN SIGNUP MORE LIKELY OR ANY RECORDING DATABASE PROCESSES
-            else:
-                return render_template('login.html', logged = "logged-no")    
-
+            
+            email_found = Prof.query.filter_by(uni_email=uni_email).first()
+            if email_found and email_found.password==password:
+                new_user = Login(id = email_found.prof_id,
+                                first_name=email_found.first_name,
+                                last_name=email_found.last_name,
+                                uni_email=email_found.uni_email,
+                                password=email_found.password,
+                                uni=email_found.uni,
+                                faculty=email_found.faculty,
+                                depart=email_found.depart,
+                                gender=email_found.gender,
+                                ph_num=email_found.ph_num,
+                                type = "Proffesor"
+                                )
+                db.session.add(new_user)
+                db.session.commit()
+                return render_template("home_loggedin.html", logged = "logged-yes")
+            
         return render_template("login.html", pagetitle="Login", logged = "logged-no")
 
+@app.route("/myaccount_loggedin", methods=['POST','GET'])
+def myaccount_loggedin():
+    account = Login.query.filter_by(number='1').first()
+    return render_template("myaccount_loggedin.html",
+                            pagetitle="account_loggedin",
+                            fname = account.first_name,
+                            lname = account.last_name,
+                            email = account.uni_email,
+                            ph_num = account.ph_num,
+                            type = account.type,
+                            uni = account.uni,
+                            gend = account.gender,
+                            faclt = account.faculty,
+                            depart = account.depart) # Loading the HTML pagep
 
 @app.route("/logout")
 @login_required
