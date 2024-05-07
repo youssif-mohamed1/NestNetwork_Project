@@ -37,7 +37,7 @@
                         <a href="contact">Contact Us</a>
                     </li>
                     <li>
-                        <a href="" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="myaccount" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-user"></i></a>                 
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>">
     </section>
 
-    <section class="contact-us">
+    <section class="contact-us" id = "talk">
         <div class="row">
             <div class="contact-col">
                 
@@ -97,6 +97,20 @@
             <a href=""><i class="fa-brands fa-linkedin "></i></a>
         </div>
     </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        // Function to scroll to a specific element
+        function scrollToElement(elementId) {
+            var element = document.getElementById(elementId);
+            if(element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
 
+    
+        // Call the function to scroll to the target element when the page loads
+        scrollToElement("talk");
+    });
+</script>
 </body>
 </html>
