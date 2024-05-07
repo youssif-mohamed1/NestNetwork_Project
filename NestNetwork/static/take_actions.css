@@ -1,0 +1,6 @@
+.logged-yes{
+    visibility: hidden;
+}
+.logged-no{
+    visibility: visible;
+}

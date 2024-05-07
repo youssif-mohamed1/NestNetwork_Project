@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | NESTNETWORK</title>
+    <link rel="stylesheet" href="../static/style.css"> <!-- Your CSS file -->
+    <link rel="stylesheet" href="../static/signup.css">
+    <style>
+        .user-data {
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
+}
+
+.user-info {
+    background-color: #fff3f3;
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: 0.5s;
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+
+.user-info p {
+    margin-bottom: 10px;
+}
+
+.user-info strong {
+    font-weight: bold;
+}
+
+.form-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    position: absolute;
+    left: 11%;
+}
+
+.form-container div {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.form-container div:last-child {
+    border-bottom: none;
+}
+
+.form-container div span {
+    font-weight: bold;
+    margin-right: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <a href="home_loggedin"><img src="../static/imgs/logo.png"></a>
+            <a href="home_loggedin" class="logo">NESTNETWORK</a>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-times"></i>
+                <ul>
+                    <li>
+                        <a href="home_loggedin">Home</a>
+                    </li>
+                    <li>
+                        <a href="communities_loggedin">Communities</a>
+                    </li>
+                    <li>
+                        <a href="syllabus_loggedin">Syllabus</a>
+                    </li>
+                    <li>
+                        <a href="about_loggedin">About</a>
+                    </li>
+                    <li>
+                        <a href="contact_loggedin">Contact Us</a>
+                    </li>
+                    <li>
+                        <!-- Change the link to the My Account page -->
+                        <a href="myaccount_loggedin" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i></a>                 
+                    </li>
+                </ul>
+            </div>
+            <i class="fa fa-bars"></i>
+        </nav>
+
+        <div class="text-box">
+            <!-- Change the heading and content to My Account -->
+            <h1>My Account</h1>
+            <p>Welcome back! Here you can view and manage your account information.</p>
+            <!-- Optionally, you can add links to edit account details or log out -->
+            <a href="edit_account" class="hero-btn">Edit Account</a>
+            <a href="logout" class="hero-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- Your user data display section can be added here -->
+    <div class="form-container" id="logg">
+        <div><span>First name:</span> {{fname}}</div>
+        <div><span>Last name:</span> {{lname}}</div>
+        <div><span>Email:</span> {{email}}</div>
+        <div><span>Phone number:</span> {{ph_num}}</div>
+        <div><span>Type:</span> {{type}}</div>
+        <div><span>Gender:</span> {{gend}}</div>
+        <div><span>University:</span> {{uni}}</div>
+        <div><span>Faculty:</span> {{faclt}}</div>
+        <div><span>Department:</span> {{depart}}</div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            // Function to scroll to a specific element
+            function scrollToElement(elementId) {
+                var element = document.getElementById(elementId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+        
+            // Call the function to scroll to the target element when the page loads
+            scrollToElement("logg");
+        });
+        
+    </script>
+</body>
+</html>

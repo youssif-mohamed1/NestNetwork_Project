@@ -84,7 +84,7 @@
         </div>
     </section>
 
-    <div class="form-container">
+    <div class="form-container" id = "logg">
         <form action="login" method="post">
             <input type="email" placeholder="Email Address" name="uni_email" required>
             <input type="password" placeholder="Password" name="password" required>
@@ -94,7 +94,6 @@
             <button type="submit" class="hero-btn">Login</button>
         </form>
     </div>
-
     <footer class="footer">
         <h4>About Us</h4>
         <p>Join us and make a difference in your community and beyond!</p>
@@ -106,5 +105,21 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            // Function to scroll to a specific element
+            function scrollToElement(elementId) {
+                var element = document.getElementById(elementId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+        
+            // Call the function to scroll to the target element when the page loads
+            scrollToElement("logg");
+        });
+        
+    </script>
 </body>
 </html>
