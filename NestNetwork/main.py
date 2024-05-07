@@ -514,6 +514,20 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+@app.route("/edit_account",methods=['POST','GET'])
+def edit_account():
+    account = Login.query.filter_by(number='1').first()
+    return render_template("edit_account.html",
+                            pagetitle="edit_account",
+                            fname = account.first_name,
+                            lname = account.last_name,
+                            email = account.uni_email,
+                            ph_num = account.ph_num,
+                            type = account.type,
+                            uni = account.uni,
+                            gend = account.gender,
+                            faclt = account.faculty,
+                            depart = account.depart)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000) # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication
