@@ -69,6 +69,7 @@ class Stud(UserMixin, db.Model):
         # and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.stud_id)
 
+<<<<<<< HEAD
 
 class Login(UserMixin, db.Model):
     number = db.Column(db.String(50), primary_key=True)
@@ -82,6 +83,32 @@ class Login(UserMixin, db.Model):
     depart = db.Column(db.String(50))
     gender = db.Column(db.String(50))
     ph_num = db.Column(db.String(50))
+=======
+class problem_solving(UserMixin,db.Model):
+    
+    no = db.Column(db.Integer, primary_key=True)
+    topic_name=db.Column(db.String(50)) #Defining Attributes
+    level=db.Column(db.String(50))
+    video=db.Column(db.String(50))
+    sheet=db.Column(db.String(50))
+
+    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
+                      #and that it's consistent with how your application retrieves users in the user loader callback.
+        return str(self.no)
+
+class Login(UserMixin,db.Model):
+    number=db.Column(db.String(50), primary_key=True)
+    id=db.Column(db.String(50)) #Defining Attributes
+    first_name=db.Column(db.String(50))
+    last_name=db.Column(db.String(50))
+    uni_email=db.Column(db.String(50), unique=True)
+    password=db.Column(db.String(50))
+    uni=db.Column(db.String(50))
+    faculty=db.Column(db.String(50))
+    depart=db.Column(db.String(50))
+    gender=db.Column(db.String(50))
+    ph_num=db.Column(db.String(50))
+>>>>>>> da6539356ecf073abdd09bd25d0857c6bd876fd8
     type = db.Column(db.String(50))
 
     def get_id(self):  # Always ensure that get_id() returns a unique identifier for each user,
@@ -294,6 +321,7 @@ def home_loggedin():  # main-page
     # Loading the HTML page
     return render_template("home_loggedin.html", pagetitle="Homepage", logged="logged-no")
 
+<<<<<<< HEAD
 
 @app.route("/about_loggedin", methods=['POST', 'GET'])
 def about_loggedin():  # main-page
@@ -329,6 +357,8 @@ def about():  # main-page
 def ps():
     return render_template("ps.html")
 
+=======
+>>>>>>> da6539356ecf073abdd09bd25d0857c6bd876fd8
 
 #####################################################################################
 
@@ -357,6 +387,7 @@ def signup():
             gen_id = Stud.query.filter_by(stud_id=ruser_id).first() or Prof.query.filter_by(
                 prof_id=ruser_id).first()  # authinticate if the email entered already exist
 
+<<<<<<< HEAD
         # Checks for duplicate emails
         user = Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(
             uni_email=uni_email).first()  # authinticate if the email entered already exist
@@ -366,6 +397,17 @@ def signup():
         st_pass = strong_pass(password)
 
         # Truth Table of 3 cases for -> valid mail, not used before, strong password
+=======
+        #Checks for duplicate emails
+        user=Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
+        user = not user # if there a duplicate
+        flag = uni_email.endswith("@gmail.com") or uni_email.endswith("@hotmail.com") or uni_email.endswith("@outlook.com")
+        # email valid
+        st_pass = strong_pass(password)
+        #strong pass
+        
+        # Truth Table of 3 cases for -> valid mail, not used before, strong password 
+>>>>>>> da6539356ecf073abdd09bd25d0857c6bd876fd8
         match(flag, user, st_pass):
             case (False, False, False) | (False, True, False):
                 return render_template("signup.html", pop_message="visible", pop_message1="visible", text="Email is not valid")
@@ -500,6 +542,7 @@ def vref():
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
+<<<<<<< HEAD
     global flash_flag_newpass
     if flash_flag_newpass:
         flash("New password sent")
@@ -530,6 +573,59 @@ def login():
             # return redirect(url_for('homepage')) #redirect is same as render but its used to: avoid resumbissions
             # Instead of sending a response that could result in a duplicated POST if the user refreshes the page,
             # the server redirects the user to /HOME USED IN SIGNUP MORE LIKELY OR ANY RECORDING DATABASE PROCESSES
+=======
+        global flash_flag_newpass
+        if flash_flag_newpass:
+            flash("New password sent")
+        if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
+            uni_email=request.form.get('uni_email')
+            password=request.form.get('password') 
+            email_found= Stud.query.filter_by(uni_email=uni_email).first() 
+            if email_found and email_found.password==password:
+                login_user(email_found)
+                new_user = Login(
+                                number = '1',
+                                id = email_found.stud_id,
+                                first_name=email_found.first_name,
+                                last_name=email_found.last_name,
+                                uni_email=email_found.uni_email,
+                                password=email_found.password,
+                                uni=email_found.uni,
+                                faculty=email_found.faculty,
+                                depart=email_found.depart,
+                                gender=email_found.gender,
+                                ph_num=email_found.ph_num,
+                                type = "Student"
+                                )
+                db.session.add(new_user)
+                db.session.commit()
+                return render_template("home_loggedin.html", logged = "logged-yes")
+                #return redirect(url_for('homepage')) #redirect is same as render but its used to: avoid resumbissions  
+                                                     # Instead of sending a response that could result in a duplicated POST if the user refreshes the page,
+                                                     # the server redirects the user to /HOME USED IN SIGNUP MORE LIKELY OR ANY RECORDING DATABASE PROCESSES
+            
+            email_found = Prof.query.filter_by(uni_email=uni_email).first()
+            if email_found and email_found.password==password:
+                new_user = Login(
+                                number = '1',
+                                id = email_found.prof_id,
+                                first_name=email_found.first_name,
+                                last_name=email_found.last_name,
+                                uni_email=email_found.uni_email,
+                                password=email_found.password,
+                                uni=email_found.uni,
+                                faculty=email_found.faculty,
+                                depart=email_found.depart,
+                                gender=email_found.gender,
+                                ph_num=email_found.ph_num,
+                                type = "Proffesor"
+                                )
+                db.session.add(new_user)
+                db.session.commit()
+                return render_template("home_loggedin.html", logged = "logged-yes")
+            
+        return render_template("login.html", pagetitle="Login", logged = "logged-no")
+>>>>>>> da6539356ecf073abdd09bd25d0857c6bd876fd8
 
         email_found = Prof.query.filter_by(uni_email=uni_email).first()
         if email_found and email_found.password == password:
@@ -593,6 +689,92 @@ def edit_account():
                            faclt=account.faculty,
                            depart=account.depart)
 
+
+@app.route("/ps",methods=['POST','GET'])
+def ps():
+    mat = []
+    for i in range(4): # i == 0
+        row = {}
+        lev1 = problem_solving.query.filter_by(level=str(i)).all()
+        lev = [(problem_solving.topic_name, problem_solving.video, problem_solving.sheet) for problem_solving in lev1]
+        if lev:
+            for item in lev:
+                topic_name, videos, sheets = item
+                if topic_name in row:
+                    row[topic_name].append((videos, sheets))
+                else:
+                    row[topic_name] = [(videos, sheets)]
+        mat.append(row)
+
+    li = []
+    for idx, row2 in enumerate(mat):
+        for topic, data in row2.items():
+            li1 = []
+            li2 = []
+            for videos, sheets in data:
+                li1.append(videos)
+                li2.append(sheets)
+            print(li1)
+            print(li2)
+            li.append(li1)
+            li.append(li2)
+
+    return render_template("ps.html" ,
+                            link010 = li[0],link011 = li[1],link020 = li[2],link021 = li[3],link030 = li[4],link031 = li[5],link040 = li[6],link041 = li[7],link050 = li[8],link051 = li[9],link060 = li[10],link061 = li[11],link070 = li[12],link071 = li[13],link080 = li[14],link081 = li[15],link090 = li[16],link091 = li[17])
+                            # link100 = li[18],
+                            # link101 = li[19],
+                            # link110 = li[20],
+                            # link111 = li[21],
+                            # link120 = li[22],
+                            # link121 = li[23],
+                            # link130 = li[24],
+                            # link131 = li[25],
+                            # link140 = li[26],
+                            # link141 = li[27],
+                            # link150 = li[28],
+                            # link151 = li[29],
+                            # link160 = li[30],
+                            # link161 = li[31],
+                            # link200 = li[32],
+                            # link201 = li[33],
+                            # link210 = li[34],
+                            # link211 = li[35],
+                            # link220 = li[36],
+                            # link221 = li[37],
+                            # link230 = li[38],
+                            # link231 = li[39],
+                            # link240 = li[40],
+                            # link241 = li[41],
+                            # link250 = li[42],
+                            # link251 = li[43],
+                            # link260 = li[44],
+                            # link261 = li[45],
+                            # link270 = li[46],
+                            # link271 = li[47],
+                            # link280 = li[48],
+                            # link281 = li[49],
+                            # link290 = li[50],
+                            # link291 = li[51],
+                            # link300 = li[52],
+                            # link301 = li[53],
+                            # link310 = li[55],
+                            # link311 = li[56],
+                            # link320 = li[57],
+                            # link321 = li[58],
+                            # link330 = li[59],
+                            # link331 = li[60],
+                            # link340 = li[61],
+                            # link341 = li[62],
+                            # link350 = li[63],
+                            # link351 = li[64],
+                            # link360 = li[65],
+                            # link361 = li[66],
+                            # link370 = li[67],
+                            # link371 = li[68],
+                            # link380 = li[69],
+                            # link381 = li[70],
+                            # link390 = li[71],
+                            # link391 = li[72])
 
 if __name__ == "__main__":
     # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication

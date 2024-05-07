@@ -42,6 +42,16 @@ nav {
     font-size: 1.5rem;
     color: #fff;
     font-weight: 700;
+    position: absolute;
+    left: 16%;
+}
+
+.logo1{
+    width:60px;
+    height:60px;
+    position: absolute;
+    left: 12%;
+    top: 23px;
 }
 
 .menu > li, .menu > a{
@@ -84,6 +94,14 @@ nav {
     display: none; /* Hide Submenu */
 }
 
+.submenu3{
+    position: absolute;
+    left: 100%;
+    width: 140px;
+    top: 0;
+    background-color: black;
+    display: none; /* Hide Submenu */
+}
 /* Show menu on hover */
 
 .menu li:hover > .submenu{
@@ -98,6 +116,11 @@ nav {
     animation: slideup .3s ease;
 }
 
+.submenu2 li:hover > .submenu3{
+    display: block;
+    /* Add the Animation */
+    animation: slideup .3s ease;
+}
 /* Anumation KeyFrames */
 
 @keyframes slideup {
