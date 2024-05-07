@@ -54,7 +54,7 @@
          </div>
     </section>
 
-    <section class="community">
+    <section class="community" id = "here">
         <h1>Nestwork Offers</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 
@@ -146,6 +146,21 @@
             <a href=""><i class="fa-brands fa-linkedin "></i></a>
         </div>
     </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            // Function to scroll to a specific element
+            function scrollToElement(elementId) {
+                var element = document.getElementById(elementId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
 
+        
+            // Call the function to scroll to the target element when the page loads
+            scrollToElement('here');
+        });
+        
+    </script>
 </body>
 </html>
