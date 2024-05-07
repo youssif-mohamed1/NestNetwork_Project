@@ -239,6 +239,21 @@ def home(): #main-page
 def home_loggedin(): #main-page
     return render_template("home_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
+@app.route("/about_loggedin", methods=['POST','GET'])
+def about_loggedin(): #main-page
+    return render_template("about_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
+
+@app.route("/contact_loggedin", methods=['POST','GET'])
+def contact_loggedin(): #main-page
+    return render_template("contact_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
+
+@app.route("/communities_loggedin", methods=['POST','GET'])
+def communities_loggedin(): #main-page
+    return render_template("communities_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
+
+@app.route("/myaccount_loggedin", methods=['POST','GET'])
+def myaccount_loggedin(): #main-page
+    return render_template("myaccount_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML pagep
 
 @app.route("/contact",methods=['POST','GET'])
 def contact(): #main-page
