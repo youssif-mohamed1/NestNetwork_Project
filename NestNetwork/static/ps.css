@@ -128,61 +128,23 @@ body{
 
 /* About Us */
 
-.leaders{
-    margin-top: 3%;
-    margin-left: 40%;
-    color: black;
-}
 
-leaders{
-    max-width: 1400px;
-    margin: 0 auto;
-    margin-top: 3%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-img{
-    width: 250px;
-}
-
-figcaption{
-    font-size: 1.5rem;
-    font-weight: 700;
-    width: 190px;
-}
-
-Ahmed figcaption,Yousef figcaption{
-    margin-left: 15%;
-    color: green;
-}
-
-Mohamed figcaption{
-    margin-left: 15%;
-}
-
-Mostafa figcaption{
-    margin-left: 20%;
-}
 
 /* Levels */
 
 .levels {
-    margin-left: 3%;
-    margin-right: 3%;
     position: relative;
     text-align: center;
     color: white;
 }
 
 #back{
+    margin-top: -2%;
     filter: blur(2px);
     -webkit-filter: blur(2px);
 }
 
 .centered {
-    text-decoration: none;
     position: absolute;
     top: 20%;
     left: 50%;
@@ -236,27 +198,30 @@ input[type=text], select, textarea {
 }
 
 input[type=submit] {
-    background-color: #04AA6D;
+    background-color: #27ca18;
     color: white;
     padding: 12px 20px;
     border: none;
     cursor: pointer;
+    margin-left: -10%;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #40b733;
 }
 
 .container {
-    margin-top: 100px;
-    max-width: 1400px;
-    margin-left: 60px;
+    margin-top: -1%;
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: black;
     padding: 10px;
 }
 
-.container h2,p,label,option{
+.container h2,p,label{
+    color: white;
+}
+
+.container option{
     color: black;
 }
 
