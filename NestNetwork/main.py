@@ -222,18 +222,23 @@ def update_user(user_id,
 def homepage(): #main-page
     return render_template("home.html", pagetitle="Homepage") # Loading the HTML page
 
-@app.route("/communities")
+@app.route("/communities", methods=['POST','GET'])
 def communities(): #main-page
     return render_template("communities.html", pagetitle="Homepage") # Loading the HTML page
 
-@app.route("/myaccount")
+@app.route("/myaccount",methods=['POST','GET'])
 def myaccount(): #main-page
     return render_template("myaccount.html", pagetitle="myaccount") # Loading the HTML page
 
 
-@app.route("/home")
+@app.route("/home", methods=['POST','GET'])
 def home(): #main-page
-    return render_template("home.html", pagetitle="Homepage") # Loading the HTML page
+    return render_template("home.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
+
+@app.route("/home_loggedin", methods=['POST','GET'])
+def home_loggedin(): #main-page
+    return render_template("home_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
+
 
 @app.route("/contact",methods=['POST','GET'])
 def contact(): #main-page
@@ -417,15 +422,16 @@ def login():
             # pass_true=check_password_hash(email_found.password,password)
             
             if email_found and email_found.password==password:
-                # print("VALID")
+                #print("VALID")
                 login_user(email_found)
-                return redirect(url_for('homepage')) #redirect is same as render but its used to: avoid resumbissions  
+                return render_template("home_loggedin.html", logged = "logged-yes")
+                #return redirect(url_for('homepage')) #redirect is same as render but its used to: avoid resumbissions  
                                                      # Instead of sending a response that could result in a duplicated POST if the user refreshes the page,
                                                      # the server redirects the user to /HOME USED IN SIGNUP MORE LIKELY OR ANY RECORDING DATABASE PROCESSES
             else:
-                return render_template('login.html')    
+                return render_template('login.html', logged = "logged-no")    
 
-        return render_template("login.html", pagetitle="Login")
+        return render_template("login.html", pagetitle="Login", logged = "logged-no")
 
 
 @app.route("/logout")

@@ -34,7 +34,7 @@
     </section>
 
     <div class="form-container">
-        <form action="signup" method="post">
+        <form action="signup" method="post" id = "sgnup">
             <!-- Your existing form fields -->
             <div class="login-option">
                 <p>Already have an account? <a href="login">Log in here</a></p>
@@ -93,7 +93,7 @@
 
         </form>
     </div>
-
+    
     <footer class="footer">
         <h4>About Us</h4>
         <p>Join us and make a difference in your community and beyond!</p>
@@ -105,5 +105,21 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            // Function to scroll to a specific element
+            function scrollToElement(elementId) {
+                var element = document.getElementById(elementId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+        
+            // Call the function to scroll to the target element when the page loads
+            scrollToElement('sgnup');
+        });
+        
+    </script>
 </body>
 </html>

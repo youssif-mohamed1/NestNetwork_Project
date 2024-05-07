@@ -45,18 +45,35 @@
         </div>
     </div>
 
-    <!-- Login/Signup Modal -->
-    <div id="login-signup-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="login">
-                <h1>Login or Sign Up</h1>
-                <div class="login-options">
-                    <a href="login" class="hero-btn">Login</a>
-                    <a href="signup" class="hero-btn">Sign Up</a>
+   <span class = "{{logged}}">
+        <div id="login-signup-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="login">
+                    <h1>Login or Sign Up</h1>
+                    <div class="login-options">
+                        <a href="login" class="hero-btn">Login</a>
+                        <a href="signup" class="hero-btn">Sign Up</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </span>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            // Function to scroll to a specific element
+            function scrollToElement(elementId) {
+                var element = document.getElementById(elementId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+        
+            // Call the function to scroll to the target element when the page loads
+            scrollToElement('login-signup-modal');
+        });
+        
+    </script>
 </body>
 </html>
