@@ -565,8 +565,6 @@ def ps():
             for videos, sheets in data:
                 li1.append(videos)
                 li2.append(sheets)
-            print(li1)
-            print(li2)
             li.append(li1)
             li.append(li2)
 
