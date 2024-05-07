@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | NESTNETWORK</title>
+    <link rel="stylesheet" href="../static/style.css"> <!-- Your CSS file -->
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <a href="home_loggedin"><img src="../static/imgs/logo.png"></a>
+            <a href="home_loggedin" class="logo">NESTNETWORK</a>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-times"></i>
+                <ul>
+                    <li>
+                        <a href="home_loggedin">Home</a>
+                    </li>
+                    <li>
+                        <a href="communities_loggedin">Communities</a>
+                    </li>
+                    <li>
+                        <a href="syllabus_loggedin">Syllabus</a>
+                    </li>
+                    <li>
+                        <a href="about_loggedin">About</a>
+                    </li>
+                    <li>
+                        <a href="contact_loggedin">Contact Us</a>
+                    </li>
+                    <li>
+                        <!-- Change the link to the My Account page -->
+                        <a href="myaccount_loggedin" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i></a>                 
+                    </li>
+                </ul>
+            </div>
+            <i class="fa fa-bars"></i>
+        </nav>
+
+        <div class="text-box">
+            <!-- Change the heading and content to My Account -->
+            <h1>My Account</h1>
+            <p>Welcome back! Here you can view and manage your account information.</p>
+            <!-- Optionally, you can add links to edit account details or log out -->
+            <a href="editaccount_loggedin" class="hero-btn">Edit Account</a>
+            <a href="logout" class="hero-btn">Logout</a>
+        </div>
+    </div>
+
+    <!-- Your user data display section can be added here -->
+    <div class="user-data">
+        <!-- Example: Display user's name, email, etc. -->
+        <h2>User Information</h2>
+        <p>Name: John Doe</p>
+        <p>Email: john@example.com</p>
+        <!-- Add more user data as needed -->
+    </div>
+
+</body>
+</html>
