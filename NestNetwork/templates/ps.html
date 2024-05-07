@@ -53,56 +53,147 @@
                             <ul class="submenu">
                                 <li><a href="#">Data tyeps</a>
                                     <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                <!-- <li><a href="https://youtu.be/HzeK7g8cD0Y?si=3XbGJWi72wapPz07">Videos</a></li> -->
+                                                {% for item in link010 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                    <li><a href="{{ link011[0] }}">Sheet 1</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Conditions</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link020 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link021[0] }}">Sheet 2</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Loops</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link030 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link031[0] }}">Sheet 3</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Array and Strings</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link040 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link041[0] }}">Sheet 4</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Functions</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link050 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link051[0] }}">Sheet 5</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Recursion</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link060 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link061[0] }}">Sheet 6</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Frequency Array</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link070 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link071[0] }}">Sheet 7</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Partial Sum</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link080 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link081[0] }}">Sheet 8</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Greedy Algorithm</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {% for item in link090 %}
+                                                    <li><a href="{{ item }}">Video {{ loop.index }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                <li><a href="{{ link091[0] }}">Sheet 9</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -110,45 +201,101 @@
                         <li><a href="#">Level One</a>
                             <ul class="submenu">
                                 <li><a href="#">Stls</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link100}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link101}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Comparing Function</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link110}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link111}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Sorting Algorithm</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link120}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link121}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Two Pointers</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link130}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link131}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Binary Search</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link140}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link141}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Bitmask</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link150}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link151}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Backtrack</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link160}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link161}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -156,65 +303,145 @@
                         <li><a href="#">Level Two</a>
                             <ul class="submenu">
                                 <li><a href="#">Intro to Graph</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link200}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link201}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">DFS</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link210}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link211}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">BFS</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link220}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link221}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Dijkstra</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link230}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link231}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Dynamic Progamming
                                         (Recursion)</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link240}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link241}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Dynamic Progamming
                                         (Iterative)</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link250}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link251}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">DSU</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link260}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link261}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">MST</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link270}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link271}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Sparse Table</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link280}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link281}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Segment Tree</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link290}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link291}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -222,65 +449,145 @@
                         <li><a href="#">Advaned Level</a>
                             <ul class="submenu">
                                 <li><a href="#">Intro to Graph</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link300}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link301}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">DFS</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link310}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link311}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">BFS</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link320}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link321}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Dijkstra</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link330}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link331}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Dynamic Progamming
                                         (Recursion)</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link340}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link341}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Dynamic Progamming
                                         (Iterative)</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link350}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link351}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">DSU</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link360}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link361}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">MST</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link370}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link371}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Sparse Table</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link380}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link381}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Segment Tree</a>
-                                    <ul class="submenu2">
-                                        <li><a href="#">Videos</a></li>
-                                        <li><a href="#">Sheets</a></li>
+                                     <ul class="submenu2">
+                                        <li><a href="#">Videos</a>
+                                            <ul class="submenu3">
+                                                {{link390}}
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Sheets</a>
+                                            <ul class="submenu3">
+                                                {{link391}}
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
