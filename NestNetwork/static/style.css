@@ -8,7 +8,7 @@
     min-height: 100vh;
     width: 100%;
     /* for example i start with a color then transit to another color and so on */
-    background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(imgs3/main1.jpg) ;
+    background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(../static/imgs/main1.jpg) ;
     background-position: center;
     background-size: cover;
     position: relative;
@@ -294,7 +294,7 @@ h3{
 .login{
     margin: 100px auto;
     width: 80%;
-    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(imgs3/banner2.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(../static/imgs/banner2.jpg);
     background-position: center;
     background-size: cover;
     border-radius: 10px;
@@ -328,7 +328,7 @@ h3{
 .sub-header{
     height: 50vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(imgs3/background.jpg);
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(../static/imgs/background.jpg);
     background-position:center ;
     background-size: cover;
     text-align: center;
@@ -431,4 +431,51 @@ h3{
 .contact-col form h5{
     font-weight: 400;
     margin-bottom: 5px;
+}
+.edit-form {
+    width: 80%;
+    margin: auto;
+    padding-top: 50px;
+    text-align: center;
+}
+
+.edit-container {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.edit-container textarea {
+    width: 100%;
+    height: 70px; /* Decreased height */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px auto; /* Centered the textarea */
+    resize: none;
+    font-size: 16px;
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+.edit-container button {
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+}
+
+.edit-container button:hover {
+    background-color: #ff6659;
+}
+
+.edit-container #photo-upload {
+    display: none; /* Hide the input by default */
 }

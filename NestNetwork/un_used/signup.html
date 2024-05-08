@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name = "author" content = "Youssef Mohamed">
+    <title>Helwan NestNetwork Sign-Up</title>
+    <link rel="stylesheet" href="../static/sign-up.css">
+</head>
+<body>
+    <div class = "container">
+        <div class = "ph"></div>
+        <div class = "data">
+            <form action="/signup" method="POST">
+            <div class = "form-group">
+                <label for="fn">First name</label>
+                <input type="text" id = "fn" required placeholder = "ex: Mahmoud" name="first_name"> 
+                <span class = "hidden">endl</span>
+                <label for="fn">Phone number</label>
+                <input type="text" id = "fn" required placeholder = "ex: 01155612392" name="ph_num">
+                <span class = "hidden">endl</span>
+  
+            </div>
+            <div class = "form-group">
+                <label for="ln">Last name</label>
+                <input type="text" id = "ln" required placeholder = "ex: Zaki" name="last_name">
+                <span class = "hidden">endl</span>
+            </div>
+            <div class = "form-group">
+                <label for="ue">University Email</label>
+                <input type="email" id = "ue" required placeholder = "ex: mahmoud@gmail.com" name="uni_email"> 
+                <span class = {{pop_message}} style="display: inline;" >{{text}}</span>
+            </div>
+            <div class = "form-group">
+                <label for="pass">Create Password</label>
+                <input type="text" id = "pass" minlength="5" maxlength="20" required placeholder = "ex: Strong Password" name="password">
+                <span class = "{{pop_message1}}">Please Enter a Strong password</span>
+            </div>
+            <div class = "form-group">
+                <label for="un">University</label>
+                <input type="text" id = "un" required placeholder = "ex: Helwan University" name="uni">
+                <span class = "hidden">endl</span>
+            </div>
+            <div class = "form-group">
+                <label for="fac">Faculty</label>
+                <input type="text" id = "fac" required placeholder = "ex: Faculty of Engineering" name="faculty">
+                <span class = "hidden">endl</span>
+            </div>
+            <div class = "form-group">
+                <label for="Dep">Department</label>
+                <input type="text" id = "Dep" required placeholder = "ex: Computer and Systems" name="depart">
+                <span class = "hidden">endl</span>
+            </div>
+            <div class = "radio_but">
+                <div>
+                    <div><label for="gender">Gender:</label></div>
+                    <input type="radio" id="male" name="gender" value="male" required >
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                </div>
+                <div>
+                    <div><label for="Type">Type</label></div>
+                    <input type="radio" id = "std" name = "Type" value = "Student" required>
+                    <label for="std">Student</label>
+                    <input type="radio" id = "prf" name ="Type" value = "Professor">
+                    <label for="prf">Proffessor</label>
+                </div>
+            </div>
+            <button class = "sign-up">Sign Up</button></span>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- 
+
+@app.route("/signup", methods=['POST','GET'])
+def signup():
+    if request.method=="POST":  #Checking IF Submit button(signup) is pressed ('action' is activated)
+        first_name=request.form.get('first_name')
+        last_name=request.form.get('last_name')
+        uni_email=request.form.get('uni_email')
+        password=request.form.get('password')
+        uni=request.form.get('uni')
+        faculty=request.form.get('faculty')
+        depart=request.form.get('depart')
+        gender=request.form.get('gender')
+        ph_num=request.form.get('ph_num')
+        type=request.form.get('Type')
+#--
+        #Unique_ID:
+        gen_id=1
+        while(gen_id):
+            ruser_id=rand_id(type)
+            gen_id=Stud.query.filter_by(stud_id=ruser_id).first() or Prof.query.filter_by(prof_id=ruser_id).first() #authinticate if the email entered already exist
+            
+
+        #Checks for duplicate emails
+        user=Stud.query.filter_by(uni_email=uni_email).first() or Prof.query.filter_by(uni_email=uni_email).first() #authinticate if the email entered already exist
+        user = not user
+        flag = uni_email.endswith("@gmail.com") or uni_email.endswith("@hotmail.com") or uni_email.endswith("@outlook.com")
+        st_pass = strong_pass(password)
+
+        # Truth Table of 3 cases for -> valid mail, not used before, strong password 
+        match(flag, user, st_pass):
+            case (False, False, False) | (False, True, False): 
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "visible", text = "Email is not valid")
+            case (False, True, True) | (False, False, True): 
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "hidden", text = "Email is not valid")
+            case (True, False, False): 
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "visible", text = "Email is already in use!")
+            case (True, False, True): 
+                return render_template("signup.html", pop_message = "visible", pop_message1 = "hidden", text = "Email is already in use!")
+            case (True, True, False): 
+                return render_template("signup.html", pop_message = "hidden", pop_message1 = "visible", text = "")
+        
+        #last case(valid case): continue sign-up
+        
+        #enhanced password: password is hashed(encrypted) in database to maintain security
+        # encpassword=generate_password_hash(password) 
+        
+        #---SENDING Records to the DATABASE
+        if type ==  "Student":
+            new_user = Stud(stud_id=ruser_id,
+                            first_name=first_name,
+                            last_name=last_name,
+                            uni_email=uni_email,
+                            password=password,
+                            uni=uni,
+                            faculty=faculty,
+                            depart=depart,
+                            gender=gender,
+                            ph_num=ph_num)
+        else:
+            new_user = Prof(prof_id=ruser_id,
+                            first_name=first_name,
+                            last_name=last_name,
+                            uni_email=uni_email,
+                            password=password,
+                            uni=uni,
+                            faculty=faculty,
+                            depart=depart,
+                            gender=gender,
+                            ph_num=ph_num)
+
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for("login"))
+        # return render_template("login.html") #NOT EXECUTEDDDD
+    return render_template('signup.html',
+                            pop_message = "hidden",
+                            pop_message1 = "hidden",
+                            text = "")
+
+ -->

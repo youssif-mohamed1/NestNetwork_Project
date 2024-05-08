@@ -26,7 +26,7 @@ body{
 /* Nav Styles */
 
 header{
-    background-color: #2c3e50;
+    background-color: black;
     padding: 2rem 0;
 }
 
@@ -42,6 +42,16 @@ nav {
     font-size: 1.5rem;
     color: #fff;
     font-weight: 700;
+    position: absolute;
+    left: 16%;
+}
+
+.logo1{
+    width:60px;
+    height:60px;
+    position: absolute;
+    left: 12%;
+    top: 23px;
 }
 
 .menu > li, .menu > a{
@@ -61,7 +71,7 @@ nav {
 }
 
 .menu a:hover{
-    background-color: #f34949;
+    background-color: #27ca18;
     color: #fff
 }
 
@@ -69,12 +79,29 @@ nav {
 
 .submenu{
     position: absolute;
-    background-color: #2c3e50;
-    width: 100px;
+    background-color: black;
+    width: 200px;
     left: 0;
     display: none; /* Hide Submenu */
 }
 
+.submenu2{
+    position: absolute;
+    left: 100%;
+    width: 140px;
+    top: 0;
+    background-color: black;
+    display: none; /* Hide Submenu */
+}
+
+.submenu3{
+    position: absolute;
+    left: 100%;
+    width: 140px;
+    top: 0;
+    background-color: black;
+    display: none; /* Hide Submenu */
+}
 /* Show menu on hover */
 
 .menu li:hover > .submenu{
@@ -83,6 +110,17 @@ nav {
     animation: slideup .3s ease;
 }
 
+.submenu li:hover > .submenu2{
+    display: block;
+    /* Add the Animation */
+    animation: slideup .3s ease;
+}
+
+.submenu2 li:hover > .submenu3{
+    display: block;
+    /* Add the Animation */
+    animation: slideup .3s ease;
+}
 /* Anumation KeyFrames */
 
 @keyframes slideup {
@@ -113,48 +151,32 @@ body{
 
 /* About Us */
 
-.leaders{
-    margin-top: 3%;
-    margin-left: 40%;
-    color: #f34949;
-}
 
-leaders{
-    max-width: 1400px;
-    margin: 0 auto;
-    margin-top: 3%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-img{
-    width: 250px;
-}
-
-figcaption{
-    font-size: 1.5rem;
-    font-weight: 700;
-    width: 190px;
-}
-
-Ahmed figcaption,Yousef figcaption{
-    margin-left: 15%;
-    color: green;
-}
-
-Mohamed figcaption{
-    margin-left: 15%;
-}
-
-Mostafa figcaption{
-    margin-left: 20%;
-}
 
 /* Levels */
 
+.levels {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+#back{
+    margin-top: -2%;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+
+.centered {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .levels > li, .levels > a{
     display: inline-block;
+    padding: 10px 1.5rem;
 }
 
 .levels li{
@@ -163,7 +185,7 @@ Mostafa figcaption{
 
 .levels a{
     text-decoration: none;
-    background-color: #2c3e50;
+    background-color: #27ca18;
     color: #fff;
     display: block;
     padding: 10px 1.5rem;
@@ -171,18 +193,8 @@ Mostafa figcaption{
 }
 
 .levels a:hover{
-    background-color: #f34949;
+    background-color: #40b733;
     color: #fff
-}
-
-/* Submenu Level 1 Style */
-
-.submenu{
-    position: absolute;
-    background-color: #2c3e50;
-    width: 100px;
-    left: 0;
-    display: none; /* Hide Submenu */
 }
 
 /* Show menu on hover */
@@ -191,17 +203,6 @@ Mostafa figcaption{
     display: block;
     /* Add the Animation */
     animation: slideup .3s ease;
-}
-
-row{
-    display: flex;
-    padding: 10px 1.5rem;
-    justify-content: space-between;
-}
-
-.topic{
-    color: black;
-    margin-left: 2%;
 }
 
 /* Contact */
@@ -220,27 +221,30 @@ input[type=text], select, textarea {
 }
 
 input[type=submit] {
-    background-color: #04AA6D;
+    background-color: #27ca18;
     color: white;
     padding: 12px 20px;
     border: none;
     cursor: pointer;
+    margin-left: -10%;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #40b733;
 }
 
 .container {
-    margin-top: 100px;
-    max-width: 1400px;
-    margin-left: 60px;
+    margin-top: -1%;
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: black;
     padding: 10px;
 }
 
-.container h2,p,label,option{
+.container h2,p,label{
+    color: white;
+}
+
+.container option{
     color: black;
 }
 

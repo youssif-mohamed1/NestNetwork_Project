@@ -4,6 +4,7 @@
 -xampp sharing database: DONE
 -Password already exist:
 -Password enctyption
+-password eye(visible)
 -main page: 
 - communities page:
 - update user data
@@ -11,3 +12,5 @@
     if user is None: 
         user=Prof.query.get(user_id)
 - flash in password reset
+
+-- validate if the given email is valid from google
