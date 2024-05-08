@@ -20,7 +20,7 @@ import string
 local_server=True
 app=Flask(__name__) #creating object of class flask
 app.secret_key='sasa'
-
+#
 # this for getting unique user access: unique page for each user:
 login_manager=LoginManager(app) #idetifies the app that loginManager start to set policies for it
 login_manager.login_view='login' #specify the name of the view function (or the endpoint) that handles user logins. When an unauthorized user attempts..
