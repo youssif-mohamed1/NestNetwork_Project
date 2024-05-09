@@ -267,3 +267,59 @@ input[type=submit]:hover {
         margin-top: 0;
     }
 }
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Define table header styles */
+.custom-table th {
+    background-color: #27ca18; /* Green color */
+    color: white;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Define table body row styles */
+.custom-table td {
+    padding: 16px 8px; /* Adjust padding as needed */
+    border-bottom: 1px solid white; /* Gray border between rows */
+    font-size: 16px; /* Increase the font size */
+}
+
+/* Define hover effect for table rows */
+.custom-table tbody tr:hover {
+    background-color: #27ca18; /* Light gray background on hover */
+}
+
+/* Define link styles */
+.custom-table tbody a {
+    color: inherit; /* Inherit text color */
+    text-decoration: none;
+}
+
+.custom-table tbody tr {
+    color: white; /* Text color for table body rows */
+}
+
+.logo2{
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.background-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../static/imgs/R.jpeg);
+    filter: blur(5px); /* Adjust the blur value as needed */
+    z-index: -1;
+}

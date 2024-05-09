@@ -14,3 +14,8 @@
 - flash in password reset
 
 -- validate if the given email is valid from google
+
+-- continue ps sheets and videos 
+-- photo upload
+-- logout on exit from server 
+----REDIDIT SITE
