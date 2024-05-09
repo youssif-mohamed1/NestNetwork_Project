@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ahmed Mohamed">
+    <title>Problem Solving</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../static/ps.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="ps"><img src="../static/imgs/lightbulb.png" class="logo1"></a>
+            <h1 class="logo">Problem Solving</h1>
+            <ul class="menu">
+                <!-- <li><a href="#aboutus">About Us</a></li> -->
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#levels">Levels</a></li>
+                <li><a href="#container">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="background-container">
+        <table class="custom-table">
+            <!-- Table Header -->
+            <thead>
+                <tr>
+                    <th>{{ message }}</th>
+                </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+                {% for item in div %}
+                <tr>
+                    <td><a href="{{ item.Contest_link }}">{{ item.Contest_name }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Table section -->
+    
+</body>
+</html>
