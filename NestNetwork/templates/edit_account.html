@@ -6,6 +6,7 @@
     <title>Edit Account | NESTNETWORK</title>
     <link rel="stylesheet" href="../static/style.css"> <!-- Your CSS file -->
     <link rel="stylesheet" href="../static/signup.css">
+    <link rel="stylesheet" href="../static/sign-up.css">
 </head>
 <body>
     <div class="header">
@@ -51,23 +52,21 @@
     </div>
 
     <div class="edit-form">
-        <div class="edit-container" id = "talk">
-            <!-- Replace the placeholder text with the user data -->
-            <textarea id="fname" placeholder="First Name">{{fname}}</textarea>
-            <textarea id="lname" placeholder="Last Name">{{lname}}</textarea>
-            <textarea id="email" placeholder="Email">{{email}}</textarea>
-            <textarea id="ph_num" placeholder="Phone Number">{{ph_num}}</textarea>
-            <textarea id="type" placeholder="Type">{{type}}</textarea>
-            <textarea id="gender" placeholder="Gender">{{gend}}</textarea>
-            <textarea id="uni" placeholder="University">{{uni}}</textarea>
-            <textarea id="faclt" placeholder="Faculty">{{faclt}}</textarea>
-            <textarea id="depart" placeholder="Department">{{depart}}</textarea>
-            <!-- Add button for uploading a photo -->
-            <input type="file" id="photo-upload" accept="image/*">
-            <button onclick="document.getElementById('photo-upload').click()">Upload Photo</button>
-            <!-- Add button for capturing a photo -->
-            <button onclick="capturePhoto()">Capture Photo</button>
-            <button onclick="saveChanges()">Save</button>
+        <div class="form-container">
+            <form action="save_data" method="post" id = "talk">
+                <!-- Replace the placeholder text with the user data -->
+                <input type = "text" id="fname" placeholder="{{fname}}" name="first_name" value = {{fname}} required>
+                <input type = "text" id="lname" placeholder="{{lname}}" name= "last_name" value = {{lname}} required>
+                <input type = "text" id="ph_num" placeholder="{{ph_num}}" name="ph_num" value = {{ph_num}} required>
+                <input type = "text" id="gender" placeholder="{{gend}}" name="gender" value = {{gend}} required>
+                <input type = "text" id="uni" placeholder="{{uni}}" name="uni" value = {{uni}} required>
+                <input type = "text" id="faclt" placeholder="{{faclt}}" name="faculty" value = {{faclt}} required>
+                <input type = "text" id="depart" placeholder="{{depart}}" name="depart" value = {{depart}} required >
+                <!-- Add button for uploading a photo -->
+                <input id="file-upload" type="file" class = "hero-btn" name = "photo" >
+                <button  onclick="location.href='save_data';">Save</button>
+                <span class = "{{message}}">{{text}}</span>
+            </form>
         </div>
     </div>
 
@@ -95,7 +94,6 @@
             // Call the function to scroll to the target element when the page loads
             scrollToElement("talk");
         });
-        
     </script>
 </body>
 </html>

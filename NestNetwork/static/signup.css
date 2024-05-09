@@ -331,7 +331,7 @@ h3{
     padding: 40px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    /* text-align: center; */
+    text-align: center;
 }
 
 .form-container input[type="text"],
@@ -357,68 +357,4 @@ h3{
 
 .form-container button:hover {
     background: #c33628;
-}
-
-.radio-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.radio-group label {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    padding-left: 25px;
-    margin-right: 15px;
-    font-size: 16px;
-    color: #333;
-}
-
-.radio-group input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee;
-    border-radius: 50%;
-}
-
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-    left: 7px;
-    top: 3px;
-    width: 6px;
-    height: 11px;
-    border: solid #333;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.radio-group input:checked ~ .checkmark:after {
-    display: block;
-}
-.login-option {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-.login-option a {
-    color: #333;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-.login-option a:hover {
-    color: #666;
 }
