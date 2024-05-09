@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | NESTNETWORK</title>
+    <link rel="stylesheet" href="../static/signup.css">
+    <link rel="stylesheet" href="../static/sign-up.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-8HfbK2BZjRv+fXbqv0I+ucmlUpoKvAKeaFg6kPx9dty4I4HgpERv2vkiI8+B+0jBFlmiz3ccxhOcHEdL2KHZCA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <section class="header">
+        <nav>
+            <a href="home"><img src="../static/imgs/logo.png"></a>
+            <a href="home" class="logo">NESTNETWORK</a>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-bars"></i>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="communities">Communities</a></li>
+                    <li><a href="syllabus">Syllabus</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="text-box">
+            <h1>Join Our Community</h1>
+            <p>Create an account to be part of our growing community and enjoy exclusive benefits and access to resources.</p>
+        </div>
+    </section>
+
+    <div class="form-container">
+        <form action="signup_for_ps" method="post" id = "sgnup_for_ps">
+            <input type="text" placeholder="CodeForces Handle" name="cf_handle" required>
+            <span class = "hidden">endl</span>
+            <input type="text" placeholder="Vjudge_handle" name= "vj_handle" required>
+            <span class = {{popmessage}} style="display: inline;" >{{message}}</span>
+            <button type="submit" class="hero-btn">Sign Up</button>
+
+        </form>
+    </div>
+    
+    <footer class="footer">
+        <h4>About Us</h4>
+        <p>Join us and make a difference in your community and beyond!</p>
+        <div class="icons">
+            <a href="#"><i class="fab fa-facebook-square"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            // Function to scroll to a specific element
+            function scrollToElement(elementId) {
+                var element = document.getElementById(elementId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+        
+            // Call the function to scroll to the target element when the page loads
+            scrollToElement('sgnup');
+        });
+        
+    </script>
+</body>
+</html>

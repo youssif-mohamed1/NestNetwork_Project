@@ -104,6 +104,13 @@ class Prof(UserMixin,db.Model):
     def get_id(self):
         return str(self.prof_id)
 
+class Problem_solving_community_users(UserMixin,db.Model):
+    cf_handle = db.Column(db.String(50), primary_key=True)
+    vj_handle = db.Column(db.String(50))
+    id = db.Column(db.String(50))
+
+    def get_id(self):
+        return str(self.cf_handle)
 ###############------------##################
 
 #-----functions block
@@ -267,42 +274,49 @@ def homepage(): #main-page
     return render_template("home.html", pagetitle="Homepage") # Loading the HTML page
 
 @app.route("/communities", methods=['POST','GET'])
-def communities(): #main-page
+def communities(): 
     return render_template("communities.html", pagetitle="Homepage") # Loading the HTML page
 
 @app.route("/myaccount",methods=['POST','GET'])
-def myaccount(): #main-page
+def myaccount(): 
     return render_template("myaccount.html", pagetitle="myaccount") # Loading the HTML page
 
 
 @app.route("/home", methods=['POST','GET'])
-def home(): #main-page
+def home(): 
     return render_template("home.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
 @app.route("/home_loggedin", methods=['POST','GET'])
-def home_loggedin(): #main-page
+def home_loggedin(): 
     return render_template("home_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
 @app.route("/about_loggedin", methods=['POST','GET'])
-def about_loggedin(): #main-page
+def about_loggedin(): 
     return render_template("about_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
 @app.route("/contact_loggedin", methods=['POST','GET'])
-def contact_loggedin(): #main-page
+def contact_loggedin(): 
     return render_template("contact_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
 @app.route("/communities_loggedin", methods=['POST','GET'])
-def communities_loggedin(): #main-page
+def communities_loggedin(): 
     return render_template("communities_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
 @app.route("/contact",methods=['POST','GET'])
-def contact(): #main-page
+def contact(): 
     return render_template("contact.html", pagetitle="Contactpage") # Loading the HTML page
 
 @app.route("/about",methods=['POST','GET'])
-def about(): #main-page
+def about(): 
     return render_template("about.html", pagetitle="Aboutpage") # Loading the HTML page
 
+@app.route("/ps_intro", methods=['POST','GET'])
+def ps_intro(): 
+    return render_template("ps_intro.html", pagetitle="ps_intro", logged = "logged-no" ) # Loading the HTML page
+
+@app.route("/ps_intro_loggedin", methods=['POST','GET'])
+def ps_intro_loggedin(): 
+    return render_template("ps_intro_loggedin.html", pagetitle="ps_intro_loggedin", logged = "logged-no" ) # Loading the HTML page
 
 #####################################################################################
 
@@ -604,6 +618,34 @@ def edit_account():
                             gend = account.gender,
                             faclt = account.faculty,
                             depart = account.depart)
+#####################################################################################################
+
+@app.route("/signup_for_ps", methods=['POST','GET'])
+def signup_for_ps(): #main-page
+    cf_handle = request.form.get('cf_handle')
+    vj_handle = request.form.get('vj_handle')
+    if cf_handle is None or vj_handle is None:
+        return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "hidden", message = "")
+    else:
+        user = Problem_solving_community_users.query.filter_by(cf_handle=cf_handle).first()
+        if user:
+            if vj_handle == user.vj_handle:
+                return redirect(url_for("ps")) # Loading the HTML page
+            else:
+                return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "visible", message = "Wrong Vjudge handle") # Loading the HTML page
+        else:
+            user2 = Problem_solving_community_users.query.filter_by(vj_handle=vj_handle).first()
+            if user2:
+                return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "visible", message = "Vjudge handle is already used")
+        new_user = Problem_solving_community_users(
+                                                    cf_handle = cf_handle,
+                                                    vj_handle = vj_handle,
+                                                    id = Login.query.filter_by(number = '1').first().id
+                                                    ); 
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for("ps"))
+
 
 @app.route("/ps",methods=['POST','GET'])
 def ps():
@@ -688,6 +730,8 @@ def ps():
                             # link381 = li[70],
                             # link390 = li[71],
                             # link391 = li[72])
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000) # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication
