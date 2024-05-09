@@ -237,12 +237,27 @@ def update_user(user_id,
         return jsonify({"error": "User not found"}), 404
 
     # Update fields from request data
+    if first_name != "":
+        user.first_name=first_name
+    if last_name != "":
+        user.last_name=last_name
+    if uni_email != "":
+        user.uni_email=uni_email
+    if uni != "":
+        user.uni=uni
+    if faculty != "":
+        user.faculty=faculty
+    if depart != "":
+        user.depart=depart
+    if gender != "":
+        user.genderm=gender
+    if ph_num != "":
+        user.ph_num=ph_num
     if password:
         user.password = password
     # Commit changes to database
     db.session.commit()
     return jsonify({"success": "User updated successfully", "user": str(user)})
-
 ###############------------##################
 
 
@@ -525,6 +540,55 @@ def logout():
     db.session.commit()
     logout_user()
     return redirect(url_for('login'))
+@app.route("/save_data",methods = ['POST', 'GET'])
+def save_data():
+    # data = request.json
+    photo=request.form.get('photo')
+    first_name=request.form.get('first_name')
+    last_name=request.form.get('last_name')
+    uni=request.form.get('uni')
+    faculty=request.form.get('faculty')
+    depart=request.form.get('depart')
+    gender=request.form.get('gender')
+    ph_num=request.form.get('ph_num')
+    user_loggedin = Login.query.filter_by(number = '1').first()
+    user = Stud.query.filter_by(stud_id=user_loggedin.id).first()
+    print(first_name)
+    if user is None:
+        user = Prof.query.filter_by(prof_id=user_loggedin.id).first()    
+    if user:
+        update_user(user_id = user_loggedin.id,
+                    first_name = first_name,
+                    last_name = last_name,
+                    uni_email = user_loggedin.uni_email,
+                    password = user.password,
+                    uni = uni,
+                    faculty = faculty,
+                    depart = depart,
+                    gender = gender,
+                    ph_num = ph_num)
+        user1 = Login.query.get('1')
+        db.session.delete(user1)
+        new_user = Login(
+                        number = '1',
+                        id = user_loggedin.id,
+                        first_name=first_name,
+                        last_name=last_name,
+                        uni_email=user_loggedin.uni_email,
+                        password=user.password,
+                        uni=uni,
+                        faculty=faculty,
+                        depart=depart,
+                        gender=gender,
+                        ph_num=ph_num,
+                        type = user_loggedin.type
+                        )
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('myaccount_loggedin', message='hidden', text='saved'))
+    return redirect(url_for('myaccount_loggedin', message='hidden', text='saved'))
+    
+    
 
 @app.route("/edit_account",methods=['POST','GET'])
 def edit_account():
