@@ -105,6 +105,17 @@ class Prof(UserMixin,db.Model):
     def get_id(self):
         return str(self.prof_id)
 
+class Contests(UserMixin,db.Model):
+    Contest_name=db.Column(db.String(50)) #Defining Attributes
+    Contest_link=db.Column(db.String(50))
+    Contest_filter=db.Column(db.String(50))
+    Contest_key=db.Column(db.String(50))
+    web_site=db.Column(db.String(50))
+    number=db.Column(db.String(50), primary_key=True)
+
+    def get_id(self):
+        return str(self.number)
+
 class Problem_solving_community_users(UserMixin,db.Model):
     cf_handle = db.Column(db.String(50), primary_key=True)
     vj_handle = db.Column(db.String(50))
@@ -651,6 +662,31 @@ def signup_for_ps(): #main-page
         db.session.commit()
         return redirect(url_for("ps"))
 
+@app.route("/ps_div1",methods=['POST','GET'])
+def ps_div1():
+    div1 = Contests.query.filter_by(Contest_filter="Div. 1").all() 
+    return render_template("ps_div.html", pagetitle="ps_divpage", div = div1 , message = "Div 1") 
+
+@app.route("/ps_div2",methods=['POST','GET'])
+def ps_div2(): 
+    div2 = Contests.query.filter_by(Contest_filter="Div. 2").all()
+    return render_template("ps_div.html", pagetitle="ps_divpage", div = div2 , message = "Div 2") 
+
+@app.route("/ps_div3",methods=['POST','GET'])
+def ps_div3(): 
+    div3 = Contests.query.filter_by(Contest_filter="Div. 3").all()
+    return render_template("ps_div.html", pagetitle="ps_divpage", div = div3 , message = "Div 3") 
+
+@app.route("/ps_div4",methods=['POST','GET'])
+def ps_div4(): 
+    div4 = Contests.query.filter_by(Contest_filter="Div. 4").all()
+    return render_template("ps_div.html", pagetitle="ps_divpage", div = div4 , message = "Div 4") 
+
+@app.route("/ps_other",methods=['POST','GET'])
+def ps_div5(): 
+    other = Contests.query.filter(Contests.Contest_filter.is_(None)).all()
+    return render_template("ps_div.html", pagetitle="ps_divpage", div = other , message = "Others") 
+
 
 @app.route("/ps",methods=['POST','GET'])
 def ps():
@@ -680,7 +716,9 @@ def ps():
             li.append(li2)
 
     return render_template("ps.html" ,
-                            link010 = li[0],link011 = li[1],link020 = li[2],link021 = li[3],link030 = li[4],link031 = li[5],link040 = li[6],link041 = li[7],link050 = li[8],link051 = li[9],link060 = li[10],link061 = li[11],link070 = li[12],link071 = li[13],link080 = li[14],link081 = li[15],link090 = li[16],link091 = li[17])
+                            link010 = li[0],link011 = li[1],link020 = li[2],link021 = li[3],link030 = li[4],link031 = li[5],link040 = li[6],link041 = li[7],link050 = li[8],link051 = li[9],link060 = li[10],link061 = li[11],link070 = li[12],link071 = li[13],link080 = li[14],link081 = li[15],link090 = li[16],link091 = li[17]
+                            )
+                            
                             # link100 = li[18],
                             # link101 = li[19],
                             # link110 = li[20],
