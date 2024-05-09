@@ -217,6 +217,7 @@ def email_alert(subject, body, to):
     
     server.quit()
 
+#
 #5--> Update DATABASE
 def update_user(user_id,
                 first_name,
