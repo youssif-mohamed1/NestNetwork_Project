@@ -6,6 +6,7 @@ from flask_login import  login_user, logout_user,login_manager, LoginManager
 from flask_login import login_required, current_user
 import random
 import time
+import atexit
 # from datetime import datetime
 import smtplib
 from email.message import EmailMessage
@@ -603,7 +604,10 @@ def save_data():
         return redirect(url_for('myaccount_loggedin', message='hidden', text='saved'))
     return redirect(url_for('myaccount_loggedin', message='hidden', text='saved'))
     
-    
+# def cleanup_database():
+#     print("OUT")
+#     db.session.delete(Login.query.get('1'))
+#     db.session.commit()
 
 @app.route("/edit_account",methods=['POST','GET'])
 def edit_account():
@@ -734,5 +738,6 @@ def ps():
 
 
 
+# atexit.register(cleanup_database)
 if __name__ == "__main__":
     app.run(debug=True, port=5000) # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication
