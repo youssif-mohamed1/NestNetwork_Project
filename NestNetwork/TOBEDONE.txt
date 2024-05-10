@@ -19,3 +19,4 @@
 -- photo upload
 -- logout on exit from server 
 ----REDIDIT SITE
+--COOKIES
