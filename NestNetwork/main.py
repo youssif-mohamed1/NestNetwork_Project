@@ -815,7 +815,10 @@ def ps():
                             # link390 = li[71],
                             # link391 = li[72])
 
-#
-# atexit.register(cleanup_database)
+@app.teardown_appcontext
+def teardown_context(exception=None):
+        db.session.query(Login).delete()
+        db.session.commit()
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000) # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication
