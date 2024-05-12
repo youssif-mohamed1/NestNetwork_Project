@@ -5,6 +5,8 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import  login_user, logout_user,login_manager, LoginManager 
 from flask_login import login_required, current_user
 import random
+import requests
+from bs4 import BeautifulSoup
 import time
 import atexit
 # from datetime import datetime
@@ -395,6 +397,14 @@ def ps_intro():
 def ps_intro_loggedin(): 
     return render_template("ps_intro_loggedin.html", pagetitle="ps_intro_loggedin", logged = "logged-no" ) # Loading the HTML page
 
+@app.route("/embedded_intro", methods=['POST','GET'])
+def embedded_intro(): 
+    return render_template("embedded_intro.html", pagetitle="Homepage") # Loading the HTML page
+
+@app.route("/embedded_system_intrologged", methods=['POST','GET'])
+def embedded_system_intrologged(): 
+    return render_template("embedded_system_intrologged.html", pagetitle="Homepage") # Loading the HTML page
+
 #####################################################################################
 
 ##
@@ -700,8 +710,33 @@ def edit_account():
                             depart = account.depart)
 #####################################################################################################
 
+def valid_user_on_codeForces(username):
+    url = f"https://codeforces.com/api/user.info?handles={username}"
+    
+    # Make the API request
+    response = requests.get(url) # this gets the responce from the web page content, html, status_code
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        data = response.json() # this convert the returned content into python dictionary
+        # Check if the response contains user data
+        if data['status'] == "OK":
+            return True
+            # Print user details
+            # user_info = data['result'][0]
+            # print(f"User: {user_info['handle']}")
+            # print(f"Rating: {user_info.get('rating', 'Not rated')}")
+            # print(f"Max Rating: {user_info.get('maxRating', 'Not rated')}")
+            # print(f"Rank: {user_info.get('rank', 'No rank')}")
+            # print(f"Max Rank: {user_info.get('maxRank', 'No rank')}")
+        else:
+            return False
+    else:
+        return False
+
+
 @app.route("/signup_for_ps", methods=['POST','GET'])
-def signup_for_ps(): #main-page
+def signup_for_ps():
     cf_handle = request.form.get('cf_handle')
     vj_handle = request.form.get('vj_handle')
     if cf_handle is None or vj_handle is None:
@@ -710,21 +745,25 @@ def signup_for_ps(): #main-page
         user = Problem_solving_community_users.query.filter_by(cf_handle=cf_handle).first()
         if user:
             if vj_handle == user.vj_handle:
-                return redirect(url_for("ps")) # Loading the HTML page
+                return redirect(url_for("ps")) 
             else:
                 return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "visible", message = "Wrong Vjudge handle") # Loading the HTML page
         else:
             user2 = Problem_solving_community_users.query.filter_by(vj_handle=vj_handle).first()
             if user2:
                 return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "visible", message = "Vjudge handle is already used")
-        new_user = Problem_solving_community_users(
+        if valid_user_on_codeForces(cf_handle):
+            print("valid")
+            new_user = Problem_solving_community_users(
                                                     cf_handle = cf_handle,
                                                     vj_handle = vj_handle,
                                                     id = Login.query.filter_by(number = '1').first().id
-                                                    ); 
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for("ps"))
+                                                    );
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for("ps"))
+        return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "visible", message = "Invalid Codeforces handle")
+    
 
 @app.route("/ps_div1",methods=['POST','GET'])
 def ps_div1():
@@ -839,7 +878,10 @@ def ps():
                             # link390 = li[71],
                             # link391 = li[72])
 
+@app.teardown_appcontext
+def teardown_context(exception=None):
+        db.session.query(Login).delete()
+        db.session.commit()
 
-# atexit.register(cleanup_database)
 if __name__ == "__main__":
     app.run(debug=True, port=5000) # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication
