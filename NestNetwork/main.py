@@ -140,7 +140,7 @@ def rand_id(x):
     if x=="Professor":
         return "pf"+str(rand_no)    
     else: return "st" + str(rand_no)
-
+#
 #3--> forgot_pass
 done=False
 email_global="NONE"
