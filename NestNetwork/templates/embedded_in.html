@@ -1,117 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="../static/courses.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Courses Platform</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../static/style_embedded.css">
+        <link rel="stylesheet" href="../static/courses_embedded.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap"
+            rel="stylesheet">
+        <!-- FontAwesome -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <title>Embedded Systems | Courses Platform</title>
+    </head>
+    <body>
 
-    <!-- Header Section -->
-    <section class="header">
-        <!-- Navigation -->
-        <nav>
-            <a href="home"><img src="../static/imgs/logo.png" alt="Logo"></a>
-            <a href="home" class="logo">NESTNETWORK</a>
-            <div class="nav-links" id="nav-links">
-                <!-- Navigation Links -->
-                <ul>
-                    <li><a href="home">Home</a></li>
-                    <li><a href="courses">Courses</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="contact">Contact Us</a></li>
-                    <li><a href="myaccount" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user"></i></a></li>
-                </ul>
-            </div>
-            <i class="fas fa-bars"></i>
-        </nav>
+        <!-- Header Section -->
+        <section class="header">
+            <!-- Navigation -->
+            <nav>
+                <a href="home"><img src="../static/imgs/logo_embedded.png"
+                        alt="Logo"></a>
+                <a href="home" class="logo">NESTNETWORK</a>
+                <div class="nav-links" id="nav-links">
+                    <!-- Navigation Links -->
+                    <ul>
+                        <li><a href="home">Home</a></li>
+                        <li><a href="courses">Courses</a></li>
+                        <li><a href="about">About</a></li>
+                        <li><a href="contact">Contact Us</a></li>
+                        <li><a href="myaccount"
+                                class="nav-link dropdown-toggle nav-links text-white"
+                                href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><i
+                                    class="fas fa-user"></i></a></li>
+                    </ul>
+                </div>
+                <i class="fas fa-bars"></i>
+            </nav>
 
-        <!-- Hero Section -->
-        <div class="text-box">
-            <h1>Welcome to Our Courses Platform</h1>
-            <p>Explore our wide range of courses and take your skills to the next level.</p>
-            <a href="#" onclick="scrollToDiv()" class="hero-btn">Get Started</a>
-        </div>
-    </section>
+            <!-- Hero Section -->
+            <div class="text-box">
+                <h1>Welcome to Our Courses Platform</h1>
+                <p>Explore our wide range of courses and take your skills to the
+                    next level.</p>
+                <a href="#" onclick="scrollToDiv()" class="hero-btn">Get
+                    Started</a>
+            </div>
+        </section>
 
-    <!-- Courses Section -->
-    <section class="courses" id = 'targetDiv'>
-        <div class="container">
-            <div class="course-card-wrapper">
-                <div class="course-card">
-                    <img src="../static/imgs/embedded2 (6).jpg" alt="Course Image" class = "img_stl">
-                    <div class="course-info">
-                        <h3>Embedded Systems Diploma - Mahmoud Karem</h3>
-                        <p> I'm offering a free diploma in Embedded Systems under the umbrella of our university's AZEX team, aimed at spreading knowledge. Learn more about the program and its requirements through our informational video and course outline.</p>
-                        <a href="https://www.youtube.com/playlist?list=PLoiqjtgvXf9e2VJk8GWEXwECPM_7JRwkE" class="course-btn">Start Course</a>
+        <!-- Courses Section -->
+        <section class="courses" id='targetDiv'>
+            <div class="container">
+                <div class="course-card-wrapper">
+                    <div class="course-card">
+                        <img src="../static/imgs/embedded1.jpg"
+                            alt="Course Image" class="img_stl">
+                        <div class="course-info">
+                            <h3>Embedded Systems Diploma - Mahmoud Karem</h3>
+                            <p> I'm offering a free diploma in Embedded Systems
+                                under the umbrella of our university's AZEX
+                                team, aimed at spreading knowledge. Learn more
+                                about the program and its requirements through
+                                our informational video and course outline.</p>
+                            <a
+                                href="https://www.youtube.com/playlist?list=PLoiqjtgvXf9e2VJk8GWEXwECPM_7JRwkE"
+                                class="course-btn">Start Course</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <img src="../static/imgs/embedded2.jpg"
+                            alt="Course Image" class="img_stl">
+                        <div class="course-info">
+                            <h3>Introduction to Embedded Systems</h3>
+                            <p>Welcome to the Introduction to Embedded Systems
+                                Software and Development Environments. This
+                                course is focused on giving you real world
+                                coding experience and hands on project work with
+                                ARM based Microcontrollers.</p>
+                            <a
+                                href="https://www.coursera.org/learn/introduction-embedded-systems"
+                                class="course-btn">Start Course</a>
+                        </div>
                     </div>
                 </div>
-                <div class="course-card">
-                    <img src="../static/imgs/embedded2 (1).jpg" alt="Course Image" class = "img_stl">
-                    <div class="course-info">
-                        <h3>Introduction to Embedded Systems</h3>
-                        <p>Welcome to the Introduction to Embedded Systems Software and Development Environments. This course is focused on giving you real world coding experience and hands on project work with ARM based Microcontrollers.</p>
-                        <a href="https://www.coursera.org/learn/introduction-embedded-systems" class="course-btn">Start Course</a>
+                <div class="course-card-wrapper">
+                    <div class="course-card">
+                        <img src="../static/imgs/embedded3.jpg"
+                            alt="Course Image" class="img_stl">
+                        <div class="course-info">
+                            <h3>Embedded Software and Hardware Architecture</h3>
+                            <p>It is a first dive into understanding embedded
+                                architectures and writing software to manipulate
+                                this hardware. You will gain experience writing
+                                low-level firmware to directly interface
+                                hardware with highly efficient.</p>
+                            <a
+                                href="https://www.coursera.org/learn/embedded-software-hardware"
+                                class="course-btn">Start Course</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <img src="../static/imgs/embedded4.jpeg"
+                            alt="Course Image" class="img_stl">
+                        <div class="course-info">
+                            <h3>Introduction to the IOT and Embedded
+                                Systems</h3>
+                            <p>Introduction to the IOT and Embedded Systems
+                                Learn new concepts from industry expertsGain a
+                                foundational understanding of a subject or
+                                toolDevelop job-relevant skills with hands-on
+                                projectsEarn a shareable career certificate</p>
+                            <a href="https://www.coursera.org/learn/iot"
+                                class="course-btn">Start Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card-wrapper">
+                    <div class="course-card">
+                        <img src="../static/imgs/embedded5.jpg"
+                            alt="Course Image" class="img_stl">
+                        <div class="course-info">
+                            <h3>FPGA Design for Embedded Systems
+                                Specialization</h3>
+                            <p>Create in the FPGA a working system on a chip
+                                design with Nios II soft processor, RAM and
+                                FLASH memory, and several peripherals, Apply
+                                hierarchical design methods to create bigger
+                                designs in VHDL or Verilog</p>
+                            <a
+                                href="https://www.coursera.org/specializations/fpga-design"
+                                class="course-btn">Start Course</a>
+                        </div>
+                    </div>
+                    <div class="course-card">
+                        <img src="../static/imgs/embedded6.jpg"
+                            alt="Course Image" class="img_stl">
+                        <div class="course-info">
+                            <h3>Advanced Embedded Linux Development
+                                Specialization</h3>
+                            <p>Learn in skills from university and industry
+                                experts Master a subject or tool with hands-on
+                                projects Develop a deep understanding of key
+                                concepts Earn a career certificate from
+                                University of Colorado Boulder</p>
+                            <a
+                                href="https://www.coursera.org/specializations/advanced-embedded-linux-development"
+                                class="course-btn">Start Course</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="course-card-wrapper">
-                <div class="course-card">
-                    <img src="../static/imgs/embedded2 (2).jpg" alt="Course Image" class = "img_stl">
-                    <div class="course-info">
-                        <h3>Embedded Software and Hardware Architecture</h3>
-                        <p>It is a first dive into understanding embedded architectures and writing software to manipulate this hardware. You will gain experience writing low-level firmware to directly interface hardware with highly efficient.</p>
-                        <a href="https://www.coursera.org/learn/embedded-software-hardware" class="course-btn">Start Course</a>
-                    </div>
-                </div>
-                <div class="course-card">
-                    <img src="../static/imgs/embedded2 (3).jpg" alt="Course Image" class = "img_stl">
-                    <div class="course-info">
-                        <h3>Introduction to the IOT and Embedded Systems</h3>
-                        <p>Introduction to the IOT and Embedded Systems Learn new concepts from industry expertsGain a foundational understanding of a subject or toolDevelop job-relevant skills with hands-on projectsEarn a shareable career certificate</p>
-                        <a href="https://www.coursera.org/learn/iot" class="course-btn">Start Course</a>
-                    </div>
-                </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <h4>About Us</h4>
+            <p>Join us and make a difference in your community and beyond!</p>
+            <div class="icons">
+                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
-            <div class="course-card-wrapper">
-                <div class="course-card">
-                    <img src="../static/imgs/embedded1.jpg" alt="Course Image" class = "img_stl">
-                    <div class="course-info">
-                        <h3>FPGA Design for Embedded Systems Specialization</h3>
-                        <p>Create in the FPGA a working system on a chip design with Nios II soft processor, RAM and FLASH memory, and several peripherals, Apply hierarchical design methods to create bigger designs in VHDL or Verilog</p>
-                        <a href="https://www.coursera.org/specializations/fpga-design" class="course-btn">Start Course</a>
-                    </div>
-                </div>
-                <div class="course-card">
-                    <img src="../static/imgs/embedded2 (5).jpg" alt="Course Image" class = "img_stl">
-                    <div class="course-info">
-                        <h3>Advanced Embedded Linux Development Specialization</h3>
-                        <p>Learn in skills from university and industry experts Master a subject or tool with hands-on projects Develop a deep understanding of key concepts Earn a career certificate from University of Colorado Boulder</p>
-                        <a href="https://www.coursera.org/specializations/advanced-embedded-linux-development" class="course-btn">Start Course</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer Section -->
-    <footer class="footer">
-        <h4>About Us</h4>
-        <p>Join us and make a difference in your community and beyond!</p>
-        <div class="icons">
-            <a href="#"><i class="fab fa-facebook-square"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-        </div>
-    </footer>
-    <script>
+        </footer>
+        <script>
         function scrollToDiv() {
             // Get a reference to the target div
             var targetDiv = document.getElementById('targetDiv');
@@ -120,5 +174,5 @@
             targetDiv.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Adjust behavior and block as needed
         }
     </script>
-</body>
+    </body>
 </html>
