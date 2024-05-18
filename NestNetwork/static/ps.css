@@ -156,6 +156,13 @@ body{
 /* Levels */
 
 .levels {
+    min-height: 100vh;
+    width: 100%;
+    /* for example i start with a color then transit to another color and so on */
+    background-image:linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(../static/imgs/R.jpeg) ;
+    background-position: center;
+    background-size: cover;
+    position: relative;
     position: relative;
     text-align: center;
     color: white;
