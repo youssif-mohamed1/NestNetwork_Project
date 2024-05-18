@@ -1,0 +1,48 @@
+<!-- create_post.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+</head>
+<body>
+    <h1>Create Post</h1>
+    <form action="/create_post" method="post">
+        <input type="text" name="title" placeholder="Title">
+        <textarea name="content" placeholder="Content"></textarea>
+        <button type="submit">Create Post</button>
+    </form>
+</body>
+</html>
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <link rel="stylesheet" href="static/test.css">
+</head>
+<body>
+    <h1>Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content }}</p>
+                <!-- action="/reply/{{ post.id }}" -->
+                <form action="reply" method="post">
+                    <textarea name="content" placeholder="Enter your reply"></textarea>
+                    <button type="submit">Reply</button>
+                </form>
+                <ul>
+                    {% for reply in post.replies %}
+                        <li>{{ reply.content }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
