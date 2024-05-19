@@ -64,94 +64,135 @@ class Stud(UserMixin,db.Model):
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.stud_id)
 
-class Year(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    year = db.Column(db.String(50), nullable=False)
-    terms = db.relationship('Term', backref='year', lazy=True)
-
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
-
-class Term(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    term_name = db.Column(db.String(50), nullable=False)
-    year_id = db.Column(db.Integer, db.ForeignKey('year.id'), nullable=False)
-    subjects = db.relationship('Subject', backref='term', lazy=True)
-
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
-
-class Subject(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+class Slide_subject(db.Model):
     subject_name = db.Column(db.String(100), nullable=False)
-    term_id = db.Column(db.Integer, db.ForeignKey('term.id'), nullable=False)
-    slides = db.relationship('Slide', backref='subject', lazy=True)
-
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
-
-class Slide(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    sname = db.Column(db.String(200), nullable=False)
-    slink=db.Column(db.String(1000), nullable = False)
-    subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
-
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
-
-class references(UserMixin,db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    rname = db.Column(db.String(200), nullable=False)
-    rlink=db.Column(db.String(1000))
-    reference = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
-
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
+    sname = db.Column(db.String(200), primary_key=True)
     
-class exams(UserMixin,db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    ename = db.Column(db.String(200), nullable=False)
-    elink=db.Column(db.String(1000))
-    exam = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
-
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
-
-class quizes(UserMixin,db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    qname = db.Column(db.String(200), nullable=False)
-    qlink=db.Column(db.String(1000))
-    quiz = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
-
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
+    def get_id(self): 
+        return str(self.sname)
     
-class sheets(UserMixin,db.Model):        
-    id = db.Column(db.Integer, primary_key=True)
-    qname = db.Column(db.String(200), nullable=False)
-    qlink=db.Column(db.String(1000))
-    sheet = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
+    # Define the relationship
+    slides = db.relationship('Slide_link', backref='subject', cascade="all, delete-orphan")
 
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
+class Slide_link(db.Model):
+    sname = db.Column(db.String(200), db.ForeignKey('slide_subject.sname'), nullable=False)
+    slink = db.Column(db.String(1000), nullable=False)
+    
+    __table_args__ = (
+        db.PrimaryKeyConstraint('sname', 'slink'),
+    )
+    
+    def get_id(self): 
+        return str(self.sname)
 
-class summary(UserMixin,db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    sname = db.Column(db.String(200), nullable=False)
-    slink=db.Column(db.String(1000))
-    summaries = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
+class References_subject(UserMixin, db.Model):
+    subject_name = db.Column(db.String(100), nullable=False)
+    refname = db.Column(db.String(200), primary_key=True)
+    
+    def get_id(self): 
+        return str(self.refname)
+    
+    # Define the relationship
+    references = db.relationship('Ref_link', backref='subject', cascade="all, delete-orphan")
 
-    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
-                      #and that it's consistent with how your application retrieves users in the user loader callback.
-        return str(self.num)
+class Ref_link(db.Model):
+    refname = db.Column(db.String(200), db.ForeignKey('references_subject.refname'), nullable=False)
+    reflink = db.Column(db.String(1000), nullable=False)
+    
+    __table_args__ = (
+        db.PrimaryKeyConstraint('refname', 'reflink'),
+    )
+    
+    def get_id(self): 
+        return str(self.refname)
+
+
+class Exams_subject(UserMixin, db.Model):
+    subject_name = db.Column(db.String(100), nullable=False)
+    ename = db.Column(db.String(200), primary_key=True)
+    
+    def get_id(self): 
+        return str(self.ename)
+    
+    # Define the relationship
+    exams = db.relationship('Exam_link', backref='subject', cascade="all, delete-orphan")
+
+class Exam_link(db.Model):
+    ename = db.Column(db.String(200), db.ForeignKey('exams_subject.ename'), nullable=False)
+    elink = db.Column(db.String(1000), nullable=False)
+    
+    __table_args__ = (
+        db.PrimaryKeyConstraint('ename', 'elink'),
+    )
+    
+    def get_id(self): 
+        return str(self.ename)
+
+
+class Sheets_subject(UserMixin, db.Model):
+    subject_name = db.Column(db.String(100), nullable=False)
+    shname = db.Column(db.String(200), primary_key=True)
+    
+    def get_id(self): 
+        return str(self.shname)
+    
+    # Define the relationship
+    sheets = db.relationship('Sheets_link', backref='subject', cascade="all, delete-orphan")
+
+class Sheets_link(db.Model):
+    shname = db.Column(db.String(200), db.ForeignKey('sheets_subject.shname'), nullable=False)
+    shlink = db.Column(db.String(1000), nullable=False)
+    
+    __table_args__ = (
+        db.PrimaryKeyConstraint('shname', 'shlink'),
+    )
+    
+    def get_id(self): 
+        return str(self.shname)
+
+
+class Quizes_subject(UserMixin, db.Model):
+    subject_name = db.Column(db.String(100), nullable=False)
+    qname = db.Column(db.String(200), primary_key=True)
+    
+    def get_id(self): 
+        return str(self.qname)
+    
+    # Define the relationship
+    quizzes = db.relationship('Quizes_link', backref='subject', cascade="all, delete-orphan")
+
+class Quizes_link(db.Model):
+    qname = db.Column(db.String(200), db.ForeignKey('quizes_subject.qname'), nullable=False)
+    qlink = db.Column(db.String(1000), nullable=False)
+    
+    __table_args__ = (
+        db.PrimaryKeyConstraint('qname', 'qlink'),
+    )
+    
+    def get_id(self): 
+        return str(self.qname)
+
+
+class Summary_subject(UserMixin, db.Model):
+    subject_name = db.Column(db.String(100), nullable=False)
+    smname = db.Column(db.String(200), primary_key=True)
+    
+    def get_id(self): 
+        return str(self.smname)
+    
+    # Define the relationship
+    summaries = db.relationship('Summary_link', backref='subject', cascade="all, delete-orphan")
+
+class Summary_link(db.Model):
+    smname = db.Column(db.String(200), db.ForeignKey('summary_subject.smname'), nullable=False)
+    smlink = db.Column(db.String(1000), nullable=False)
+    
+    __table_args__ = (
+        db.PrimaryKeyConstraint('smname', 'smlink'),
+    )
+    
+    def get_id(self): 
+        return str(self.smname)
 
 class Codeforcesvisualizer(UserMixin,db.Model):
     handle=db.Column(db.String(50), primary_key=True) #Defining Attributes
@@ -285,6 +326,14 @@ def syl_save():
         flag = True
         sname = request.form.get('sname')
         slink = request.form.get('slink')
+        hd = request.form.get('hiddenvalue')
+        # match(hd):
+        #     case '1': # year1 sem1 data base
+
+        #     case '2':
+
+        #     case '3':    
+
         slide = Slide(sname=sname, slink=slink, subject_id=1)
         db.session.add(slide)
         db.session.commit()

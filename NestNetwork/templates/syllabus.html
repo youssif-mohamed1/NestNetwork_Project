@@ -11,6 +11,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
     <script src="https://kit.fontawesome.com/ed4f7946ad.js" crossorigin="anonymous"></script>
+    <style>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .add-slide-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .add-slide-block i {
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+        }
+        #inputForm {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+        #inputForm input, #inputForm select, #inputForm button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const years = document.querySelectorAll(".year-title");
@@ -32,65 +66,57 @@
             const semesters = document.querySelectorAll(".semester-title");
             semesters.forEach(semester => {
                 semester.addEventListener("click", function() {
-                    const content = this.nextElementSibling;
-                    if (content.style.display === "block") {
-                        content.style.display = "none";
+                    const semester = this.nextElementSibling;
+                    if (semester.style.display === "block") {
+                        semester.style.display = "none";
                         this.querySelector("i").classList.remove("fa-chevron-up");
                         this.querySelector("i").classList.add("fa-chevron-down");
                     } else {
-                        content.style.display = "block";
+                        semester.style.display = "block";
                         this.querySelector("i").classList.remove("fa-chevron-down");
                         this.querySelector("i").classList.add("fa-chevron-up");
                     }
                 });
             });
 
-            // Function to stop event propagation
-            function stopPropagation(event) {
-                event.stopPropagation();
-            }
-
             const addSlideBtn = document.getElementById("addSlideBtn");
-            const slidesInput = document.getElementById("slidesInput");
-            const slidesName = document.getElementById("slidesName");
-            const slidesLink = document.getElementById("slidesLink");
-            const addSlide = document.getElementById("addSlide");
-            const slideList = document.getElementById("slideList");
+            const inputForm = document.getElementById("inputForm");
+            const semesterSelect = document.getElementById("semesterSelect");
+            const subjectSelect = document.getElementById("subjectSelect");
 
             addSlideBtn.addEventListener("click", function() {
-                slidesInput.style.display = "block";
-                slidesName.focus();
+                inputForm.style.display = inputForm.style.display === "block" ? "none" : "block";
             });
 
-            const addrefBtn = document.getElementById("addrefBtn");
-            const refInput = document.getElementById("refInput");
-            const refName = document.getElementById("refName");
-            const refLink = document.getElementById("refLink");
-            const addref = document.getElementById("addref");
-            const refList = document.getElementById("refList");
+            function populateSubjects() {
+                const subjectsSemester1 = ["Computer Architecture", "Creative Thinking", "Data Structure", "Electronics 3", "Numerical Analysis", "Signals"];
+                const subjectsSemester2 = ["Communication", "Database", "Measurement & Sensors", "Microprocessor & Microcontroller", "Operation Research", "Power & Machines"];
+                
+                subjectSelect.innerHTML = "";
+                
+                if (semesterSelect.value === "Semester 1") {
+                    subjectsSemester1.forEach(subject => {
+                        const option = document.createElement("option");
+                        option.value = subject;
+                        option.textContent = subject;
+                        subjectSelect.appendChild(option);
+                    });
+                } else if (semesterSelect.value === "Semester 2") {
+                    subjectsSemester2.forEach(subject => {
+                        const option = document.createElement("option");
+                        option.value = subject;
+                        option.textContent = subject;
+                        subjectSelect.appendChild(option);
+                    });
+                }
+            }
 
-            addrefBtn.addEventListener("click", function() {
-                refInput.style.display = "block";
-                refName.focus();
-            });
+            // Initialize subject options on page load
+            populateSubjects();
 
-            // Add stopPropagation to relevant elements
-            slidesInput.addEventListener("click", stopPropagation);
-            slidesName.addEventListener("click", stopPropagation);
-            slidesLink.addEventListener("click", stopPropagation);
-            addSlide.addEventListener("click", stopPropagation);
-            refInput.addEventListener("click", stopPropagation);
-            refName.addEventListener("click", stopPropagation);
-            refLink.addEventListener("click", stopPropagation);
-            addref.addEventListener("click", stopPropagation);
+            semesterSelect.addEventListener("change", populateSubjects);
         });
     </script>
-    <style>
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-    </style>
 </head>
 <body>
     <section class="header">
@@ -127,6 +153,32 @@
             <h1>Syllabus</h1>
         </div>
     </section>
+    
+    <!-- New Add Slide Block -->
+    <div class="add-slide-block">
+        <i class="fas fa-plus" id="addSlideBtn"></i>
+        <div id="inputForm">
+            <form method="post" action="syl_save">
+                <input type="text" name="year" placeholder="Year">
+                <select name="semester" id="semesterSelect">
+                    <option value="Semester 1">First Term</option>
+                    <option value="Semester 2">Second Term</option>
+                </select>
+                <select name="subject" id="subjectSelect">
+                    <!-- Options will be populated based on semester selection -->
+                </select>
+                <select name="category">
+                    <option value="Slides">Slides</option>
+                    <option value="Sheets">Sheets</option>
+                    <option value="Summary">Summary</option>
+                    <option value="Exams">Exams</option>
+                    <option value="Quizzes">Quizzes</option>
+                    <option value="References">References</option>
+                </select>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
 
     <main>
         <div class="year">
@@ -138,38 +190,9 @@
                         <h4 class="semester-title">DataBase <i class="fas fa-chevron-down"></i></h4>
                         <div class="course-content">
                             <h5 class="semester-title"><strong>Slides:</strong> 
-                                <span id="slidesInput" style="display: none;">
-                                    <form method="post" action="syl_save">
-                                        <input type="text" name="sname" id="slidesName" placeholder="Name">
-                                        <input type="text" name="slink" id="slidesLink" placeholder="Link">
-                                        <button type="submit" id="addSlide">Add</button>
-                                    </form>
-                                </span> 
-                                <i class="fas fa-plus" id="addSlideBtn"></i><a href="syllabus"></a><i class="fas fa-chevron-down"></i>
-                            </h5>
+                                <i class="fas fa-chevron-down"></i></h5>
                             <div class="content">
                                 <ul id="slideList">
-                                    {% for index, (item1, item2) in enumerate(zlist) %}
-                                        <li><a href="{{ item1 }}">{{ item2 }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-
-                            <h5 class="semester-title"><strong>Reference:</strong> 
-                                <span id="refInput" style="display: none;">
-                                    <form method="post" action="syl_save">
-                                        <input type="text" name="sname" id="refName" placeholder="Name">
-                                        <input type="text" name="slink" id="refLink" placeholder="Link">
-                                        <button type="submit" id="addref">Add</button>
-                                    </form>
-                                </span> 
-                                <i class="fas fa-plus" id="addrefBtn"></i><a href="syllabus"></a><i class="fas fa-chevron-down"></i>
-                            </h5>
-                            <div class="content">
-                                <ul id="refList">
-                                    {% for index, (item1, item2) in enumerate(zlist) %}
-                                        <li><a href="{{ item1 }}">{{ item2 }}</a></li>
-                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
