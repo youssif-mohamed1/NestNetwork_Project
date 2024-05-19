@@ -18,5 +18,12 @@
 -- continue ps sheets and videos 
 -- photo upload
 -- logout on exit from server 
-----REDIDIT SITE
+----REDIDIT SITE:
+    --> delete posts every week
+        show most recent
+        maximum 10 replies
+
 --COOKIES
+-- teardown Function not working properly
+-- Forgot Password Styling
+--- ITI - Communication Courses in communities

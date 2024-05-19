@@ -153,6 +153,54 @@ class summary(UserMixin,db.Model):
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.num)
 
+class Codeforcesvisualizer(UserMixin,db.Model):
+    handle=db.Column(db.String(50), primary_key=True) #Defining Attributes
+    max_rank=db.Column(db.Integer)
+    current_rank=db.Column(db.Integer)
+    max_rate=db.Column(db.Integer)
+    current_rate=db.Column(db.Integer)
+    def get_id(self):      
+        return str(self.handle)
+    
+class Max_changed_contest(UserMixin, db.Model):
+    handle = db.Column(db.String(50), primary_key=True)  
+    contestName = db.Column(db.String(50))
+    maxChanged = db.Column(db.Integer)
+    def get_id(self):      
+        return str(self.handle)
+
+class Max_rank_contest(UserMixin, db.Model):
+    handle = db.Column(db.String(50), primary_key=True)  
+    contestName = db.Column(db.String(50))
+    maxRank = db.Column(db.Integer)
+    def get_id(self):      
+        return str(self.handle)
+
+class Min_rank_contest(UserMixin, db.Model):
+    handle = db.Column(db.String(50), primary_key=True)  
+    contestName = db.Column(db.String(50))
+    minRank = db.Column(db.Integer)
+    def get_id(self):      
+        return str(self.handle)
+
+class Max_rank_from_contest(UserMixin, db.Model):
+    handle = db.Column(db.String(50), primary_key=True)  
+    contestName = db.Column(db.String(50))
+    maxr = db.Column(db.Integer)
+    def get_id(self):      
+        return str(self.handle)
+
+class Problemsrank(UserMixin, db.Model):
+    handle = db.Column(db.String(50), nullable=False)  
+    problem_rate = db.Column(db.Integer, nullable=False)
+    nosolved_problems = db.Column(db.Integer)
+    
+    __table_args__ = (
+        db.PrimaryKeyConstraint('handle', 'problem_rate'),
+    )
+
+    def get_id(self):      
+        return str(self.handle)
 
 class problem_solving(UserMixin,db.Model):
     
@@ -244,7 +292,7 @@ def rand_id(x):
     if x=="Professor":
         return "pf"+str(rand_no)    
     else: return "st" + str(rand_no)
-
+#
 #3--> forgot_pass
 done=False
 email_global="NONE"
@@ -694,6 +742,7 @@ def save_data():
     depart=request.form.get('depart')
     gender=request.form.get('gender')
     ph_num=request.form.get('ph_num')
+    photo_data = request.form.get('photo')
     user_loggedin = Login.query.filter_by(number = '1').first()
     user = Stud.query.filter_by(stud_id=user_loggedin.id).first()
     print(first_name)
@@ -754,28 +803,187 @@ def edit_account():
 
 def valid_user_on_codeForces(username):
     url = f"https://codeforces.com/api/user.info?handles={username}"
-    
     # Make the API request
     response = requests.get(url) # this gets the responce from the web page content, html, status_code
-
     # Check if the request was successful
     if response.status_code == 200:
         data = response.json() # this convert the returned content into python dictionary
         # Check if the response contains user data
         if data['status'] == "OK":
             return True
-            # Print user details
-            # user_info = data['result'][0]
-            # print(f"User: {user_info['handle']}")
-            # print(f"Rating: {user_info.get('rating', 'Not rated')}")
-            # print(f"Max Rating: {user_info.get('maxRating', 'Not rated')}")
-            # print(f"Rank: {user_info.get('rank', 'No rank')}")
-            # print(f"Max Rank: {user_info.get('maxRank', 'No rank')}")
         else:
             return False
     else:
         return False
 
+def get_handle_data(username):
+    url = f"https://codeforces.com/api/user.info?handles={username}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        user_info = data['result'][0]
+        user_details = {
+            "User": user_info.get('handle', 'Unknown'),
+            "Rating": user_info.get('rating', 'Not rated'),
+            "Max Rating": user_info.get('maxRating', 'Not rated'),
+            "Rank": user_info.get('rank', 'No rank'),
+            "Max Rank": user_info.get('maxRank', 'No rank')
+        }
+    return user_details
+
+def crop_string(x):
+    i = 0
+    while i < len(x) and x[i] != ' ':
+        i += 1
+    while i < len(x) and x[i] == ' ':
+        i += 1
+    return x[i:-1]
+
+
+@app.route("/codeforcesVisualizer", methods=['POST','GET'])
+def codeforcesVisualizer(): 
+    print(Login.query.filter_by(number = '1').first().id)
+    cf_handle = crop_string(str(Problem_solving_community_users.query.filter_by(id = Login.query.filter_by(number = '1').first().id).first()))
+    print(cf_handle)
+    dict = get_handle_data(cf_handle)
+    cf_vis = Codeforcesvisualizer.query.filter_by(handle=cf_handle).first()
+    if cf_vis:
+        cf_vis.max_rank = dict['Max Rank']
+        cf_vis.current_rank = dict['Rank']
+        cf_vis.max_rate = dict['Max Rating']
+        cf_vis.current_rate = dict['Rating']
+    else:
+        db.session.add(Codeforcesvisualizer(handle = cf_handle, max_rank = dict['Max Rank'], current_rank = dict['Rank'], max_rate = dict['Max Rating'], current_rate = dict['Rating']))
+        db.session.commit()
+    mn_contest = Min_rank_contest.query.filter_by(handle = cf_handle).first()
+    mx_contest = Max_rank_contest.query.filter_by(handle = cf_handle).first()
+    mxrf_contest = Max_rank_from_contest.query.filter_by(handle = cf_handle).first()
+    mxchange = Max_changed_contest.query.filter_by(handle = cf_handle).first()
+    problems = Problemsrank.query.filter_by(handle = cf_handle).all()
+    li = []
+    lid = []
+    for it in problems:
+        li.append(it.problem_rate)
+        lid.append(it.nosolved_problems)
+    zipped_list = list(zip(li, lid))
+    return render_template("codeforcesVisualizer.html",
+                            pagetitle="codeforcesVisualizer",
+                            Username = cf_handle,
+                            Current_rating = dict['Rating'],
+                            Current_rating_txt = dict['Rank'],
+                            Max_rating = dict['Max Rating'],
+                            Max_rating_txt = dict['Max Rank'],
+                            mxrfrom_contest = mxrf_contest.contestName,
+                            Contest_name = mn_contest.contestName,
+                            bcn = mn_contest.minRank,
+                            Contest_name2 = mx_contest.contestName,
+                            wcn = mx_contest.maxRank,
+                            Contest_name3 = mxchange.contestName,
+                            mjcn = mxchange.maxChanged,
+                            zlist = zipped_list,
+                            enumerate=enumerate)
+
+def get_user_submission_history(handle):
+    url = f"https://codeforces.com/api/user.status?handle={handle}" # Codeforces API endpoint that provides the submission history for a user
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()["result"] # return the data as a python dictionary
+    else:
+        print("Failed to fetch user submission history.")
+        return None
+
+def filter_solved_problems(submission_history):
+    solved_problems = []
+    for submission in submission_history:
+        if submission["verdict"] == "OK": # if the problem is accepted
+            solved_problems.append(submission["problem"]) # append the problem to the list
+            # submission["problem"] is a dictionary that contain -ID -ContestID -Problem -Veridict[OK, WRONG_ANSWER] -programmingLanguage -author(member(handle and ID))
+    return solved_problems
+
+def calculate_problem_ratings(solved_problems):
+    problem_ratings = {}
+    for problem in solved_problems:
+        rating = problem.get("rating") # get return none if there is no element in the dictionary with this key 
+        if rating is not None:
+            # first this line get the count of the problems solved in the old rating 
+            # if it doesn't exist it returns 0 due to this line (...,0)
+            # then increment it by one 
+            # and overwrite the new value on the old value
+            problem_ratings[rating] = problem_ratings.get(rating, 0) + 1 
+    return problem_ratings
+
+def get_contest_history(handle):
+    url = f"https://codeforces.com/api/user.rating?handle={handle}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()["result"]
+    else:
+        print("Failed to fetch user contest history.")
+        return None
+
+flag_check = False
+
+def update_handle_data(handle):
+    submission_history = get_user_submission_history(handle)
+    if submission_history:
+        solved_problems = filter_solved_problems(submission_history)
+        problem_ratings = calculate_problem_ratings(solved_problems)
+        contest_history = get_contest_history(handle)
+        cnt = maxi = mini = mx = mostchange = 0
+        x = y = z = c = ""
+        mini = 1e18
+        for key, value in problem_ratings.items():
+            p_rank = Problemsrank.query.filter_by(handle=handle, problem_rate=key).first()
+            if p_rank:
+                p_rank.nosolved_problems = value
+            else:
+                db.session.add(Problemsrank(handle = handle,problem_rate = key,nosolved_problems = value))
+                db.session.commit()
+            cnt += value
+        for i in contest_history:
+            if(i['rank'] < mini):
+                mini = i['rank']
+                x = i['contestName']
+            if(i['rank'] > maxi):
+                maxi = i['rank']
+                y = i['contestName']
+            if(i['newRating'] - i['oldRating'] > mostchange):
+                mostchange = i['newRating'] - i['oldRating']  
+                z = i['contestName']       
+            if(i['newRating'] > mx):
+                mx = i['newRating']
+                c = i['contestName']
+        print("hello")
+        mx_rank = Max_rank_contest.query.filter_by(handle = handle).first()
+        mn_rank = Min_rank_contest.query.filter_by(handle = handle).first()
+        mx_ch_rank = Max_changed_contest.query.filter_by(handle = handle).first()
+        mx_rank_from_contest = Max_rank_from_contest.query.filter_by(handle = handle).first()
+        if mx_rank:
+            mx_rank.maxRank = maxi
+            mx_rank.contestName = x
+        else:
+            print(maxi)
+            print(x)
+            db.session.add(Max_rank_contest(handle = handle,maxRank = maxi,contestName = x))
+            db.session.commit()
+        if mn_rank:
+            mn_rank.minRank = mini
+            mn_rank.contestName = y
+        else:
+            db.session.add(Min_rank_contest(handle = handle,minRank = mini,contestName = y))
+            db.session.commit()
+        if mx_ch_rank:
+            mx_ch_rank.maxChanged = mostchange
+            mx_ch_rank.contestName = z
+        else:
+            db.session.add(Max_changed_contest(handle = handle,maxChanged = mostchange,contestName = z))
+            db.session.commit()
+        if mx_rank_from_contest:
+            mx_rank_from_contest.maxr = mx
+            mx_rank_from_contest.contestName = c
+        else:
+            db.session.add(Max_rank_from_contest(handle = handle,maxr = mx,contestName = c))
+            db.session.commit()
 
 @app.route("/signup_for_ps", methods=['POST','GET'])
 def signup_for_ps():
@@ -787,6 +995,7 @@ def signup_for_ps():
         user = Problem_solving_community_users.query.filter_by(cf_handle=cf_handle).first()
         if user:
             if vj_handle == user.vj_handle:
+                update_handle_data(cf_handle)
                 return redirect(url_for("ps")) 
             else:
                 return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "visible", message = "Wrong Vjudge handle") # Loading the HTML page
@@ -803,9 +1012,9 @@ def signup_for_ps():
                                                     );
             db.session.add(new_user)
             db.session.commit()
+            update_handle_data(cf_handle)
             return redirect(url_for("ps"))
         return render_template("signup_for_ps.html", pagetitle="ps", popmessage = "visible", message = "Invalid Codeforces handle")
-    
 
 @app.route("/ps_div1",methods=['POST','GET'])
 def ps_div1():
@@ -920,10 +1129,11 @@ def ps():
                             # link390 = li[71],
                             # link391 = li[72])
 
-@app.teardown_appcontext
-def teardown_context(exception=None):
-        db.session.query(Login).delete()
-        db.session.commit()
+# @app.teardown_appcontext
+# def teardown_context(exception=None):
+#     print("hello")
+#     db.session.query(Login).delete()
+#     db.session.commit()
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000) # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication
