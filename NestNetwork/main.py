@@ -96,7 +96,7 @@ class Subject(db.Model):
 class Slide(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sname = db.Column(db.String(200), nullable=False)
-    slink=db.Column(db.String(1000))
+    slink=db.Column(db.String(1000), nullable = False)
     subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
 
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
@@ -265,19 +265,31 @@ class Problem_solving_community_users(UserMixin,db.Model):
     def get_id(self):
         return str(self.cf_handle)
 ###############------------##################
+flag = False
 
+@app.route("/syllabus", methods=['POST', 'GET'])
+def syllabus():
+    global flag
+    if flag:
+        electro_sl = Slide.query.filter_by(subject_id=1).all()
+        li = [i.slink for i in electro_sl]
+        lid = [i.sname for i in electro_sl]
+        zipped_list = list(zip(li, lid))
+        return render_template("syllabus.html", pagetitle="syllabus", zlist=zipped_list, enumerate=enumerate)
+    return render_template("syllabus.html", pagetitle="syllabus", zlist=[], enumerate=enumerate)
 
-@app.route("/syl_save", methods=['POST','GET'])
+@app.route("/syl_save", methods=['POST'])
 def syl_save():
+    global flag
     if request.method == 'POST':
-        sname=request.form.get('sname')
-        slink=request.form.get('slink')
-        yts=request.form.get('yts')
-        slide=Slide(sname=sname,slink=slink)
+        flag = True
+        sname = request.form.get('sname')
+        slink = request.form.get('slink')
+        slide = Slide(sname=sname, slink=slink, subject_id=1)
         db.session.add(slide)
         db.session.commit()
-        return redirect('/')
-    return render_template('syllabus.html')
+        return redirect(url_for('syllabus'))
+
     
 
 #-----functions block
@@ -1040,7 +1052,6 @@ def ps_div4():
 def ps_div5(): 
     other = Contests.query.filter(Contests.Contest_filter.is_(None)).all()
     return render_template("ps_div.html", pagetitle="ps_divpage", div = other , message = "Others") 
-
 
 @app.route("/ps", methods=['POST', 'GET'])
 def ps():
