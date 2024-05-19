@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css"> <!-- Include your CSS file -->
+    <style>
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Main container styles */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* Card styles */
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .card h2 {
+            margin-top: 0;
+        }
+
+        .card p {
+            margin-bottom: 0;
+        }
+
+        /* Charts container styles */
+        .charts {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Chart styles */
+        .chart {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin-left: 20px;
+            padding: 20px;
+        }
+
+        .chart h2 {
+            margin-top: 0;
+        }
+
+        /* Interactive styles */
+        .chart:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <title>Visualizer</title>
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <a href="home"><img src="../static/imgs/logo.png"></a>
+            <a href="home" class="logo">NESTNETWORK</a>
+            <div class="nav-links" id="nav-links">
+                <i class="fa fa-bars"></i>
+                <ul>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="communities">Communities</a></li>
+                    <li><a href="syllabus">Syllabus</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="text-box">
+            <h1>{{Username}}</h1>
+            <!-- <p></p> -->
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="card">
+            <h2>Current Rating</h2>
+            <p><h4>{{Current_rating_txt}}, {{Current_rating}}</h4></p>
+        </div>
+        <div class="card">
+            <h2>Max_rating</h2>
+            <p><h4>({{Max_rating_txt}}, {{Max_rating}}) from {{mxrfrom_contest}}</h4></p>
+        </div>
+        <div class="card">
+            <h2>Best Rank in a Contest</h2>
+            <p><h4>{{bcn}} from {{Contest_name}}</h4></p>
+        </div>
+        <div class="card">
+            <h2>Worst Rank in a Contest</h2>
+            <p><h4>{{wcn}} from {{Contest_name2}}</h4></p>
+        </div>
+        <div class="card">
+            <h2>Max Jump in Rate</h3></h2>
+            <p><h4>{{mjcn}} from {{Contest_name3}}</h4></p>
+        </div>
+        <div class="card">
+            <h2>Problems History</h2>
+            <table>
+            <td><h3>Problem rate</h3></td>
+            <td><h3>Number of Solved Problems</h3></td>
+            {% for index, (item1, item2) in enumerate(zlist) %}
+                <tr>
+                    <td><h4>{{ item1 }}</h4></td>
+                    <td><h4>{{ item2 }}</h4></td>
+                </tr>
+            {% endfor %}
+        </table>
+        </div>
+        <!-- Add more card data as needed -->
+    </div>
+
+</body>
+</html>
