@@ -32,38 +32,53 @@
             const semesters = document.querySelectorAll(".semester-title");
             semesters.forEach(semester => {
                 semester.addEventListener("click", function() {
-                    const content = this.nextElementSibling;
-                    if (content.style.display === "block") {
-                        content.style.display = "none";
+                    const semester = this.nextElementSibling;
+                    if (semester.style.display === "block") {
+                        semester.style.display = "none";
                         this.querySelector("i").classList.remove("fa-chevron-up");
                         this.querySelector("i").classList.add("fa-chevron-down");
                     } else {
-                        content.style.display = "block";
+                        semester.style.display = "block";
                         this.querySelector("i").classList.remove("fa-chevron-down");
                         this.querySelector("i").classList.add("fa-chevron-up");
                     }
                 });
             });
-        });
-        document.addEventListener("DOMContentLoaded", function() {
-        const courseTitles = document.querySelectorAll(".course-title");
-        courseTitles.forEach(title => {
-            title.addEventListener("click", function() {
-                const courseInfo = this.nextElementSibling;
-                if (courseInfo.style.display === "block") {
-                    courseInfo.style.display = "none";
-                    this.querySelector("i").classList.remove("fa-chevron-up");
-                    this.querySelector("i").classList.add("fa-chevron-down");
-                } else {
-                    courseInfo.style.display = "block";
-                    this.querySelector("i").classList.remove("fa-chevron-down");
-                    this.querySelector("i").classList.add("fa-chevron-up");
+
+            const addSlideBtn = document.getElementById("addSlideBtn");
+            const slidesInput = document.getElementById("slidesInput");
+            const slidesName = document.getElementById("slidesName");
+            const slidesLink = document.getElementById("slidesLink");
+            const addSlide = document.getElementById("addSlide");
+            const slideList = document.getElementById("slideList");
+
+            addSlideBtn.addEventListener("click", function() {
+                slidesInput.style.display = "block";
+                slidesName.focus();
+            });
+
+            addSlide.addEventListener("click", function() {
+                const name = slidesName.value.trim();
+                const link = slidesLink.value.trim();
+                if (name !== "" && link !== "") {
+                    const newItem = document.createElement("li");
+                    newItem.innerHTML = `<a href="${link}" style="cursor:pointer">${name}</a>`;
+                    newItem.style.color = "red";
+                    slideList.appendChild(newItem);
+                    slidesName.value = "";
+                    slidesLink.value = "";
+                    slidesInput.style.display = "none";
                 }
             });
         });
-    });
-
     </script>
+    <style>
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+
 </head>
 <body>
     <section class="header">
@@ -100,7 +115,7 @@
             <h1>Syllabus</h1>
         </div>
     </section>
-
+<!-- y1t1database -->
     <main>
         <div class="year">
             <h2 class="year-title">Year 1 <i class="fas fa-chevron-down"></i></h2>
@@ -108,47 +123,27 @@
                 <h3 class="semester-title">First Semester <i class="fas fa-chevron-down"></i></h3>
                 <div class="semester-content">
                     <div class="course">
-                        <h4 class="semester-title">First Semester <i class="fas fa-chevron-down"></i></h4>
+                        <h4 class="semester-title">DataBase <i class="fas fa-chevron-down"></i></h4>
                         <div class="course-content">
-                            <ul>
-                                <li><strong>Slides:</strong> Link to slides</li>
-                                <li><strong>References:</strong> Reference materials</li>
-                                <li><strong>Exams:</strong> Exam details</li>
-                                <li><strong>Quizzes:</strong> Quiz information</li>
-                                <li><strong>Sheets:</strong> Course sheets</li>
-                                <li><strong>Summary:</strong> Course summary</li>
-                            </ul>
+                            <h5 class="semester-title"><strong>Slides:</strong> 
+                                <span id="slidesInput" style="display: none;">
+                                    <!-- <form method="post" action="syl_save"> -->
+                                    <input type="text" name="sname" id="slidesName" placeholder="Name">
+                                    <input type="text" name="slink" id="slidesLink" placeholder="Link">
+                                    <input type="hidden" name="yts" value="y1 t1 database">
+                                    <button id="addSlide">Add</button>
+                                    <!-- </form> -->
+                                </span> 
+                                <i class="fas fa-plus" id="addSlideBtn"></i> <i class="fas fa-chevron-down"></i></h5>
+                            <div class="content">
+                                <ul id="slideList">
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    <!-- Repeat this structure for each course -->
-                </div>
-                
-                
-                <h3 class="semester-title">Second Semester <i class="fas fa-chevron-down"></i></h3>
-                <div class="semester-content">
-                    <div class="course">
-                        <h4 class="semester-title">Course <i class="fas fa-chevron-down"></i></h4>
-                        <div class="course-content">
-                            <ul>
-                                <li><strong>Slides:</strong> Link to slides</li>
-                                <li><strong>References:</strong> Reference materials</li>
-                                <li><strong>Exams:</strong> Exam details</li>
-                                <li><strong>Quizzes:</strong> Quiz information</li>
-                                <li><strong>Sheets:</strong> Course sheets</li>
-                                <li><strong>Summary:</strong> Course summary</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Repeat this structure for each course -->
-                </div>
-                
-                        <!-- Add other courses for the second semester here -->
-                    </ul>
                 </div>
             </div>
         </div>
-        
-        
         <!-- Add other years and semesters here -->
     </main>
 

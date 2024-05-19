@@ -63,64 +63,91 @@ class Stud(UserMixin,db.Model):
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.stud_id)
-    
-class syllabus(UserMixin,db.Model):
-    num=db.Column(db.Integer, primary_key=True) #Defining Attributes
-    term=db.Column(db.Integer) 
-    year=db.Column(db.Integer) 
-    course_name=db.Column(db.String(50))
-    slides=db.Column(db.String(50))
+
+class Year(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    year = db.Column(db.String(50), nullable=False)
+    terms = db.relationship('Term', backref='year', lazy=True)
+
+    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
+                      #and that it's consistent with how your application retrieves users in the user loader callback.
+        return str(self.num)
+
+class Term(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    term_name = db.Column(db.String(50), nullable=False)
+    year_id = db.Column(db.Integer, db.ForeignKey('year.id'), nullable=False)
+    subjects = db.relationship('Subject', backref='term', lazy=True)
+
+    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
+                      #and that it's consistent with how your application retrieves users in the user loader callback.
+        return str(self.num)
+
+class Subject(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    subject_name = db.Column(db.String(100), nullable=False)
+    term_id = db.Column(db.Integer, db.ForeignKey('term.id'), nullable=False)
+    slides = db.relationship('Slide', backref='subject', lazy=True)
+
+    def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
+                      #and that it's consistent with how your application retrieves users in the user loader callback.
+        return str(self.num)
+
+class Slide(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sname = db.Column(db.String(200), nullable=False)
+    slink=db.Column(db.String(1000))
+    subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
 
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.num)
 
 class references(UserMixin,db.Model):
-    num=db.Column(db.Integer, primary_key=True) #Defining Attributes
-    course_name=db.Column(db.String(50))
-    link=db.Column(db.String(50))
-    year=db.Column(db.String(50))
+    id = db.Column(db.Integer, primary_key=True)
+    rname = db.Column(db.String(200), nullable=False)
+    rlink=db.Column(db.String(1000))
+    reference = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
 
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.num)
-
+    
 class exams(UserMixin,db.Model):
-    num=db.Column(db.Integer, primary_key=True) #Defining Attributes
-    course_name=db.Column(db.String(50))
-    link=db.Column(db.String(50))
-    year=db.Column(db.String(50))
+    id = db.Column(db.Integer, primary_key=True)
+    ename = db.Column(db.String(200), nullable=False)
+    elink=db.Column(db.String(1000))
+    exam = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
 
-     
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.num)
 
 class quizes(UserMixin,db.Model):
-    num=db.Column(db.Integer, primary_key=True) #Defining Attributes
-    course_name=db.Column(db.String(50))
-    link=db.Column(db.String(50))
-    year=db.Column(db.String(50))
+    id = db.Column(db.Integer, primary_key=True)
+    qname = db.Column(db.String(200), nullable=False)
+    qlink=db.Column(db.String(1000))
+    quiz = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
 
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.num)
     
 class sheets(UserMixin,db.Model):        
-    num=db.Column(db.Integer, primary_key=True) #Defining Attributes
-    course_name=db.Column(db.String(50))
-    link=db.Column(db.String(50))
-    year=db.Column(db.String(50))
+    id = db.Column(db.Integer, primary_key=True)
+    qname = db.Column(db.String(200), nullable=False)
+    qlink=db.Column(db.String(1000))
+    sheet = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
 
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
                       #and that it's consistent with how your application retrieves users in the user loader callback.
         return str(self.num)
 
 class summary(UserMixin,db.Model):
-    num=db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(50))
-    type=db.Column(db.String(50))
-    summarys=db.Column(db.String(50))
+    id = db.Column(db.Integer, primary_key=True)
+    sname = db.Column(db.String(200), nullable=False)
+    slink=db.Column(db.String(1000))
+    summaries = db.Column(db.Integer, db.ForeignKey('subject.id'), nullable=False)
 
     def get_id(self): #Always ensure that get_id() returns a unique identifier for each user, 
                       #and that it's consistent with how your application retrieves users in the user loader callback.
@@ -190,6 +217,20 @@ class Problem_solving_community_users(UserMixin,db.Model):
     def get_id(self):
         return str(self.cf_handle)
 ###############------------##################
+
+
+@app.route("/syl_save", methods=['POST','GET'])
+def syl_save():
+    if request.method == 'POST':
+        sname=request.form.get('sname')
+        slink=request.form.get('slink')
+        yts=request.form.get('yts')
+        slide=Slide(sname=sname,slink=slink)
+        db.session.add(slide)
+        db.session.commit()
+        return redirect('/')
+    return render_template('syllabus.html')
+    
 
 #-----functions block
 
@@ -632,6 +673,7 @@ def myaccount_loggedin():
                             gend = account.gender,
                             faclt = account.faculty,
                             depart = account.depart) # Loading the HTML pagep
+
 
 @app.route("/logout")
 @login_required
