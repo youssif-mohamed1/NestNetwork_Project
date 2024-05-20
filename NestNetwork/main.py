@@ -315,6 +315,8 @@ def syllabus():
         # electro_sl = Slide.query.filter_by(subject_id=1).all()
         # li = [i.slink for i in electro_sl]
         # lid = [i.sname for i in electro_sl]
+        li=[]
+        lid=[]
         zipped_list = list(zip(li, lid))
         return render_template("syllabus.html", pagetitle="syllabus", zlist=zipped_list, enumerate=enumerate)
     return render_template("syllabus.html", pagetitle="syllabus", zlist=[], enumerate=enumerate)
@@ -1198,20 +1200,15 @@ def ps():
                             # link390 = li[71],
                             # link391 = li[72])
 
-# @app.teardown_appcontext
-# def teardown_context(exception=None):
-#     print("hello")
-#     db.session.query(Login).delete()
-#     db.session.commit()
 
-def logout_all_users():
-    with app.app_context():
-            print("HEllo")
-            db.session.query(Login).delete()
-            db.session.commit()
-            session.clear()
-# Register the logout function to run on server shutdown
-atexit.register(logout_all_users)
+# def logout_all_users():
+#     with app.app_context():
+#             print("HEllo")
+#             db.session.query(Login).delete()
+#             db.session.commit()
+#             session.clear()
+# # Register the logout function to run on server shutdown
+# atexit.register(logout_all_users)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000) # helps in auto refresh and find errors , port=9000, the port for the page to be shown , not 5000 to avoid duplication
