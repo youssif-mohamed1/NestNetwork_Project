@@ -533,6 +533,10 @@ def contact_loggedin():
 def communities_loggedin(): 
     return render_template("communities_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
+@app.route("/embedded_in", methods=['POST','GET'])
+def embedded_in(): 
+    return render_template("embedded_in.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
+
 @app.route("/contact",methods=['POST','GET'])
 def contact(): 
     return render_template("contact.html", pagetitle="Contactpage") # Loading the HTML page
