@@ -539,6 +539,11 @@ def contact():
 def cyber_intro(): 
     return render_template("cyber_intro.html", pagetitle="cyber_intropage") # Loading the HTML page
 
+@app.route("/syll_intro",methods=['POST','GET'])
+def syll_intro(): 
+    return render_template("syll_intro.html", pagetitle="syll_intropage") # Loading the HTML page
+
+
 @app.route("/about",methods=['POST','GET'])
 def about(): 
     return render_template("about.html", pagetitle="Aboutpage") # Loading the HTML page
