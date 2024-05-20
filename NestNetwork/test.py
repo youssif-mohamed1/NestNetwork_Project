@@ -9,7 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import atexit
-# from datetime import datetime
+from datetime import datetime
 import smtplib
 from email.message import EmailMessage
 # import secrets
@@ -25,13 +25,15 @@ class Posts(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100)) 
     content = db.Column(db.Text )
-    replies = db.relationship('Reply', backref='post', lazy=True)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-class Reply(db.Model):
-    ord= db.Column(db.Integer, unique=True)
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
-    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+    # replies = db.relationship('Reply', backref='post', lazy=True)
+
+# class Reply(db.Model):
+#     ord= db.Column(db.Integer, unique=True)
+#     id = db.Column(db.Integer, primary_key=True)
+#     content = db.Column(db.Text, nullable=False)
+#     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
 
 ##################################
 def rand_post_id():
@@ -44,9 +46,9 @@ def rand_post_id():
 ##################################
 
 @app.route('/')
-def index():
-    # posts = Post.query.all()
-    return render_template('test.html')
+def index():    
+    posts =Posts.query.all()
+    return render_template('test.html',posts=posts)
 
 @app.route('/create_post', methods=['GET', 'POST'])
 def create_post():
@@ -55,10 +57,10 @@ def create_post():
         content = request.form['content']
         id=rand_post_id()
         print(id)
-        posts =Posts.query.all()
         post = Posts(id=id,title=title, content=content)
         db.session.add(post)
         db.session.commit()
+        posts =Posts.query.all()
         return render_template('test.html', posts=posts)   
         # return redirect('/')
     return render_template('test.html', posts=posts)

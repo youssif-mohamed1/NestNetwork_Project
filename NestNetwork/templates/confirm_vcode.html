@@ -9,23 +9,7 @@
         <link rel="stylesheet" href="../static/log_in.css">
     </head>
     <body>
-        {% with messages=get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-
-        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-            {{message}}
-
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        </div>
-
-
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-
+        {%  %}
         <div class="container">
             <div class="ph"></div>
             <div class="data">
@@ -36,16 +20,17 @@
                             <input type="text" id="ue" required
                                 placeholder="ex: 123944"
                                 name="vref_code">
+                                <a href="handle_resend">Resend</a>
+
                         </div>
                     </div>
                     
                     <div class = "second">
                         <br>
-                        <a href="handle_resend">Resend</a>
                     </div>    
                     <!-- <button class="sign-up2 href="/signup" ">Signup</button> -->
                     <!-- onclick="location.href='confirm_vcode'" -->
-                    <button class="sign-up" >Confirm</button>
+                    <button style="background-color: #f44336 " class="sign-up" >Confirm</button>
                 </form>
             </div>
         </div>

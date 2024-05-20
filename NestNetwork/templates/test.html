@@ -1,10 +1,10 @@
-<!-- create_post.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
+    <link rel="stylesheet" href="../static/test.css">
 </head>
 <body>
     <h1>Create Post</h1>
@@ -15,34 +15,39 @@
     </form>
 </body>
 </html>
-<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/test.css">
     <title>Posts</title>
-    <link rel="stylesheet" href="static/test.css">
 </head>
 <body>
-    <h1>Posts</h1>
-    <ul>
-        {% for post in posts %}
-            <li>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.content }}</p>
-                <!-- action="/reply/{{ post.id }}" -->
-                <form action="reply" method="post">
-                    <textarea name="content" placeholder="Enter your reply"></textarea>
-                    <button type="submit">Reply</button>
-                </form>
-                <ul>
-                    {% for reply in post.replies %}
-                        <li>{{ reply.content }}</li>
-                    {% endfor %}
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Posts</h1>
+        <ul class="post-list">
+            {% for post in posts %}
+                <li class="post-item">
+                    <h2>{{ post.title }}</h2>
+                    <p>{{ post.content }} </p>
+                    <p class="post-date">Posted on: {% if post.date_posted %}{{ post.date_posted.strftime('%Y-%m-%d') }}{% endif %}</p>
+                    <!-- <form action="/reply/{{ post.id }}" method="post" class="reply-form">
+                        <textarea name="content" placeholder="Enter your reply"></textarea>
+                        <button type="submit">Reply</button>
+                    </form>
+                    <ul class="reply-list">
+                        {% for reply in post.replies %}
+                            <li class="reply-item">
+                                {{ reply.content }}
+                                <p class="reply-date">Replied on: {{ reply.date_posted.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                            </li>-->
+                        <!-- {% endfor %}  -->
+                    <!-- </ul> -->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
