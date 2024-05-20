@@ -519,6 +519,10 @@ def home():
 def home_loggedin(): 
     return render_template("home_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
 
+@app.route("/cyber_security_intrologged", methods=['POST','GET'])
+def cyber_security_intrologged(): 
+    return render_template("cyber_security_intrologged.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
+
 @app.route("/about_loggedin", methods=['POST','GET'])
 def about_loggedin(): 
     return render_template("about_loggedin.html", pagetitle="Homepage", logged = "logged-no" ) # Loading the HTML page
