@@ -8,6 +8,97 @@
     <link rel="stylesheet" href="../static/sign-up.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-8HfbK2BZjRv+fXbqv0I+ucmlUpoKvAKeaFg6kPx9dty4I4HgpERv2vkiI8+B+0jBFlmiz3ccxhOcHEdL2KHZCA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    /* Adjusted CSS styles */
+    /* Add this to your existing CSS file */
+
+    /* Adjust form width and background color */
+    .form-container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff; /* Change background color */
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style input fields */
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #333; /* Change label color */
+    }
+
+    .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Style radio buttons */
+    .radio-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .radio-group input[type="radio"] {
+        display: none; /* Hide default radio buttons */
+    }
+
+    .radio-group label {
+        position: relative;
+        margin-right: 20px;
+        cursor: pointer;
+        color: #333; /* Change radio button label color */
+    }
+
+    /* Custom radio button style */
+    .radio-group label::before {
+        content: "";
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+        border: 2px solid #007bff; /* Change radio button border color */
+        border-radius: 50%;
+    }
+
+    .radio-group input[type="radio"]:checked + label::before {
+        background-color: #007bff; /* Change radio button background color when checked */
+    }
+
+    /* Style error message */
+    span.pop_message, span.pop_message1 {
+        color: red;
+        font-size: 14px;
+    }
+
+    /* Style submit button */
+    .hero-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .hero-btn:hover {
+        background-color: #0056b3;
+    }
+
+</style>
 </head>
 <body>
 
@@ -23,6 +114,10 @@
                     <li><a href="syllabus">Syllabus</a></li>
                     <li><a href="about">About</a></li>
                     <li><a href="contact">Contact Us</a></li>
+                    <li>
+                        <a href="myaccount" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-user"></i></a>                 
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -39,55 +134,60 @@
             <div class="login-option">
                 <p>Already have an account? <a href="login">Log in here</a></p>
             </div>
-            <input type="text" placeholder="First Name" name="first_name" required>
-            <span class = "hidden">endl</span>
-            <input type="text" placeholder="Last Name" name= "last_name" required>
-            <span class = "hidden">endl</span>
-            <input type="text" placeholder="0123456789" name="ph_num" required>
-            <span class = "hidden">endl</span>
-            <input type="email" placeholder="Email Address" name="uni_email" required>
-            <span class = "hidden">endl</span>
-            <span class = {{pop_message}} style="display: inline;" >{{text}}</span>
-            <input type="password" placeholder="Password" name="password" required>
-            <span class = "{{pop_message1}}">Please Enter a Strong password</span>
-            <input type="text" placeholder="Helwan University" name="uni" required>
-            <span class = "hidden">endl</span>
-            <input type="text" placeholder="Faculty of Engineering" name="faculty" required>
-            <span class = "hidden">endl</span>
-            <input type="text" placeholder="Department of computer Engeering" name="depart" required>
-            <span class = "hidden">endl</span>
-            <div>
-                <label for="male">
+            <div class="input-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
+            </div>
+            <div class="input-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
+            </div>
+            <div class="input-group">
+                <label for="ph_num">Phone Number:</label>
+                <input type="text" id="ph_num" name="ph_num" placeholder="0123456789" required>
+            </div>
+            <div class="input-group">
+                <label for="uni_email">Email Address:</label>
+                <input type="email" id="uni_email" name="uni_email" placeholder="Email Address" required>
+            </div>
+            <span class = "{{pop_message}}" style="display: inline;" >{{text}}</span>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="{{pop_message1}}">Please Enter a Strong password</span>
+            </div>
+            <div class="input-group">
+                <label for="uni">University:</label>
+                <input type="text" id="uni" name="uni" placeholder="Helwan University" required>
+            </div>
+            <div class="input-group">
+                <label for="faculty">Faculty:</label>
+                <input type="text" id="faculty" name="faculty" placeholder="Faculty of Engineering" required>
+            </div>
+            <div class="input-group">
+                <label for="depart">Department:</label>
+                <input type="text" id="depart" name="depart" placeholder="Department of Computer Engineering" required>
+            </div>
+            <div class="input-group">
+                <label>Gender:</label>
+                <div class="radio-group">
                     <input type="radio" id="male" name="gender" value="male" required>
-                    <span class="checkmark"></span>
-                    male
-                </label>
-                </div>
-
-                <div>
-                <label for="female" class="r2">
+                    <label for="male">Male</label>
+                    
                     <input type="radio" id="female" name="gender" value="female">
-                    <span class="checkmark"></span>
-                    Female
-                </label>
+                    <label for="female">Female</label>
                 </div>
-
-                <div>
-                <label for="std">
+            </div>
+            <div class="input-group">
+                <label>Type:</label>
+                <div class="radio-group">
                     <input type="radio" id="std" name="Type" value="Student" required>
-                    <span class="checkmark"></span>
-                    Student
-                </label>
-                </div>
-
-                <div>
-                <label for="prf">
+                    <label for="std">Student</label>
+                    
                     <input type="radio" id="prf" name="Type" value="Professor">
-                    <span class="checkmark"></span>
-                    Professor
-                </label>
+                    <label for="prf">Professor</label>
                 </div>
-                
+            </div>
             <!-- Your existing form fields -->
             <button type="submit" class="hero-btn">Sign Up</button>
 
@@ -98,10 +198,10 @@
         <h4>About Us</h4>
         <p>Join us and make a difference in your community and beyond!</p>
         <div class="icons">
-            <a href="#"><i class="fab fa-facebook-square"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://www.instagram.com"><i class="fa-brands fa-instagram "></i></a>
+            <a href="https://www.youtube.com"><i class="fa-brands fa-youtube "></i></a>
+            <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin "></i></a>
         </div>
     </footer>
 
