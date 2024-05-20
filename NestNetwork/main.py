@@ -541,9 +541,19 @@ def embedded_in():
 def contact(): 
     return render_template("contact.html", pagetitle="Contactpage") # Loading the HTML page
 
+
 @app.route("/cyber_intro",methods=['POST','GET'])
 def cyber_intro(): 
     return render_template("cyber_intro.html", pagetitle="cyber_intropage") # Loading the HTML page
+
+@app.route("/cyber_security_intrologged",methods=['POST','GET'])
+def cyber_security_introloggedin(): 
+    return render_template("cyber_security_intrologged.html", pagetitle="cyber_intropage") # Loading the HTML page
+
+@app.route("/cyber_security_in",methods=['POST','GET'])
+def cyber_security_in(): 
+    return render_template("cyber_security_in.html", pagetitle="cyber_intropage") # Loading the HTML page
+
 
 @app.route("/syll_intro",methods=['POST','GET'])
 def syll_intro(): 
