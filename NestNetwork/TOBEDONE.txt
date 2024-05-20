@@ -31,6 +31,8 @@
 --Testing
 --report
 -er diagram
+--delete login tABLE
+--email sent not only my email
 --syllabus
 --announcment
 --contact us
