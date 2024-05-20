@@ -29,6 +29,7 @@
 --- ITI - Communication Courses in communities
 
 --Testing
+--image logo Link
 --report
 -er diagram
 --delete login tABLE
