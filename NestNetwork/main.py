@@ -337,8 +337,8 @@ def syl_save():
         #     case '3':    
 
         # slide = Slide(sname=sname, slink=slink, subject_id=1)
-        db.session.add(slide)
-        db.session.commit()
+        # db.session.add(slide)
+        # db.session.commit()
         return redirect(url_for('syllabus'))
 
     
