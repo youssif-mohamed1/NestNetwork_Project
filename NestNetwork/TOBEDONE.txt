@@ -27,3 +27,10 @@
 -- teardown Function not working properly
 -- Forgot Password Styling
 --- ITI - Communication Courses in communities
+
+--Testing
+--report
+-er diagram
+--syllabus
+--announcment
+--contact us
