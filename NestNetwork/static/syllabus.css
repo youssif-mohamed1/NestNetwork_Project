@@ -189,6 +189,20 @@ main {
     margin-top: 20px;
 }
 
+.course-content h5 .fa-chevron-down{
+    position: absolute;
+    right: 0;
+    margin-right: 51px;
+    transition: transform 0.3s;
+}
+
+.course-content h5 .fa-plus{
+    position: absolute;
+    right: 0;
+    margin-right: 100px;
+    transition: transform 0.3s;
+}
+
 
 /* end of content */
 
