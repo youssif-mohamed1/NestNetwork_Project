@@ -5,12 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
-<script src="https://kit.fontawesome.com/ed4f7946ad.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css">
+    <script src="https://kit.fontawesome.com/ed4f7946ad.js" crossorigin="anonymous"></script>
     
-<title>Communities</title>
+    <title>Communities</title>
+
+    <style>
+        /* CSS styling for enhanced visual appeal */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .sub-header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .commu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .commu .row1, .commu .row2 {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 45%;
+            max-width: 500px;
+        }
+
+        .commu .row1 {
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .commu .row2 {
+            background-color: #e3e3e3;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .commu .row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .commu .row a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .commu .row a:hover {
+            color: #333;
+        }
+
+        .commu .row img {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        .commu .row h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .commu .row p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer .icons a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer .icons a:hover {
+            color: #ccc;
+        }
+    </style>
 </head>
 <body>
 
@@ -21,71 +119,63 @@
             <div class="nav-links" id="nav-links">
                 <i class="fa fa-times"></i>
                 <ul>
-                    <li>
-                        <a href="home">Home</a>
-                    </li>
-                    <li>
-                        <a href="communities">Communities</a>
-                    </li>
-                    <li>
-                        <a href="syllabus">Syllabus</a>
-                    </li>
-                    <li>
-                        <a href="about">About</a>
-                    </li>
-                    <li>
-                        <a href="contact">Contact Us</a>
-                    </li>
-                    <li>
-                        <a href="myaccount" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i></a>                 
-                    </li>
+                    <li><a href="home">Home</a></li>
+                    <li><a href="communities">Communities</a></li>
+                    <li><a href="myaccount">Syllabus</a></li>
+                    <li><a href="about">About</a></li>
+                    <li><a href="contact">Contact Us</a></li>
+                    <li><a href="myaccount" class="nav-link dropdown-toggle nav-links text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user"></i></a></li>
                 </ul>
             </div>
             <i class="fa fa-bars"></i>
         </nav>
-        <h1>Communitiy</h1>
+        <h1>Communities</h1>
     </section>
 
-   <section class="commu">
-    <div class="row1">
-        <div class="row">
-            <a href=""><div><img src="../static/imgs/slide2.jpeg"></div></a>
-            <div>
-                <a href="cyber"><h3>Cyber Security</h3></a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque dolorum harum hic non vitae molestiae id eligendi autem sunt, amet omnis, optio consequuntur. Eum earum dicta ut distinctio consequuntur voluptates.</p>
+    <section class="commu">
+        <div class="row1">
+            <div class="row">
+                <a href="">
+                    <div><img src="../static/imgs/slide2.jpeg"></div>
+                </a>
+                <div>
+                    <a href="cyber"><h3>Cyber Security</h3></a>
+                    <p>Explore the world of Cyber Security and learn to protect digital assets from cyber threats.</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row2">
-        <div class="row">
-            <div>
-                <a href="ps_intro"><h3>Problem Solving</h3></a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque dolorum harum hic non vitae molestiae id eligendi autem sunt, amet omnis, optio consequuntur. Eum earum dicta ut distinctio consequuntur voluptates.</p>
+        <div class="row2">
+            <div class="row">
+                <div>
+                    <a href="ps_intro"><h3>Problem Solving</h3></a>
+                    <p>Hone your problem-solving skills and tackle complex challenges efficiently.</p>
+                </div>
+                <a href="">
+                    <div><img src="../static/imgs/slide1.jpeg"></div>
+                </a>
             </div>
-            <a href=""><div><img src="../static/imgs/slide1.jpeg"></div></a>
         </div>
-    </div>
-   
-    <div class="row1">
-        <div class="row">
-            <a href=""><div><img src="../static/imgs/slide3.jpg"></div></a>
-            <div>
-                <a href=""><h3>Embedded System</h3></a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque dolorum harum hic non vitae molestiae id eligendi autem sunt, amet omnis, optio consequuntur. Eum earum dicta ut distinctio consequuntur voluptates.</p>
+        <div class="row1">
+            <div class="row">
+                <a href="">
+                    <div><img src="../static/imgs/slide3.jpg"></div>
+                </a>
+                <div>
+                    <a href=""><h3>Embedded Systems</h3></a>
+                    <p>Discover the fascinating field of Embedded Systems and its applications in various industries.</p>
+                </div>
             </div>
-        </div>    
-    </div>  
-   </section>
+        </div>
+    </section>
 
     <section class="footer">
         <h4>About Us</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem a voluptatum inventore</p>
+        <p>Learn more about NestNetwork and our mission.</p>
         <div class="icons">
-            <a href=""><i class="fa-brands fa-square-facebook"></i></a>
-            <a href=""><i class="fa-brands fa-instagram "></i></a>
-            <a href=""><i class="fa-brands fa-youtube "></i></a>
-            <a href=""><i class="fa-brands fa-linkedin "></i></a>
+            <a href="https://www.facebook.com"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="https://www.instagram.com"><i class="fa-brands fa-instagram "></i></a>
+            <a href="https://www.youtube.com"><i class="fa-brands fa-youtube "></i></a>
+            <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin "></i></a>
         </div>
     </section>
 

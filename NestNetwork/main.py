@@ -312,9 +312,9 @@ flag = False
 def syllabus():
     global flag
     if flag:
-        electro_sl = Slide.query.filter_by(subject_id=1).all()
-        li = [i.slink for i in electro_sl]
-        lid = [i.sname for i in electro_sl]
+        # electro_sl = Slide.query.filter_by(subject_id=1).all()
+        # li = [i.slink for i in electro_sl]
+        # lid = [i.sname for i in electro_sl]
         zipped_list = list(zip(li, lid))
         return render_template("syllabus.html", pagetitle="syllabus", zlist=zipped_list, enumerate=enumerate)
     return render_template("syllabus.html", pagetitle="syllabus", zlist=[], enumerate=enumerate)
@@ -334,7 +334,7 @@ def syl_save():
 
         #     case '3':    
 
-        slide = Slide(sname=sname, slink=slink, subject_id=1)
+        # slide = Slide(sname=sname, slink=slink, subject_id=1)
         db.session.add(slide)
         db.session.commit()
         return redirect(url_for('syllabus'))
@@ -534,6 +534,10 @@ def communities_loggedin():
 @app.route("/contact",methods=['POST','GET'])
 def contact(): 
     return render_template("contact.html", pagetitle="Contactpage") # Loading the HTML page
+
+@app.route("/cyber_intro",methods=['POST','GET'])
+def cyber_intro(): 
+    return render_template("cyber_intro.html", pagetitle="cyber_intropage") # Loading the HTML page
 
 @app.route("/about",methods=['POST','GET'])
 def about(): 
